@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>(blog-dump 'dciabrin) &mdash; Make your Apple Aluminium Keyboard really work under Linux, X.org</title>
+  <meta charset="utf-8" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/lingonberry/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/tipuesearch/css/tipuesearch.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/blogdump.css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2"/> 
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <link rel="alternate" type="application/atom+xml"
+	title="(blog-dump 'dciabrin) — Atom Feed"
+	href="http://damien.ciabrini.name/" /> 
+</head>
+
+<body class="home blog" >
+    <!-- <div id="container"> -->
+    <header id="header" class="header section">
+        <div class="header-inner section-inner">
+            <a class="site-logo noimg" rel="home" title="(blog-dump 'dciabrin)" href="http://damien.ciabrini.name">
+                <span class="screen-reader-text"></span>
+            </a>
+	    <h1 id="site-title" class="site-title"><a href="http://damien.ciabrini.name">(blog-dump 'dciabrin)</a></h1>
+<h2 id="site-description" class="site-description">A coding and hacking diary</h2>        </div>
+    
+    <nav id="menu" class="site-navigation">
+        <form class="navbar-search" action="http://damien.ciabrini.name/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form>
+	<div class="menu-navigation-container"><div class="navigation-inner section-inner">
+	    <ul id="menu-navigation" class="blog-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+		    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/pages/about.html">About</a></li>
+
+			<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/code.html">Code</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/misc.html">Misc</a></li>
+
+			<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives.html">Archives</a></li>
+
+
+	    </ul>
+	</div></div> <!--/#menu-navigation-container-->
+    </nav><!-- /#menu -->
+    </header><!-- /#banner -->
+		                    
+    <!-- Content -->
+    <div class="flexcontent">
+    <main class="article">
+        <section class="post type-post status-publish format-standard hentry category-general" id="post">
+	    <div class="main content-inner">
+	        <!-- <div class="post-header"> -->
+		<h1 class="post-title">
+		    <a href="http://damien.ciabrini.name/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html" title="Permalink to Make your Apple Aluminium Keyboard really work under Linux, X.org" rel="bookmark">Make your Apple Aluminium Keyboard really work under Linux, X.org</a>
+		</h1>
+		<div class="center post-meta"><span>Damien Ciabrini</span></div>
+                <div class="center post-meta">
+                    <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html">Fri 15 May 2009</a>
+                        <span class="sep"></span>
+    	                <span class="tag-links"><i class="fa fa-tags"></i>
+ <a href="http://damien.ciabrini.name/tag/apple.html" rel="tag">apple</a>,  <a href="http://damien.ciabrini.name/tag/apple-kbd.html" rel="tag">apple-kbd</a>    	                </span>
+                </div>
+                
+                <div class="entry-content">
+		    <p>Like many others, I've bought an Aluminium Keyboard for ~~its cool
+style~~ the smooth typing experience it provides. Mine is a wired
+version, ISO variant (international, 110-keys). It's not working 100%
+out-of-the-box under Linux, so this post explains what I did to make it
+happen:</p>
+<ul>
+<li>Supporting the additional keys (F13..F19) and geometry (physical
+    layout) under X.org</li>
+<li>Making the keyboard auto-configured at X.org startup. No need to
+    mess with xorg.conf!</li>
+</ul>
+<p>But wait, there's more. If you're accustomed to PC keyboards, you really
+need those ones too:</p>
+<ul>
+<li><strong>Making this fn key located on top of the delete key behave like a
+    regular PC keyboard: Insert!</strong></li>
+<li>Making multimedia keys output Fxx symbols by default</li>
+<li>Making F13..F15 behave like those charmingly obsolete Scroll
+    Lock..Print Screen keys</li>
+<li>Keeping the multimedia keys accessible when the fn key is remapped
+    to Insert</li>
+</ul>
+
+
+<h2>Prerequisite</h2>
+<p>First, make sure you have installed all the packages below and that
+their versions are recent enough:</p>
+<ul>
+<li><a href="http://www.freedesktop.org/wiki/Software/Xserver">xserver-xorg</a>
+    v1.5.2, X.org's hotplug-aware X server</li>
+<li><a href="http://cgit.freedesktop.org/xorg/driver/xf86-input-evdev">xserver-xorg-input-evdev</a>
+    v2.0.xx, evdev driver for input devices</li>
+<li><a href="http://www.freedesktop.org/wiki/Software/hal">HAL</a> v0.5.xx, the
+    hardware abstraction layer daemon which gives hotplug information to
+    the X server</li>
+</ul>
+<h2>How the support works</h2>
+<h3>Install</h3>
+<p>Go grab <a href="http://damien.ciabrini.free.fr/pub/apple-alu-kbd/xkb-apple-aluminium-kdb-iso.patch.gz">this
+patch</a>
+and save it in your home directory; it contains the relevant XKB updates
+to support the keymap and the geometry of Apple Aluminium keyboard, ISO
+variant. It also defines two XKB options to make this keyboard behave
+more like a PC keyboard (more on that later). To install it, first
+<em>pretend</em> to apply the patch in the directory that holds the XKB data.
+On my Ubuntu, this gives:</p>
+<div class="highlight"><pre><span class="x">sudo bash</span>
+<span class="x">cd /usr/share/X11/xkb</span>
+<span class="x">gunzip -cd </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/xkb-apple-aluminium-kdb-iso.patch.gz | patch -p1 --dry-run</span>
+</pre></div>
+
+
+<p>If the patch applies successfuly, you can proceed and apply it for real:</p>
+<div class="highlight"><pre><span class="x">gunzip -cd </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/xkb-apple-aluminium-kdb-iso.patch.gz | patch -p1</span>
+</pre></div>
+
+
+<p>Once you have the relevant XKB definition for your keyboard, you need to
+tell X.org to apply these settings automatically when it detects your
+keyboard. <a href="http://damien.ciabrini.free.fr/pub/apple-alu-kbd/10-apple-aluminium-kbd.fdi">The following HAL fdi
+file</a>
+makes the necessary voodoo (read: XKB settings) for you. Note that these
+settings do not preclude your system-wide XKB options.</p>
+<p>In order to install the fdi file I'm providing, just copy it in the HAL
+directory which holds user-defined policies for devices. On my Ubuntu,
+this directory is <code>/usr/share/hal/fdi/policy/30user</code>. You might need to
+create <code>30user</code> if it doesn't exist.</p>
+<h3>Test</h3>
+<p>Now that you installed everything, restart HAL. For example, on a
+Debian-like distro:</p>
+<div class="highlight"><pre>sudo /etc/init.d/hal restart
+</pre></div>
+
+
+<p>Then log out from your current X session and start a new one. If
+everything went well, you should now be able to see the Aluminium
+Keyboard in your keyboard preferences application. The screenshots below
+show the result under GNOME:</p>
+<p><a href="http://4.bp.blogspot.com/_ZBvdcyyTybw/Sg3ut8052mI/AAAAAAAAAIs/2tOjbryJ938/s1600-h/alukbd-preferences.png"><img alt="" src="http://4.bp.blogspot.com/_ZBvdcyyTybw/Sg3ut8052mI/AAAAAAAAAIs/2tOjbryJ938/s320/alukbd-preferences.png" /></a><a href="http://1.bp.blogspot.com/_ZBvdcyyTybw/Sg3ut5bmmBI/AAAAAAAAAI0/OM7w35rbAC0/s1600-h/alukbd-geometry.png"><img alt="" src="http://1.bp.blogspot.com/_ZBvdcyyTybw/Sg3ut5bmmBI/AAAAAAAAAI0/OM7w35rbAC0/s320/alukbd-geometry.png" /></a></p>
+<h2>Make it a PC keyboard!</h2>
+<h3>The Insert key hack</h3>
+<p>The fn key is not seen by X because its keycode (464) is greater than
+255, <a href="http://bugs.freedesktop.org/show_bug.cgi?id=x11-keycode-limit">which is not
+allowed</a>
+in X11 protocol. But there is a trick: under Linux, you can modify the
+kernel scancode→keycode mapping of your evdev device!</p>
+<p>Just uncomment the two optional lines in the <a href="http://damien.ciabrini.free.fr/pub/apple-alu-kbd/10-apple-aluminium-kbd.fdi">fdi
+file</a>
+I'm providing to make the fn scancode (HID usage 0xff0003 on this
+keyboard) generate the Insert keycode (110) in userland and make Xorg
+happy :D</p>
+<p>For curious people:
+<a href="http://thread.gmane.org/gmane.comp.freedesktop.hal/8615/focus=8615">Initially</a>
+(funny how these names look familiar if you read
+<a href="http://planet.gnome.org/">p.g.o</a>...), HAL's keycode remapping seems to
+have been designed with <a href="http://www.win.tue.nl/%7Eaeb/linux/kbd/scancodes-1.html">AT
+scancodes</a> in
+mind, not HID usages. In order to override those ones, you must <a href="http://thread.gmane.org/gmane.comp.freedesktop.hal/8615/focus=8687">revert
+a special
+encoding</a>
+performed for representing AT escape scancodes. In our case, you end up
+remapping usage 0xffdf83!</p>
+<h3>Fxx keys enabled by default</h3>
+<p>This one is not new. In order to boot with Fxx keys enabled, you must
+pass an option to the <code>hid</code> Linux module. On my Ubuntu, this can be done
+by updating modprobe options and rebuilding an <code>initrd</code> image.</p>
+<div class="highlight"><pre>sudo bash
+echo &quot;options hid pb_fnmode=2&quot; &gt;&gt; /etc/modprobe.d/alukbd
+echo &quot;options hid_apple fnmode=2&quot; &gt;&gt; /etc/modprobe.d/alukbd
+update-initramfs -k `uname -r` -u
+</pre></div>
+
+
+<h3>Additional PC-like XKB options</h3>
+<p>The XKB patch I'm providing defines two new XKB options:</p>
+<dl>
+<dt><code>apple:alupcfkeys</code></dt>
+<dd>If you need to map F13..F15 to Scroll Lock..Print Screen keys (I
+won't judge you, I swear :P)</dd>
+<dt><code>apple:alul3media</code></dt>
+<dd>If you remap fn to Insert, this options allows you to access the
+multimedia keys is by typing 3rd-level chooser + Fxx key. I've
+mapped my 3rd-level chooser to the right Alt key (XKB option
+<code>lv3:ralt_switch</code> )</dd>
+</dl>
+<p>Naturally, the simplest way of using these XKB options is to enable them
+via your keyboard preferences application. For instance, GNOME users can
+find them in the Keyboard Layout Options:</p>
+<p><a href="http://3.bp.blogspot.com/_ZBvdcyyTybw/Sg3ut3h88CI/AAAAAAAAAI8/pX908oljDJM/s1600-h/alukbd-options.png"><img alt="" src="http://3.bp.blogspot.com/_ZBvdcyyTybw/Sg3ut3h88CI/AAAAAAAAAI8/pX908oljDJM/s320/alukbd-options.png" /></a></p>
+<h2>Conclusion</h2>
+<p>My XKB and HAL settings provide complete support for your Aluminium
+Keyboard on Xorg Linux. However, the Insert key hack is probably not
+mainstream and ultimately should not land in a fdi file. It would be
+better to make a distro package such as “enable PC-support on Aluminium
+Keyboard”.</p>
+<p>The XKB geometry implemented is for the ISO variant. if you have one of
+the other variant and like to throw it away, you know I'd be happy to
+add support for it, eheh :P</p>
+
+		</div> <!--/#entry-content-->
+	    </div> <!--/#main-->
+        </section>  <!--/#post-->
+	<section id="comments">
+		<div id="respond">
+			<div id="disqus_thread"></div>
+	        <script type="text/javascript">
+	            var disqus_shortname = 'dciabrin';
+	
+	            /* * * DON'T EDIT BELOW THIS LINE * * */
+	            (function() {
+	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	            })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div><!-- #respond -->					
+        </section><!-- #comments -->
+    </main>
+
+    </div>
+    <!-- Footer -->
+<footer id="footer" class="footer">
+  <div class="section-inner">
+    &copy; 2008&dash;2015 Damien Ciabrini - Content licensed under <a href="CC-BY 4.0">CC-BY 4.0</a> unless stated otherwise.<br/>
+    Theme based on <a href="https://wordpress.com/themes/lingonberry/">Lingonberry</a>,
+    icons by <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a><br/>
+    Powered by <a href="http://getpelican.com">Pelican</a>, <a href="https://disqus.com">Disqus</a><br/>
+
+<script type="text/javascript">
+    var disqus_shortname = 'dciabrin';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>  </div>
+</footer><!-- /#footer -->    <div style="display:none"></div>
+</body>
+</html>

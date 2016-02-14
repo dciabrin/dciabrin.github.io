@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>(blog-dump 'dciabrin) &mdash; Apple Aluminium Keyboards with udev, Xorg server 1.9</title>
+  <meta charset="utf-8" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/lingonberry/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/tipuesearch/css/tipuesearch.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/blogdump.css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2"/> 
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <link rel="alternate" type="application/atom+xml"
+	title="(blog-dump 'dciabrin) — Atom Feed"
+	href="http://damien.ciabrini.name/" /> 
+</head>
+
+<body class="home blog" >
+    <!-- <div id="container"> -->
+    <header id="header" class="header section">
+        <div class="header-inner section-inner">
+            <a class="site-logo noimg" rel="home" title="(blog-dump 'dciabrin)" href="http://damien.ciabrini.name">
+                <span class="screen-reader-text"></span>
+            </a>
+	    <h1 id="site-title" class="site-title"><a href="http://damien.ciabrini.name">(blog-dump 'dciabrin)</a></h1>
+<h2 id="site-description" class="site-description">A coding and hacking diary</h2>        </div>
+    
+    <nav id="menu" class="site-navigation">
+        <form class="navbar-search" action="http://damien.ciabrini.name/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form>
+	<div class="menu-navigation-container"><div class="navigation-inner section-inner">
+	    <ul id="menu-navigation" class="blog-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+		    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/pages/about.html">About</a></li>
+
+			<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/code.html">Code</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/misc.html">Misc</a></li>
+
+			<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives.html">Archives</a></li>
+
+
+	    </ul>
+	</div></div> <!--/#menu-navigation-container-->
+    </nav><!-- /#menu -->
+    </header><!-- /#banner -->
+		                    
+    <!-- Content -->
+    <div class="flexcontent">
+    <main class="article">
+        <section class="post type-post status-publish format-standard hentry category-general" id="post">
+	    <div class="main content-inner">
+	        <!-- <div class="post-header"> -->
+		<h1 class="post-title">
+		    <a href="http://damien.ciabrini.name/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html" title="Permalink to Apple Aluminium Keyboards with udev, Xorg server 1.9" rel="bookmark">Apple Aluminium Keyboards with udev, Xorg server 1.9</a>
+		</h1>
+		<div class="center post-meta"><span>Damien Ciabrini</span></div>
+                <div class="center post-meta">
+                    <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html">Tue 11 January 2011</a>
+                        <span class="sep"></span>
+    	                <span class="tag-links"><i class="fa fa-tags"></i>
+ <a href="http://damien.ciabrini.name/tag/apple.html" rel="tag">apple</a>,  <a href="http://damien.ciabrini.name/tag/apple-kbd.html" rel="tag">apple-kbd</a>    	                </span>
+                </div>
+                
+                <div class="entry-content">
+		    <p>It's been a year now since I published my support for Aluminium
+Keyboards. Since then, my XKB patches have been accepted in
+<a href="http://freedesktop.org/wiki/Software/XKeyboardConfig">XKeyboardConfig</a>
+1.9, with a few modifications:</p>
+<ul>
+<li>The multimedia keys can always be accessed by combining Fxx with the
+    3rd level chooser (this was option <code id="tt1099">alul3media</code> in my
+    original XKB patches)</li>
+<li>There is now a single XKB option <code id="tt1101">alupckeys</code> to emulate the
+    behaviour of a PC keyboard, <em>i.e.</em> to enable PrintScreen,
+    ScrollLock, SysReq and NumLock (options <code id="tt1103">alupcfkeys</code> and
+    <code id="tt1104">alupcnumlock</code> in the original patches)</li>
+</ul>
+
+
+<p>Meanwhile, Xorg server 1.9 went stable, becoming more and more
+pervasive. As far as input hotplugging is concerned, this is a major
+revision for it dropped
+<a href="http://www.freedesktop.org/wiki/Software/hal">HAL</a> in favor of
+<a href="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev.html">udev</a>:
+input discovery is achieved via udev and XKB settings for devices are
+fetched from the udev database.</p>
+<p>I have thus ported the support for the Aluminium Keyboards to udev. As
+before, a configuration file controls the XKB settings to apply, as well
+as the remapping of the "fn" key to "insert", if requested.</p>
+<h2>Installing the udev-enabled support</h2>
+<p>First, download the <a href="http://damien.ciabrini.free.fr/pub/alu-kbd-udev/95-keymap-apple-kdb.rules">necessary udev
+rules</a>
+and install them in whatever directory your distrib uses to store user
+rules. On Ubuntu, assuming that you downloaded the rules in your home
+directory, this gives:</p>
+<div class="highlight"><pre><span class="x">sudo cp </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/95-keymap-apple-kdb.rules /etc/udev/rules.d</span>
+</pre></div>
+
+
+<p>Then, download the <a href="http://damien.ciabrini.free.fr/pub/alu-kbd-udev/apple-kbd">configuration
+file</a> and
+install it in your distrib's configuration directory. On Ubuntu, this
+gives:</p>
+<div class="highlight"><pre><span class="x">sudo cp </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/apple-kbd /etc/default</span>
+</pre></div>
+
+
+<p>The configuration file contains various key-value pairs that drive the
+behaviour of the Aluminium Keyboard. By default, the configuration
+enables the XKB option for PC-like mapping (PrintScreen, ScrollLock,
+Pause, NumLock) and maps the "fn" key to "insert". Comment out the
+relevant lines to disable any of those settings if necessary.</p>
+<h2>There's a catch: what's your distrib?</h2>
+<p>The udev-enabled support assumes one thing: that you are running
+xkeyboard-config 1.9 or above. Not all distribs are equal in this
+regard.</p>
+<p>A quick search shows that Arch, Gentoo, Fedora or openSUSE all ship a
+recent-enough xkeyboard-config. On the other hand, Debian is currently
+stuck with xkeyboard-config 1.8-2 (at least for unstable, I haven't
+checked experimental).</p>
+<p>The Ubuntu case is the most puzzling one. At the time of writing,
+Maverick and Natty ship xkeyboard-config 1.8-1ubuntu8, which is based on
+1.8 stock plus additional important commits from the git repository.
+This includes my patches for the Aluminium Keyboard (!), but
+unfortunately only 6 patches out of 7 have been included (!?!).
+Consequently, the XKB support is currently broken for Ubuntu. I have
+filled <a href="https://bugs.launchpad.net/bugs/696232">bug 696232</a> in Launchpad
+to track this issue and check whether this was intended or not.
+Meanwhile, you can grab <a href="http://damien.ciabrini.free.fr/pub/alu-kbd-udev/xkb-data-1.8-evdev.patch">this XKB
+patch</a>
+and try to apply it:</p>
+<div class="highlight"><pre><span class="x">sudo bash</span>
+<span class="x">cd /usr/share/X11/xkb/rules</span>
+<span class="x">patch -p0 --dry-run &lt; </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/xkb-data-1.8-evdev.patch</span>
+</pre></div>
+
+
+<p>If the patch applies successfully, you can proceed and apply it for
+real:</p>
+<div class="highlight"><pre><span class="x">patch -p0 &lt; </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/xkb-data-1.8-evdev.patch</span>
+</pre></div>
+
+
+<h2>Steps to come</h2>
+<p>With this updated support, Aluminium Keyboards work again under recent
+versions of the Xorg server, but there are still various improvements to
+think about. The next step is to package the support to make it more
+user-friendly. A package is definitely a good place to deal with other
+keyboard options, such as kernel settings for activating multimedia keys
+<em>vs.</em> function keys.</p>
+<p>On the XKB side, it would be necessary to perform a second pass to
+ensure that there are no missing or misplaced symbols on the 16 existing
+keymaps: ANSI, JIS and the 14 ISO layouts.</p>
+<p>Speaking of misplaced symbols: I am currently checking whether it's
+possible to come with a fully user-space, udev-based solution to the
+<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/214786">"keys swapped"
+issue</a> that
+plague some owners of the ISO variants. I have some ideas, but this will
+be another post!</p>
+
+		</div> <!--/#entry-content-->
+	    </div> <!--/#main-->
+        </section>  <!--/#post-->
+	<section id="comments">
+		<div id="respond">
+			<div id="disqus_thread"></div>
+	        <script type="text/javascript">
+	            var disqus_shortname = 'dciabrin';
+	
+	            /* * * DON'T EDIT BELOW THIS LINE * * */
+	            (function() {
+	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	            })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div><!-- #respond -->					
+        </section><!-- #comments -->
+    </main>
+
+    </div>
+    <!-- Footer -->
+<footer id="footer" class="footer">
+  <div class="section-inner">
+    &copy; 2008&dash;2015 Damien Ciabrini - Content licensed under <a href="CC-BY 4.0">CC-BY 4.0</a> unless stated otherwise.<br/>
+    Theme based on <a href="https://wordpress.com/themes/lingonberry/">Lingonberry</a>,
+    icons by <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a><br/>
+    Powered by <a href="http://getpelican.com">Pelican</a>, <a href="https://disqus.com">Disqus</a><br/>
+
+<script type="text/javascript">
+    var disqus_shortname = 'dciabrin';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>  </div>
+</footer><!-- /#footer -->    <div style="display:none"></div>
+</body>
+</html>

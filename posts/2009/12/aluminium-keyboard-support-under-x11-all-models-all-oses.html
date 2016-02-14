@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>(blog-dump 'dciabrin) &mdash; Aluminium Keyboard support under X11: all models, all OSes</title>
+  <meta charset="utf-8" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/lingonberry/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/tipuesearch/css/tipuesearch.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/blogdump.css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2"/> 
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <link rel="alternate" type="application/atom+xml"
+	title="(blog-dump 'dciabrin) — Atom Feed"
+	href="http://damien.ciabrini.name/" /> 
+</head>
+
+<body class="home blog" >
+    <!-- <div id="container"> -->
+    <header id="header" class="header section">
+        <div class="header-inner section-inner">
+            <a class="site-logo noimg" rel="home" title="(blog-dump 'dciabrin)" href="http://damien.ciabrini.name">
+                <span class="screen-reader-text"></span>
+            </a>
+	    <h1 id="site-title" class="site-title"><a href="http://damien.ciabrini.name">(blog-dump 'dciabrin)</a></h1>
+<h2 id="site-description" class="site-description">A coding and hacking diary</h2>        </div>
+    
+    <nav id="menu" class="site-navigation">
+        <form class="navbar-search" action="http://damien.ciabrini.name/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form>
+	<div class="menu-navigation-container"><div class="navigation-inner section-inner">
+	    <ul id="menu-navigation" class="blog-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+		    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/pages/about.html">About</a></li>
+
+			<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/code.html">Code</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/misc.html">Misc</a></li>
+
+			<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives.html">Archives</a></li>
+
+
+	    </ul>
+	</div></div> <!--/#menu-navigation-container-->
+    </nav><!-- /#menu -->
+    </header><!-- /#banner -->
+		                    
+    <!-- Content -->
+    <div class="flexcontent">
+    <main class="article">
+        <section class="post type-post status-publish format-standard hentry category-general" id="post">
+	    <div class="main content-inner">
+	        <!-- <div class="post-header"> -->
+		<h1 class="post-title">
+		    <a href="http://damien.ciabrini.name/posts/2009/12/aluminium-keyboard-support-under-x11-all-models-all-oses.html" title="Permalink to Aluminium Keyboard support under X11: all models, all OSes" rel="bookmark">Aluminium Keyboard support under X11: all models, all OSes</a>
+		</h1>
+		<div class="center post-meta"><span>Damien Ciabrini</span></div>
+                <div class="center post-meta">
+                    <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2009/12/aluminium-keyboard-support-under-x11-all-models-all-oses.html">Tue 22 December 2009</a>
+                        <span class="sep"></span>
+    	                <span class="tag-links"><i class="fa fa-tags"></i>
+ <a href="http://damien.ciabrini.name/tag/apple.html" rel="tag">apple</a>,  <a href="http://damien.ciabrini.name/tag/apple-kbd.html" rel="tag">apple-kbd</a>    	                </span>
+                </div>
+                
+                <div class="entry-content">
+		    <p>I finally found the time to update my previous support for Aluminium
+Keyboard under Xorg, and take it to the Next Level (tm). The overall
+support is now much more polished. For you this means several things:</p>
+<ul>
+<li>I've implemented the XKB geometries of <strong>all variants of the long
+    Aluminium Keyboard</strong>, be it
+    <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-ansi.svg">ANSI</a>
+    (American),
+    <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-iso.svg">ISO</a>
+    (Internationnal) or
+    <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-jis.svg">JIS</a>
+    (Japanese)! And believe me, it's darned complicated to support JIS
+    keyboard's dual layout without having access to the real hardware :D</li>
+<li>I've added support for base XKB rules, which means that the keyboard
+    will now be properly configured <strong>on other OSes than Linux</strong>. I
+    personally used <a href="http://www.opensolaris.org/">OpenSolaris</a> during my
+    tests, but it should work equally well on
+    <a href="http://www.freebsd.org/">FreeBSD</a>, <a href="http://openbsd.org/">OpenBSD</a>,
+    and all their cousins!</li>
+<li>The keyboard support is now <strong>aware of the system-wide keyboard
+    settings</strong> as found in Debian or Fedora for example. If you
+    configured your system to default to Dvorak layout, the support will
+    use it automatically!</li>
+</ul>
+
+
+<h2>Installing the new support</h2>
+<p>I'm short on details, but you can find a complete explanation for all
+these steps in a <a href="http://damienciabrini.blogspot.com/2009/05/make-your-apple-aluminium-keyboard.html">previous
+post</a>.</p>
+<h3>XKB Patch</h3>
+<p>First of all, download <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/applekbd-xkb-support.patch.gz">this XKB
+patch</a>
+and try to apply it on your XKB install in dry-run. For the sake of the
+example, I assume you downloaded the patch in your <code>$HOME</code> directory.</p>
+<div class="highlight"><pre><span class="x">sudo bash</span>
+<span class="x">cd /usr/share/X11/xkb</span>
+<span class="x">gunzip -cd </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/applekbd-xkb-support.patch.gz | patch -p1 --dry-run</span>
+</pre></div>
+
+
+<p>If the patch applies successfuly, you can proceed and apply it for real:</p>
+<div class="highlight"><pre><span class="x">gunzip -cd </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/applekbd-xkb-support.patch.gz | patch -p1</span>
+</pre></div>
+
+
+<h3>HAL support</h3>
+<p>Well, even if HAL is meant to be replaced sooner or later by
+<a href="http://fedoraproject.org/wiki/Features/DeviceKit">DeviceKit</a>, that's
+the way to go for the time being. So I reworked the previous HAL support
+and split it in one fdi file to track your keyboard on your hardware,
+plus a script to configure XKB for Aluminium Keyboard and to remap the
+Fn key to Insert. To install it, first remove the fdi file from the
+previous support if necessary. Then, copy this <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/10-applekbd-xkb-settings.fdi">new fdi
+file</a>
+(which you have previously downloaded in your <code>$HOME</code> directory) in the
+relevant HAL directory. On my Ubuntu Karmic, this gives (<strong>update:</strong>
+added missing chmod, thanks Patrick):</p>
+<div class="highlight"><pre><span class="x">sudo bash</span>
+<span class="x">rm -f /usr/share/hal/fdi/policy/30user/10-apple-aluminium-kbd.fdi</span>
+<span class="x">mkdir -p /usr/share/hal/fdi/policy/30user</span>
+<span class="x">cp </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/10-applekbd-xkb-settings.fdi /usr/share/hal/fdi/policy/30user</span>
+</pre></div>
+
+
+<p>Download (I assume in your <code>$HOME</code> directory) the <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/applekbd-xkb-settings.sh">new script for XKB
+setting</a>,
+plus its associated <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/applekbd-xkb-settings">configuration
+file</a>.
+Then copy them respectively in HAL's installation directory and in the
+system-wide configuration directory. On my Ubuntu, ths gives:</p>
+<div class="highlight"><pre><span class="x">sudo bash</span>
+<span class="x">cp </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/applekbd-xkb-settings.sh /usr/lib/hal</span>
+<span class="x">chmod +x /usr/lib/hal/applekbd-xkb-settings.sh</span>
+<span class="x">cp </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/applekbd-xkb-settings /etc/default</span>
+</pre></div>
+
+
+<p>You can tweak the configuration file
+<code>/etc/default/applekbd-xkb-settings</code> to enable the settings you want for
+your keyboard. By default, the Fn key is remapped to Insert. The XKB
+options can be configured there for system-wide setting, as explained in
+the configuration file itself. But it's more user-friendly to configure
+XKB in your preferred Desktop Environment (GNOME, KDE, XFCE...
+whatever).</p>
+<h2>Enjoy!</h2>
+<p>I'm particularly happy with my revised XKB geometries. A tedious work,
+but this time keys dimension and layout perfectly match the original
+hardware, whatever the model. I'm even more happy now that I discovered
+how Apple decided to implement their EISU and KANA keys on the JIS
+keyboard! If you are curious, have a look at file
+<code>xkb/keycodes/machintosh</code> in the patch, or read <a href="http://forum.parallels.com/showthread.php?t=90313">this post on Parallels'
+forum</a>.</p>
+<p>The XKB patches are now ready for submission to the Xorg people
+(xkeyboard-config). The rest of the files are also clean enough to start
+providing .deb packages for this support! Maybe a good opportunity of
+learning <a href="https://help.launchpad.net/Packaging/PPA">PPA</a> in
+<a href="https://launchpad.net/">LaunchPad</a> :P</p>
+
+		</div> <!--/#entry-content-->
+	    </div> <!--/#main-->
+        </section>  <!--/#post-->
+	<section id="comments">
+		<div id="respond">
+			<div id="disqus_thread"></div>
+	        <script type="text/javascript">
+	            var disqus_shortname = 'dciabrin';
+	
+	            /* * * DON'T EDIT BELOW THIS LINE * * */
+	            (function() {
+	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	            })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div><!-- #respond -->					
+        </section><!-- #comments -->
+    </main>
+
+    </div>
+    <!-- Footer -->
+<footer id="footer" class="footer">
+  <div class="section-inner">
+    &copy; 2008&dash;2015 Damien Ciabrini - Content licensed under <a href="CC-BY 4.0">CC-BY 4.0</a> unless stated otherwise.<br/>
+    Theme based on <a href="https://wordpress.com/themes/lingonberry/">Lingonberry</a>,
+    icons by <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a><br/>
+    Powered by <a href="http://getpelican.com">Pelican</a>, <a href="https://disqus.com">Disqus</a><br/>
+
+<script type="text/javascript">
+    var disqus_shortname = 'dciabrin';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>  </div>
+</footer><!-- /#footer -->    <div style="display:none"></div>
+</body>
+</html>

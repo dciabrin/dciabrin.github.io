@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>(blog-dump 'dciabrin) &mdash; MikMod library ported to iPhone</title>
+  <meta charset="utf-8" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/lingonberry/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/tipuesearch/css/tipuesearch.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/blogdump.css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2"/> 
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <link rel="alternate" type="application/atom+xml"
+	title="(blog-dump 'dciabrin) — Atom Feed"
+	href="http://damien.ciabrini.name/" /> 
+</head>
+
+<body class="home blog" >
+    <!-- <div id="container"> -->
+    <header id="header" class="header section">
+        <div class="header-inner section-inner">
+            <a class="site-logo noimg" rel="home" title="(blog-dump 'dciabrin)" href="http://damien.ciabrini.name">
+                <span class="screen-reader-text"></span>
+            </a>
+	    <h1 id="site-title" class="site-title"><a href="http://damien.ciabrini.name">(blog-dump 'dciabrin)</a></h1>
+<h2 id="site-description" class="site-description">A coding and hacking diary</h2>        </div>
+    
+    <nav id="menu" class="site-navigation">
+        <form class="navbar-search" action="http://damien.ciabrini.name/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form>
+	<div class="menu-navigation-container"><div class="navigation-inner section-inner">
+	    <ul id="menu-navigation" class="blog-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+		    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/pages/about.html">About</a></li>
+
+			<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/code.html">Code</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/misc.html">Misc</a></li>
+
+			<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives.html">Archives</a></li>
+
+
+	    </ul>
+	</div></div> <!--/#menu-navigation-container-->
+    </nav><!-- /#menu -->
+    </header><!-- /#banner -->
+		                    
+    <!-- Content -->
+    <div class="flexcontent">
+    <main class="article">
+        <section class="post type-post status-publish format-standard hentry category-general" id="post">
+	    <div class="main content-inner">
+	        <!-- <div class="post-header"> -->
+		<h1 class="post-title">
+		    <a href="http://damien.ciabrini.name/posts/2008/06/mikmod-library-ported-to-iphone.html" title="Permalink to MikMod library ported to iPhone" rel="bookmark">MikMod library ported to iPhone</a>
+		</h1>
+		<div class="center post-meta"><span>Damien Ciabrini</span></div>
+                <div class="center post-meta">
+                    <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2008/06/mikmod-library-ported-to-iphone.html">Fri 27 June 2008</a>
+                        <span class="sep"></span>
+    	                <span class="tag-links"><i class="fa fa-tags"></i>
+ <a href="http://damien.ciabrini.name/tag/apple.html" rel="tag">apple</a>,  <a href="http://damien.ciabrini.name/tag/apple-kbd.html" rel="tag">apple-kbd</a>    	                </span>
+                </div>
+                
+                <div class="entry-content">
+		    <p>I've always been a big fan of old skool computer music, like chiptunes
+or demoscene music. Perhaps because they remind me the Good Old Days
+(tm) of my <a href="http://en.wikipedia.org/wiki/Amiga">Amiga</a>. Or perhaps for
+the same reason I like <a href="http://pouet.net/">demoscene</a>: real-time
+computer art! Because it's definitely cool, I've decided to port MikMod
+to the iPhone! We'll see later if it might be useful to someone else :)
+<span style="font-size:130%;">Compiling libmikmod</span> Here are the
+steps to follow to build libmikmod for your iPhone or iPod Touch. First
+of all, make sure that you have the necessary header file from Apple,
+namely <span style="font-size:100%;"><span
+style="font-family:courier new;">AudioQueue.h</span></span>. This file
+is part of the AudioQueue framework, which is available in the <a href="http://developer.apple.com/tools/download">MacOS X
+10.5 SDK</a>. This means that
+the official iPhone SDK is not required. Then, download the latest
+<a href="http://mikmod.raphnet.net/files/libmikmod-3.2.0-beta2.tar.gz">libmikmod-3.2.0-beta2</a>
+available on the <a href="http://mikmod.raphnet.net/">MikMod homepage</a>, as well
+as <a href="http://damien.ciabrini.free.fr/pub/mikmod-iphone/iphone-drv-mikmod-3.2.0-beta2.patch.gz">this patch for iPhone
+support</a>.
+For simplicity, let's consider that both files will be downloaded in the
+same directory. Once you have them, extract the archive and apply the
+patch:</p>
+<div class="highlight"><pre>tar -zxf libmikmod-3.2.0-beta2.tar.gz
+cd libmikmod-3.2.0-beta2
+gunzip -cd ../iphone-drv-mikmod-3.2.0-beta2.patch.gz | patch -p1
+</pre></div>
+
+
+<p>Among other things, the patch modifies various Makefiles and the
+configure script, so we have to cleanly regenerate all the
+autotool-related files:</p>
+<div class="highlight"><pre>aclocal
+automake
+autoconf
+</pre></div>
+
+
+<p>Now let's set up the necessary environment variables to configure and
+build libmikmod. First, where to find the AudioQueue header and where to
+install libmikmod:</p>
+<div class="highlight"><pre><span class="x">export AQDIR=</span><span class="p">$</span><span class="nv">HOME</span><span class="x">/local/audioqueue</span>
+<span class="x">export MMDIR=</span><span class="p">$</span><span class="nv">HOME</span><span class="x">/local/mikmod-iphone</span>
+</pre></div>
+
+
+<p>Make sure you are using absolute paths for the variables above. Then,
+let's set up some compilation flags and name the tools we'll use from
+the iPhone toolchain:</p>
+<div class="highlight"><pre><span class="x">export CFLAGS=&quot;-I</span><span class="p">$</span><span class="nv">AQDIR</span><span class="x"> -DAVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER=&quot;</span>
+<span class="x">export CPPFLAGS=&quot;</span><span class="p">$</span><span class="nv">CFLAGS</span><span class="x">&quot;</span>
+<span class="x">export LDFLAGS=&quot;-framework AudioToolbox&quot;</span>
+<span class="x">export CC=arm-apple-darwin-gcc</span>
+<span class="x">export RANLIB=arm-apple-darwin-ranlib</span>
+</pre></div>
+
+
+<p>Okay, now it's time to let configure do its job:</p>
+<div class="highlight"><pre><span class="x">./configure --enable-iphone --host=arm-apple-darwin --disable-oss --disable-esd --prefix=</span><span class="p">$</span><span class="nv">MMDIR</span><span class="x"></span>
+</pre></div>
+
+
+<p>We're almost done! But there's still a little quirk that must be
+addressed. The project is configured to build shared libraries, which
+for some reason refuse to link with the version of the open-source
+iPhone toolchain I use. To overcome this problem, you just need to patch
+the generated libtool configuration. Knowing no clever means to do so, I
+propose something like:</p>
+<div class="highlight"><pre>sed -r -i &#39;s/^(allow_undefined_flag.*)&quot;/\1 -Wl,-read_only_relocs,suppress&quot;/&#39; libtool
+</pre></div>
+
+
+<p>Phew, now we're done! Just type:</p>
+<div class="highlight"><pre><span class="x">make CFLAGS=&quot;</span><span class="p">$</span><span class="nv">CFLAGS</span><span class="x">&quot;</span>
+<span class="x">make install</span>
+</pre></div>
+
+
+<p>And voila! a fresh libmikmod with support for your beloved iPhone or
+iPod Touch! Oh, by the way: the library comes in both static and dynamic
+flavor, so it should be pretty usable. Of course, the obligatory example
+will follow soon :P <span style="font-weight: bold;">EDIT: </span>the
+link to the patch was pointing to a plain file instead of a gzip one,
+fixed!</p>
+
+		</div> <!--/#entry-content-->
+	    </div> <!--/#main-->
+        </section>  <!--/#post-->
+	<section id="comments">
+		<div id="respond">
+			<div id="disqus_thread"></div>
+	        <script type="text/javascript">
+	            var disqus_shortname = 'dciabrin';
+	
+	            /* * * DON'T EDIT BELOW THIS LINE * * */
+	            (function() {
+	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	            })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div><!-- #respond -->					
+        </section><!-- #comments -->
+    </main>
+
+    </div>
+    <!-- Footer -->
+<footer id="footer" class="footer">
+  <div class="section-inner">
+    &copy; 2008&dash;2015 Damien Ciabrini - Content licensed under <a href="CC-BY 4.0">CC-BY 4.0</a> unless stated otherwise.<br/>
+    Theme based on <a href="https://wordpress.com/themes/lingonberry/">Lingonberry</a>,
+    icons by <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a><br/>
+    Powered by <a href="http://getpelican.com">Pelican</a>, <a href="https://disqus.com">Disqus</a><br/>
+
+<script type="text/javascript">
+    var disqus_shortname = 'dciabrin';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>  </div>
+</footer><!-- /#footer -->    <div style="display:none"></div>
+</body>
+</html>

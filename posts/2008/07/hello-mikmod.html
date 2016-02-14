@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>(blog-dump 'dciabrin) &mdash; Hello MikMod!</title>
+  <meta charset="utf-8" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/lingonberry/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/tipuesearch/css/tipuesearch.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/blogdump.css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2"/> 
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <link rel="alternate" type="application/atom+xml"
+	title="(blog-dump 'dciabrin) — Atom Feed"
+	href="http://damien.ciabrini.name/" /> 
+</head>
+
+<body class="home blog" >
+    <!-- <div id="container"> -->
+    <header id="header" class="header section">
+        <div class="header-inner section-inner">
+            <a class="site-logo noimg" rel="home" title="(blog-dump 'dciabrin)" href="http://damien.ciabrini.name">
+                <span class="screen-reader-text"></span>
+            </a>
+	    <h1 id="site-title" class="site-title"><a href="http://damien.ciabrini.name">(blog-dump 'dciabrin)</a></h1>
+<h2 id="site-description" class="site-description">A coding and hacking diary</h2>        </div>
+    
+    <nav id="menu" class="site-navigation">
+        <form class="navbar-search" action="http://damien.ciabrini.name/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form>
+	<div class="menu-navigation-container"><div class="navigation-inner section-inner">
+	    <ul id="menu-navigation" class="blog-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+		    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/pages/about.html">About</a></li>
+
+			<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/code.html">Code</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/misc.html">Misc</a></li>
+
+			<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives.html">Archives</a></li>
+
+
+	    </ul>
+	</div></div> <!--/#menu-navigation-container-->
+    </nav><!-- /#menu -->
+    </header><!-- /#banner -->
+		                    
+    <!-- Content -->
+    <div class="flexcontent">
+    <main class="article">
+        <section class="post type-post status-publish format-standard hentry category-general" id="post">
+	    <div class="main content-inner">
+	        <!-- <div class="post-header"> -->
+		<h1 class="post-title">
+		    <a href="http://damien.ciabrini.name/posts/2008/07/hello-mikmod.html" title="Permalink to Hello MikMod!" rel="bookmark">Hello MikMod!</a>
+		</h1>
+		<div class="center post-meta"><span>Damien Ciabrini</span></div>
+                <div class="center post-meta">
+                    <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2008/07/hello-mikmod.html">Sat 05 July 2008</a>
+                        <span class="sep"></span>
+    	                <span class="tag-links"><i class="fa fa-tags"></i>
+ <a href="http://damien.ciabrini.name/tag/apple.html" rel="tag">apple</a>,  <a href="http://damien.ciabrini.name/tag/apple-kbd.html" rel="tag">apple-kbd</a>    	                </span>
+                </div>
+                
+                <div class="entry-content">
+		    <p>As promised earlier, I've packaged an obligatory example of how to use
+the iPhone port of <a href="http://mikmod.raphnet.net/">libmikmod</a> which I've
+talked about recently. Go grab <a href="http://damien.ciabrini.free.fr/pub/mikmod-iphone/HelloMikMod.tar.gz">this
+tarball</a>
+which implements a very simple "Hello World!":</p>
+<ul>
+<li>It shows how to play a module within a
+    <a href="http://www.cocoadev.com/index.pl?UIKit">UIKit</a> application. This is
+    an adaptation of the skeleton program found in <a href="http://http//mikmod.raphnet.net/#docs">MikMod
+    Documentation</a>.</li>
+<li>It shows how to use the higher level sound API
+    <a href="http://www.cocoadev.com/index.pl?CelestialFramework">Celestial</a> to
+    control mikmod output. For instance, how to react to volume change
+    events when iPhone buttons are pressed.</li>
+</ul>
+
+
+<p>What to do with this archive once you've extracted it?</p>
+<div class="highlight"><pre>  tar -zxf HelloMikMod.tar.gz
+  cd HelloMikMod
+</pre></div>
+
+
+<p>Simple! Modify the Makefile to set the location of the <span
+style="font-family:courier new;">AudioQueue.h</span> header, as well as
+the location where you've installed libmikmod. Once you're done, the
+makefile should look like:</p>
+<div class="highlight"><pre><span class="c">  # directory where AudioQueue.h is located</span>
+  <span class="nv">AQDIR</span><span class="o">=</span><span class="k">$(</span>HOME<span class="k">)</span>/local/audioqueue
+<span class="c">  # directory where MikMod is located</span>
+  <span class="nv">MMDIR</span><span class="o">=</span><span class="k">$(</span>HOME<span class="k">)</span>/local/mikmod-iphone
+<span class="c">  # comment the following line when the previous settings are OK for you</span>
+<span class="c">  #$(error configure AudioQueue and Mikmod location in the Makefile first)</span>
+</pre></div>
+
+
+<p>Then, just build and install the app by typing:</p>
+<div class="highlight"><pre>  make
+  scp -r HelloMikMod.app root@iphone:/Applications
+</pre></div>
+
+
+<p>Where <span style="font-family:courier new;">iphone</span> stands for
+the hostname or the IP of your iPhone. Note that you will need either
+curl or wget installed or your machine so that the build process is able
+to download the module played in this example app (fortunately, one of
+those should always be available on MacOS X or on your favorite Linux
+distro). For your convenience, the <span
+style="font-family:courier new;">HelloMikMod.app</span> directory is
+standalone: it contains the app itself linked statically to libmikmod, a
+launcher descriptor for Springboard and the module to play. For my own
+pleasure, the mod played is <a href="http://modarchive.org/module.php?59344">Stardust
+Memories</a> by Jester / Sanity, my
+all time favorite Amiga mod (see the compo <a href="http://www.pouet.net/prod.php?which=2938">World of
+Commodore</a>). This is only a
+simple example of how to use MikMod on iPhone. I've started implementing
+a more complex app that mimics the iPod interface for playing mods
+(Module DB, Screenshot of associated demos...). Now if only I could use
+<a href="http://www.scenemusic.net/">Nectarine</a> or
+<a href="http://pouet.net/">Pouet.net</a> DB to make some kind of systematic
+indexing available!! (sigh....)</p>
+
+		</div> <!--/#entry-content-->
+	    </div> <!--/#main-->
+        </section>  <!--/#post-->
+	<section id="comments">
+		<div id="respond">
+			<div id="disqus_thread"></div>
+	        <script type="text/javascript">
+	            var disqus_shortname = 'dciabrin';
+	
+	            /* * * DON'T EDIT BELOW THIS LINE * * */
+	            (function() {
+	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	            })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div><!-- #respond -->					
+        </section><!-- #comments -->
+    </main>
+
+    </div>
+    <!-- Footer -->
+<footer id="footer" class="footer">
+  <div class="section-inner">
+    &copy; 2008&dash;2015 Damien Ciabrini - Content licensed under <a href="CC-BY 4.0">CC-BY 4.0</a> unless stated otherwise.<br/>
+    Theme based on <a href="https://wordpress.com/themes/lingonberry/">Lingonberry</a>,
+    icons by <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a><br/>
+    Powered by <a href="http://getpelican.com">Pelican</a>, <a href="https://disqus.com">Disqus</a><br/>
+
+<script type="text/javascript">
+    var disqus_shortname = 'dciabrin';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>  </div>
+</footer><!-- /#footer -->    <div style="display:none"></div>
+</body>
+</html>
