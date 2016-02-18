@@ -4,12 +4,14 @@
   
   <title>(blog-dump 'dciabrin) &mdash; Toolchain.sh is amazing!</title>
   <meta charset="utf-8" />
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/lingonberry/css/style.css" />
   <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/tipuesearch/css/tipuesearch.css" />
   <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/blogdump.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/slide.css" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2"/> 
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -19,17 +21,20 @@
 	href="http://damien.ciabrini.name/" /> 
 </head>
 
-<body class="home blog" >
-    <!-- <div id="container"> -->
+<body id="body" class="homez blogz" >
+  <div id="page">
     <header id="header" class="header section">
         <div class="header-inner section-inner">
             <a class="site-logo noimg" rel="home" title="(blog-dump 'dciabrin)" href="http://damien.ciabrini.name">
                 <span class="screen-reader-text"></span>
             </a>
-	    <h1 id="site-title" class="site-title"><a href="http://damien.ciabrini.name">(blog-dump 'dciabrin)</a></h1>
+	    <h1 id="site-title" class="site-title">
+              <a href="http://damien.ciabrini.name">(blog-dump 'dciabrin)</a>
+              <a href="#" id="toggle-menu">☰</a>
+            </h1>
 <h2 id="site-description" class="site-description">A coding and hacking diary</h2>        </div>
     
-    <nav id="menu" class="site-navigation">
+    <nav id="header-nav" class="site-navigation">
         <form class="navbar-search" action="http://damien.ciabrini.name/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form>
 	<div class="menu-navigation-container"><div class="navigation-inner section-inner">
 	    <ul id="menu-navigation" class="blog-menu">
@@ -47,6 +52,7 @@
     </nav><!-- /#menu -->
     </header><!-- /#banner -->
 		                    
+    <!-- <div id="full"> -->
     <!-- Content -->
     <div class="flexcontent">
     <main class="article">
@@ -91,6 +97,41 @@ and using their script :)</p>
 		</div> <!--/#entry-content-->
 	    </div> <!--/#main-->
         </section>  <!--/#post-->
+        <div class="hidden">
+<aside id="menu" class="side_navigation">
+  <h3 class="nav_author">Damien Ciabrini</h3>
+
+  <p>Coder, hacker, dreamer. Worked on compilers,
+    debuggers, language runtimes. Passionate
+    about distributed computing. Obsessed by
+    retro hardware and optimizations.
+    <div class="center social-buttons">
+        <a class="social fa fa-twitter" href="http://twitter.com/dciabrin"></a>
+        <!-- <span class="sep"></span> -->
+        <a class="social fa fa-github" href="http://github.com/dciabrin"></a>
+        <!-- <span class="sep"></span> -->
+        <a class="social fa fa-google-plus" href="https://plus.google.com/+DamienCiabrini"></a>
+        <!-- <span class="sep"></span> -->
+        <a class="social fa fa-linkedin" href="https://www.linkedin.com/in/damien-ciabrini-70514187"></a>
+        <!-- <span class="sep"></span> -->
+    </div>
+  </p>
+    
+  <h3>Meta</h3>
+  <div class="center">
+  <ul>
+      <li><a href="http://damien.ciabrini.name/" type="application/atom+xml" rel="alternate" title="ATOM Feed" />Blog Feed <i class="fa fa-rss"></i></a></li>
+  </ul>
+  </div>
+  
+  <h3>Categories</h3>
+  <div class="center">
+  <ul>
+        <li><a href="http://damien.ciabrini.name/category/code.html">Code</a> (7)</li>
+        <li><a href="http://damien.ciabrini.name/category/misc.html">Misc</a> (1)</li>
+  </ul>
+  </div>
+</aside>        </div>
 	<section id="comments">
 		<div id="respond">
 			<div id="disqus_thread"></div>
@@ -128,6 +169,8 @@ and using their script :)</p>
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
 </script>  </div>
-</footer><!-- /#footer -->    <div style="display:none"></div>
+</footer><!-- /#footer -->    </div>
+  <!-- </div> -->
+  <script src="http://damien.ciabrini.name/theme/slide.js"></script>
 </body>
 </html>
