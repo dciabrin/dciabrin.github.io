@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   
-  <title>(blog-dump 'dciabrin) &mdash; Articles tagged apple</title>
+  <title>(blog-dump 'dciabrin) &mdash; Articles tagged openstack</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="initial-scale=1" />
 
@@ -58,88 +58,48 @@
     <div class="contentandnav">
         <div id="contents" class="content section-inner posts padding-top">
             <div class="post-meta">
-	        <h3>Posts with tag <span>apple</span> &hellip;</h3>
+	        <h3>Posts with tag <span>openstack</span> &hellip;</h3>
             </div>
 <div class="post type-post status-publish format-standard hentry category-general" id="post">
     <div class="post-bubbles">
-        <a class="format-bubble" title="Hello MikMod!" href="posts/2008/07/hello-mikmod.html">
-            <span class="screen-reader-text">Hello MikMod!</span>
+        <a class="format-bubble" title="Galera boot process in Open Stack HA and manual override" href="posts/2015/10/galera-boot-process-in-open-stack-ha-and-manual-override.html">
+            <span class="screen-reader-text">Galera boot process in Open Stack HA and manual override</span>
         </a>
     </div>
 
     <div class="main content-inner">
         <h2 class="post-title post-summary">
-	    <a href="http://damien.ciabrini.name/posts/2008/07/hello-mikmod.html" title="Permalink to Hello MikMod!" rel="bookmark">Hello MikMod!</a>
+	    <a href="http://damien.ciabrini.name/posts/2015/10/galera-boot-process-in-open-stack-ha-and-manual-override.html" title="Permalink to Galera boot process in Open Stack HA and manual override" rel="bookmark">Galera boot process in Open Stack HA and manual override</a>
         </h2>
 
         <div class="post-meta">
-            <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2008/07/hello-mikmod.html">05 July 2008</a>
+            <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2015/10/galera-boot-process-in-open-stack-ha-and-manual-override.html">02 October 2015</a>
             <span class="sep"></span>
 
-                <i class="fa fa-comments"></i> <a href="http://damien.ciabrini.name/posts/2008/07/hello-mikmod.html#disqus_thread" title="Comments on Hello MikMod!">comments</a>
+                <i class="fa fa-comments"></i> <a href="http://damien.ciabrini.name/posts/2015/10/galera-boot-process-in-open-stack-ha-and-manual-override.html#disqus_thread" title="Comments on Galera boot process in Open Stack HA and manual override">comments</a>
 	        <span class="sep"></span>
 
     	        <span class="tag-links"><i class="fa fa-tags"></i>
- <a href="http://damien.ciabrini.name/tag/apple.html" rel="tag">apple</a>,  <a href="http://damien.ciabrini.name/tag/apple-kbd.html" rel="tag">apple-kbd</a>    	        </span>
+ <a href="http://damien.ciabrini.name/tag/galera.html" rel="tag">galera</a>,  <a href="http://damien.ciabrini.name/tag/openstack.html" rel="tag">openstack</a>    	        </span>
         </div> <!-- /#post-meta -->
 
         <div class="entry-content">
-	    <p>As promised earlier, I've packaged an obligatory example of how to use
-the iPhone port of <a href="http://mikmod.raphnet.net/">libmikmod</a> which I've
-talked about recently. Go grab <a href="http://damien.ciabrini.free.fr/pub/mikmod-iphone/HelloMikMod.tar.gz">this
-tarball</a>
-which implements a very simple "Hello World!":</p>
+	    <p>Deployments of OpenStack that rely on MariaDB+Galera benefit from a HA database thanks to Galera's synchronous replication. In such deployments, the Galera cluster is typically managed via Pacemaker, by means of a galera resource agent.</p>
+<p>While Galera itself has its own notion of cluster management (membership, health check, write-set replication...), a resource agent is still necessary for Pacemaker to perform the basic cluster management duties, for example:</p>
 <ul>
-<li>It shows how to play a module within a
-    <a href="http://www.cocoadev.com/index.pl?UIKit">UIKit</a> application. This is
-    an adaptation of the skeleton program found in <a href="http://http//mikmod.raphnet.net/#docs">MikMod
-    Documentation</a>.</li>
-<li>It shows how to use the higher level sound API
-    <a href="http://www.cocoadev.com/index.pl?CelestialFramework">Celestial</a> to
-    control mikmod output. For instance, how to react to volume change
-    events when iPhone buttons are pressed.</li>
+<li>
+<p>Starting up the Galera servers on the available nodes in the cluster</p>
+</li>
+<li>
+<p>Health monitoring and recovery actions on failure (e.g. fencing)</p>
+</li>
 </ul>
+<p>This document describes the concepts involved in booting a Galera cluster, how the galera resource agent implements the boot process of a galera cluster, and how it can be overriden for recovery scenarios.</p>
 
-            <div class="medium primary btn"><a href="http://damien.ciabrini.name/posts/2008/07/hello-mikmod.html" rel="bookmark" title="Permalink to Hello MikMod!">Read more...</i></a></div>
-        </div> <!--/#entry-content-->
-    </div> <!--/#main-->
-</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
-    <div class="post-bubbles">
-        <a class="format-bubble" title="MikMod library ported to iPhone" href="posts/2008/06/mikmod-library-ported-to-iphone.html">
-            <span class="screen-reader-text">MikMod library ported to iPhone</span>
-        </a>
-    </div>
-
-    <div class="main content-inner">
-        <h2 class="post-title post-summary">
-	    <a href="http://damien.ciabrini.name/posts/2008/06/mikmod-library-ported-to-iphone.html" title="Permalink to MikMod library ported to iPhone" rel="bookmark">MikMod library ported to iPhone</a>
-        </h2>
-
-        <div class="post-meta">
-            <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2008/06/mikmod-library-ported-to-iphone.html">27 June 2008</a>
-            <span class="sep"></span>
-
-                <i class="fa fa-comments"></i> <a href="http://damien.ciabrini.name/posts/2008/06/mikmod-library-ported-to-iphone.html#disqus_thread" title="Comments on MikMod library ported to iPhone">comments</a>
-	        <span class="sep"></span>
-
-    	        <span class="tag-links"><i class="fa fa-tags"></i>
- <a href="http://damien.ciabrini.name/tag/apple.html" rel="tag">apple</a>,  <a href="http://damien.ciabrini.name/tag/apple-kbd.html" rel="tag">apple-kbd</a>    	        </span>
-        </div> <!-- /#post-meta -->
-
-        <div class="entry-content">
-	    <p>I've always been a big fan of old skool computer music, like chiptunes
-or demoscene music. Perhaps because they remind me the Good Old Days
-(tm) of my <a href="http://en.wikipedia.org/wiki/Amiga">Amiga</a>. Or perhaps for
-the same reason I like <a href="http://pouet.net/">demoscene</a>: real-time
-computer art! Because it's definitely cool, I've decided ...</p>
-            <div class="medium primary btn"><a href="http://damien.ciabrini.name/posts/2008/06/mikmod-library-ported-to-iphone.html" rel="bookmark" title="Permalink to MikMod library ported to iPhone">Read more...</i></a></div>
+            <div class="medium primary btn"><a href="http://damien.ciabrini.name/posts/2015/10/galera-boot-process-in-open-stack-ha-and-manual-override.html" rel="bookmark" title="Permalink to Galera boot process in Open Stack HA and manual override">Read more...</i></a></div>
         </div> <!--/#entry-content-->
     </div> <!--/#main-->
 </div>  <!--/#post--><div class="navigation">
-		<div class="nav-previous">
-				<a href="http://damien.ciabrini.name/tag/apple.html">
-			<span class="meta-nav">&larr;</span> Newer posts</a>
-		</div>		
 </div>
         </div>
 <aside id="menu" class="side_navigation">

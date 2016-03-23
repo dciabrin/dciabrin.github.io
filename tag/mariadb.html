@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   
-  <title>(blog-dump 'dciabrin) &mdash; Articles tagged apple</title>
+  <title>(blog-dump 'dciabrin) &mdash; Articles tagged mariadb</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="initial-scale=1" />
 
@@ -58,88 +58,49 @@
     <div class="contentandnav">
         <div id="contents" class="content section-inner posts padding-top">
             <div class="post-meta">
-	        <h3>Posts with tag <span>apple</span> &hellip;</h3>
+	        <h3>Posts with tag <span>mariadb</span> &hellip;</h3>
             </div>
 <div class="post type-post status-publish format-standard hentry category-general" id="post">
     <div class="post-bubbles">
-        <a class="format-bubble" title="Hello MikMod!" href="posts/2008/07/hello-mikmod.html">
-            <span class="screen-reader-text">Hello MikMod!</span>
+        <a class="format-bubble" title="Troubleshooting open_files_limit in MariaDB" href="posts/2016/03/troubleshooting-open_files_limit-in-mariadb.html">
+            <span class="screen-reader-text">Troubleshooting open_files_limit in MariaDB</span>
         </a>
     </div>
 
     <div class="main content-inner">
         <h2 class="post-title post-summary">
-	    <a href="http://damien.ciabrini.name/posts/2008/07/hello-mikmod.html" title="Permalink to Hello MikMod!" rel="bookmark">Hello MikMod!</a>
+	    <a href="http://damien.ciabrini.name/posts/2016/03/troubleshooting-open_files_limit-in-mariadb.html" title="Permalink to Troubleshooting open_files_limit in MariaDB" rel="bookmark">Troubleshooting open_files_limit in MariaDB</a>
         </h2>
 
         <div class="post-meta">
-            <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2008/07/hello-mikmod.html">05 July 2008</a>
+            <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2016/03/troubleshooting-open_files_limit-in-mariadb.html">22 March 2016</a>
             <span class="sep"></span>
 
-                <i class="fa fa-comments"></i> <a href="http://damien.ciabrini.name/posts/2008/07/hello-mikmod.html#disqus_thread" title="Comments on Hello MikMod!">comments</a>
+                <i class="fa fa-comments"></i> <a href="http://damien.ciabrini.name/posts/2016/03/troubleshooting-open_files_limit-in-mariadb.html#disqus_thread" title="Comments on Troubleshooting open_files_limit in MariaDB">comments</a>
 	        <span class="sep"></span>
 
     	        <span class="tag-links"><i class="fa fa-tags"></i>
- <a href="http://damien.ciabrini.name/tag/apple.html" rel="tag">apple</a>,  <a href="http://damien.ciabrini.name/tag/apple-kbd.html" rel="tag">apple-kbd</a>    	        </span>
+ <a href="http://damien.ciabrini.name/tag/galera.html" rel="tag">galera</a>,  <a href="http://damien.ciabrini.name/tag/mariadb.html" rel="tag">mariadb</a>    	        </span>
         </div> <!-- /#post-meta -->
 
         <div class="entry-content">
-	    <p>As promised earlier, I've packaged an obligatory example of how to use
-the iPhone port of <a href="http://mikmod.raphnet.net/">libmikmod</a> which I've
-talked about recently. Go grab <a href="http://damien.ciabrini.free.fr/pub/mikmod-iphone/HelloMikMod.tar.gz">this
-tarball</a>
-which implements a very simple "Hello World!":</p>
-<ul>
-<li>It shows how to play a module within a
-    <a href="http://www.cocoadev.com/index.pl?UIKit">UIKit</a> application. This is
-    an adaptation of the skeleton program found in <a href="http://http//mikmod.raphnet.net/#docs">MikMod
-    Documentation</a>.</li>
-<li>It shows how to use the higher level sound API
-    <a href="http://www.cocoadev.com/index.pl?CelestialFramework">Celestial</a> to
-    control mikmod output. For instance, how to react to volume change
-    events when iPhone buttons are pressed.</li>
-</ul>
+	    <p>It may happen in the MariaDB logs that you see failures to set <code>open_files_limit</code>:</p>
+<div class="highlight"><pre>160318 21:48:04 [Warning] option &#39;open_files_limit&#39;: unsigned value 18446744073709551615 adjusted to 4294967295
+160318 21:48:04 [Warning] option &#39;open_files_limit&#39;: unsigned value 18446744073709551615 adjusted to 4294967295
+160318 21:48:04 [Warning] Could not increase number of max_open_files to more than 1024 (request: 4907)
+</pre></div>
 
-            <div class="medium primary btn"><a href="http://damien.ciabrini.name/posts/2008/07/hello-mikmod.html" rel="bookmark" title="Permalink to Hello MikMod!">Read more...</i></a></div>
-        </div> <!--/#entry-content-->
-    </div> <!--/#main-->
-</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
-    <div class="post-bubbles">
-        <a class="format-bubble" title="MikMod library ported to iPhone" href="posts/2008/06/mikmod-library-ported-to-iphone.html">
-            <span class="screen-reader-text">MikMod library ported to iPhone</span>
-        </a>
-    </div>
 
-    <div class="main content-inner">
-        <h2 class="post-title post-summary">
-	    <a href="http://damien.ciabrini.name/posts/2008/06/mikmod-library-ported-to-iphone.html" title="Permalink to MikMod library ported to iPhone" rel="bookmark">MikMod library ported to iPhone</a>
-        </h2>
+<p>Meaning MariaDB was unable to raise the limit of maximum file descriptors at startup, with all the subsequent problems it can cause. Sometimes it is simply due to a bad setting in configuration files, such as:</p>
+<div class="highlight"><pre>open_files_limit=-1
+</pre></div>
 
-        <div class="post-meta">
-            <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2008/06/mikmod-library-ported-to-iphone.html">27 June 2008</a>
-            <span class="sep"></span>
 
-                <i class="fa fa-comments"></i> <a href="http://damien.ciabrini.name/posts/2008/06/mikmod-library-ported-to-iphone.html#disqus_thread" title="Comments on MikMod library ported to iPhone">comments</a>
-	        <span class="sep"></span>
 
-    	        <span class="tag-links"><i class="fa fa-tags"></i>
- <a href="http://damien.ciabrini.name/tag/apple.html" rel="tag">apple</a>,  <a href="http://damien.ciabrini.name/tag/apple-kbd.html" rel="tag">apple-kbd</a>    	        </span>
-        </div> <!-- /#post-meta -->
-
-        <div class="entry-content">
-	    <p>I've always been a big fan of old skool computer music, like chiptunes
-or demoscene music. Perhaps because they remind me the Good Old Days
-(tm) of my <a href="http://en.wikipedia.org/wiki/Amiga">Amiga</a>. Or perhaps for
-the same reason I like <a href="http://pouet.net/">demoscene</a>: real-time
-computer art! Because it's definitely cool, I've decided ...</p>
-            <div class="medium primary btn"><a href="http://damien.ciabrini.name/posts/2008/06/mikmod-library-ported-to-iphone.html" rel="bookmark" title="Permalink to MikMod library ported to iPhone">Read more...</i></a></div>
+            <div class="medium primary btn"><a href="http://damien.ciabrini.name/posts/2016/03/troubleshooting-open_files_limit-in-mariadb.html" rel="bookmark" title="Permalink to Troubleshooting open_files_limit in MariaDB">Read more...</i></a></div>
         </div> <!--/#entry-content-->
     </div> <!--/#main-->
 </div>  <!--/#post--><div class="navigation">
-		<div class="nav-previous">
-				<a href="http://damien.ciabrini.name/tag/apple.html">
-			<span class="meta-nav">&larr;</span> Newer posts</a>
-		</div>		
 </div>
         </div>
 <aside id="menu" class="side_navigation">

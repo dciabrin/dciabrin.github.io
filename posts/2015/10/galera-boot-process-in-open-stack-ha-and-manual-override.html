@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>(blog-dump 'dciabrin) &mdash; Galera boot process in Open Stack HA and manual override</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/lingonberry/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/tipuesearch/css/tipuesearch.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/blogdump.css" />
+  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/slide.css" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2"/> 
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <link rel="alternate" type="application/atom+xml"
+	title="(blog-dump 'dciabrin) — Atom Feed"
+	href="http://damien.ciabrini.name/" /> 
+</head>
+
+<body id="body" class="homez blogz" >
+  <div id="page">
+    <header id="header" class="header section">
+        <div class="header-inner section-inner">
+            <a class="site-logo noimg" rel="home" title="(blog-dump 'dciabrin)" href="http://damien.ciabrini.name">
+                <span class="screen-reader-text"></span>
+            </a>
+	    <h1 id="site-title" class="site-title">
+              <a href="http://damien.ciabrini.name">(blog-dump 'dciabrin)</a>
+              <a href="#" id="toggle-menu">☰</a>
+            </h1>
+<h2 id="site-description" class="site-description">A coding and hacking diary</h2>        </div>
+    
+    <nav id="header-nav" class="site-navigation">
+        <form class="navbar-search" action="http://damien.ciabrini.name/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form>
+	<div class="menu-navigation-container"><div class="navigation-inner section-inner">
+	    <ul id="menu-navigation" class="blog-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+		    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/pages/about.html">About</a></li>
+
+			<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/code.html">Code</a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/misc.html">Misc</a></li>
+
+			<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives.html">Archives</a></li>
+
+
+	    </ul>
+	</div></div> <!--/#menu-navigation-container-->
+    </nav><!-- /#menu -->
+    </header><!-- /#banner -->
+		                    
+    <!-- <div id="full"> -->
+    <!-- Content -->
+    <div class="flexcontent">
+    <main class="article">
+        <section class="post type-post status-publish format-standard hentry category-general" id="post">
+	    <div class="main content-inner">
+	        <!-- <div class="post-header"> -->
+		<h1 class="post-title">
+		    <a href="http://damien.ciabrini.name/posts/2015/10/galera-boot-process-in-open-stack-ha-and-manual-override.html" title="Permalink to Galera boot process in Open Stack HA and manual override" rel="bookmark">Galera boot process in Open Stack HA and manual override</a>
+		</h1>
+		<div class="center post-meta"><span>Damien Ciabrini</span></div>
+                <div class="center post-meta">
+                    <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2015/10/galera-boot-process-in-open-stack-ha-and-manual-override.html">Fri 02 October 2015</a>
+                        <span class="sep"></span>
+    	                <span class="tag-links"><i class="fa fa-tags"></i>
+ <a href="http://damien.ciabrini.name/tag/galera.html" rel="tag">galera</a>,  <a href="http://damien.ciabrini.name/tag/openstack.html" rel="tag">openstack</a>    	                </span>
+                </div>
+                
+                <div class="entry-content">
+		    <p>Deployments of OpenStack that rely on MariaDB+Galera benefit from a HA database thanks to Galera's synchronous replication. In such deployments, the Galera cluster is typically managed via Pacemaker, by means of a galera resource agent.</p>
+<p>While Galera itself has its own notion of cluster management (membership, health check, write-set replication...), a resource agent is still necessary for Pacemaker to perform the basic cluster management duties, for example:</p>
+<ul>
+<li>
+<p>Starting up the Galera servers on the available nodes in the cluster</p>
+</li>
+<li>
+<p>Health monitoring and recovery actions on failure (e.g. fencing)</p>
+</li>
+</ul>
+<p>This document describes the concepts involved in booting a Galera cluster, how the galera resource agent implements the boot process of a galera cluster, and how it can be overriden for recovery scenarios.</p>
+
+
+<h2>Galera cluster overview</h2>
+<p>A Galera cluster is identified by a cluster address, stored in the configuration variable <code>wsrep_cluster_address</code>. The value of this variable is a URI identifying all the nodes that can potentially be member of the cluster. For example:</p>
+<div class="highlight"><pre>wsrep_cluster_address=gcomm://node1,node2,node3
+</pre></div>
+
+
+<p>It is used by MariaDB at boot time to register to the cluster and to synchronize its local database with the cluster. The value of <code>wsrep_cluster_address</code> conveys a special meaning which can be used to either start a cluster or rejoin it.</p>
+<h2>Galera boot process explained</h2>
+<p>Galera replicates database writes across all nodes of the cluster. A write succeeds if more than half of the nodes in the cluster acknowledge it (quorum). On success, a global counter representing the most recent transaction is incremented: this is called the last sequence number, or seqno. Desynchronized nodes or newly joining nodes will automatically sync their local database to this last sequence number.</p>
+<p>In order to restart an existing Galera cluster, one needs first to identify a node whose local database contains the latest transaction acknowleged by the cluster, i.e. the one with the biggest seqno. Once identified, MariaDB can be started on the node with option:</p>
+<div class="highlight"><pre>wsrep_cluster_address=gcomm://
+</pre></div>
+
+
+<p>This bootstraps a new cluster<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> from this node's local state: the node becomes the new Primary partition, which means the remaining nodes will sync against this new cluster when started with <code>wsrep_cluster_address=gcomm://node1,node2,node3</code>.  </p>
+<h2>How the resource agent boots the cluster</h2>
+<p>The resource agent encodes the process of booting a Galera cluster as a series of unitary steps; electing a bootstrap node, booting Galera servers in sequence, and marking nodes as available in the clusters. It tracks those steps via Pacemaker's multi-state resource plus various attributes stored in Pacemaker's Cluster Information Base (CIB).</p>
+<p>In order to boot or restart a Galera cluster, the resource agent needs to retrieve the last seqno of all the nodes in the clusters. Without that information, the resource agent cannot safely identify a bootstrap node and it won't tell Pacemaker to start the Galera cluster.</p>
+<p>The boot process works as follows:</p>
+<ul>
+<li>
+<p>When a galera resource is in state <em>Started</em>, the resource agent retrieves the last seqno from the local MariaDB, stores it in the CIB and goes to <em>Slave</em> state. At this stage, no Galera server is running.</p>
+</li>
+<li>
+<p>Once all the nodes are in <em>Slave</em> state, the resource agent elects the bootstrap node, tags it in the CIB, and tells Pacemaker that it can promote the galera resource on this node to the <em>Master</em> state.</p>
+</li>
+<li>
+<p>When Pacemaker promotes the bootstrap node, the resource agent starts the Galera server, which bootstraps a new cluster. It then marks the remaining nodes as being ready for promotion. The resource on the bootstrap node is switched to <em>Master</em>, and the Galera cluster is ready to accept SQL queries.</p>
+</li>
+<li>
+<p>Pacemaker promotes the remaining nodes. For each node, the resource agent start a Galera server, which synchronizes its local state with the cluster via a State Snapshot Transfer (SST). This operation can take some time. The promotion to <em>Master</em> finishes when the synchronization is over and the Galera server is ready to accept SQL queries.</p>
+</li>
+</ul>
+<p>At this stage, the entire cluster is up and running, and the galera resource is set <em>Master</em> on all nodes.</p>
+<p>Note: the notion of Master/Slave state is completely different from Galera's notion of Primary / Non-primary state</p>
+<ul>
+<li>A Galera node is in primary state if it belongs to a partition of the cluster which has quorum (and is thus active)</li>
+<li>If a Galera node detects the partition it belongs to is inquorate, it will switch to Non-primary state, and SQL queries will fail<sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup>.</li>
+</ul>
+<h2>Overriding the boot process</h2>
+<p>The resource agent expects all the nodes to be available for performing a boot. However, there are times where this is not the case and for practical reasons it is necessary to force the boot process.</p>
+<p>Here are examples of manual override scenarios, with steps to perform to bring the Galera cluster up. They apply on a  three-node Pacemaker cluster, composed of nodes <code>node1</code>, <code>node2</code>, <code>node3</code>. In this Pacemaker cluster, the Galera resource is called <code>galeracluster</code>.</p>
+<h3>Scenario 1: Galera cluster to be restarted, but one node won't come up</h3>
+<p>Suppose that <code>node3</code> in the cluster is unavailable following an unexpected event (e.g. Galera crashed and left in a inconsistent state, hardware failure on <code>node3</code>). In such case, the resource agent is not able to retrieve all <code>seqno</code> in the cluster, so no bootstrap node can be elected, and cluster won't restart. One can force the election of a bootstrap node and start it, in order to unblock the resource agent and let Pacemaker boot the rest of the Galera cluster.</p>
+<p><strong>Do the following steps only if you're sure that the forced bootstrap node is up-to-date, otherwise you will permanently desynchronise your cluster and will lose data!</strong></p>
+<p>That being said, to unblock the boot process, you will need to elect and promote a bootstrap node manually. So first, take control of Galera away from Pacemaker:</p>
+<div class="highlight"><pre>[root@node1 ~]# pcs resource unmanage galeracluster
+</pre></div>
+
+
+<p>Next, identify the node with the most recent seqno. If Pacemaker previously tried to restart the cluster, you can retrieve this information in the CIB, e.g. for <code>node1</code>:</p>
+<div class="highlight"><pre>[root@node1 ~]# crm_attribute -N node1 -l reboot --name galeracluster-last-committed -Q
+</pre></div>
+
+
+<p>If the last <code>seqno</code> is not present in the CIB<sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup>, you can retrieve it with MariaDB:</p>
+<div class="highlight"><pre>[root@node1 ~]# mysqld_safe --wsrep-recover
+151002 13:59:35 mysqld_safe Logging to &#39;/var/log/mariadb/mariadb.log&#39;.
+151002 13:59:35 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+151002 13:59:35 mysqld_safe WSREP: Running position recovery with --log_error=&#39;/var/lib/mysql/wsrep_recovery.2FkYLQ&#39; --pid-file=&#39;/var/lib/mysql/db1-recover.pid&#39;
+151002 13:59:50 mysqld_safe WSREP: Recovered position 4c7ba2a8-566a-11e5-8250-1e939ac17c77:9
+151002 13:59:52 mysqld_safe mysqld from pid file /var/run/mariadb/mariadb.pid ended
+</pre></div>
+
+
+<p>MariaDB will recover its last known cluster position as <code>UUID:seqno</code>. In our case, on <code>node1</code> the last <code>seqno</code> is thus <code>9</code>.</p>
+<p>Once you determine which node has the bigger <code>seqno</code>, make it the bootstrap node and force Pacemaker to start Galera by switching the resource's state to <em>Master</em>. In our case, assuming <code>node1</code> is the bootstrap node, connect to <code>node1</code> and run the following commands locally:</p>
+<div class="highlight"><pre>[root@node1 ~]# crm_attribute -N node1 -l reboot --name galeracluster-bootstrap -v true
+[root@node1 ~]# crm_attribute -N node1 -l reboot --name master-galeracluster -v 100
+[root@node1 ~]# crm_resource --force-promote -r galeracluster -V
+</pre></div>
+
+
+<p>Then, instruct Pacemaker to re-detect the current state of the galera resource. This will clean up failcount and purge knowledge of past failures:</p>
+<div class="highlight"><pre>[root@node1 ~]# pcs resource cleanup galeracluster
+</pre></div>
+
+
+<p>At this point Galera is up and Pacemaker knows that it is up. Give back control of Galera to Pacemaker and the remaining node will join automatically<sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup>:</p>
+<div class="highlight"><pre>[root@node1 ~]# pcs resource enable galeracluster
+[root@node1 ~]# pcs resource manage galeracluster
+</pre></div>
+
+
+<h3>Scenario 2: Multiple hardware failures, keep service on the remaining node</h3>
+<p>If <code>node2</code> and <code>node3</code> fail successively in the three-node cluster, you may end up with only <code>node1</code> up and running. Pacemaker will react differently to this condition depending on how quorum is configured in the cluster<sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>.</p>
+<p>For Galera, things are less flexible: if two nodes out of three quit the cluster unexpectedly, the remaining node is considered inquorate and the Galera server will switch to Non-primary state. This is an error condition for the resource agent, and that causes Pacemaker to stop the Galera on the remaining node.</p>
+<p>You can force the restart of Galera on <code>node1</code> if this node is still up and running in Pacemaker<sup id="fnref:6"><a class="footnote-ref" href="#fn:6" rel="footnote">6</a></sup>. You just need to bootstrap the Galera cluster by applying similar steps as those described in Scenario 1. <strong>Please only do so if you are sure that the node is in sync with the latest revision of the cluster, otherwise you will lose data</strong>.</p>
+<p>Apply the step from Scenario 1 <strong>and stop before giving back control to Pacemaker</strong><sup id="fnref:7"><a class="footnote-ref" href="#fn:7" rel="footnote">7</a></sup>. At this point, check whether the Pacemaker cluster has quorum:</p>
+<div class="highlight"><pre>[root@node1 ~]# corosync-quorumtool -s
+Quorum information
+------------------
+Date:             Fri Oct  2 18:20:37 2015
+Quorum provider:  corosync_votequorum
+Nodes:            1
+Node ID:          1
+Ring ID:          1376
+Quorate:          No
+
+Votequorum information
+----------------------
+Expected votes:   3
+Highest expected: 3
+Total votes:      1
+Quorum:           2 Activity blocked
+Flags:
+
+Membership information
+----------------------
+Nodeid      Votes Name
+     1          1 node1 (local)
+</pre></div>
+
+
+<p>If it doesn't, you have to unblock quorum temporarily for Pacemaker to manage resources, i.e. set the number of expected votes the the number of nodes which are still on-line. In our example, only <code>node1</code> is on-line, so quorum can be temporarily unblocked with:</p>
+<div class="highlight"><pre>[root@node1 ~]# corosync-quorumtool -e1
+</pre></div>
+
+
+<p>Note that this setting is not definitive. As soon as other nodes rejoin, the number of expected votes will get back to the original value (3 in the example).</p>
+<p>Once the cluster is quorate again, you can give back control of Galera to Pacemaker:</p>
+<div class="highlight"><pre>[root@node1 ~]# pcs resource manage galeracluster
+</pre></div>
+
+
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Starting a new cluster can also be achieved with <code>--wsrep_new_cluster</code>. The two options are equivalent.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Data-related SQL queries will fail with <code>ERROR 1047 (08S01): WSREP has not yet prepared node for application use</code>.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>If the information is not in the CIB, <code>crm_attribute</code> will report an error like <code>Error performing operation: No such device or address</code>.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p><code>pcs resource enable galeracluster</code> will ensure that Pacemaker always try to promote this resource's state to <em>Master</em>, i.e. start Galera server on the node if not already done.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>See <code>man votequorum</code> and <a href="http://clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/s-cluster-options.html">no-quorum-policy settings</a>.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Check whether <code>node1</code> is still online with <code>pcs status nodes</code>.&#160;<a class="footnote-backref" href="#fnref:6" rev="footnote" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Applying <code>pcs resource manage galeracluster</code> will fail if the cluster is inquorate, and that will stop the Galera server that was manually restarted.&#160;<a class="footnote-backref" href="#fnref:7" rev="footnote" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+		</div> <!--/#entry-content-->
+	    </div> <!--/#main-->
+        </section>  <!--/#post-->
+        <div class="hidden">
+<aside id="menu" class="side_navigation">
+  <h3 class="nav_author">Damien Ciabrini</h3>
+
+  <p>Coder, hacker, dreamer. Worked on compilers,
+    debuggers, language runtimes. Passionate
+    about distributed computing. Obsessed by
+    retro hardware and optimizations.
+    <div class="center social-buttons">
+        <a class="social fa fa-twitter" href="http://twitter.com/dciabrin"></a>
+        <!-- <span class="sep"></span> -->
+        <a class="social fa fa-github" href="http://github.com/dciabrin"></a>
+        <!-- <span class="sep"></span> -->
+        <a class="social fa fa-google-plus" href="https://plus.google.com/+DamienCiabrini"></a>
+        <!-- <span class="sep"></span> -->
+        <a class="social fa fa-linkedin" href="https://www.linkedin.com/in/damien-ciabrini-70514187"></a>
+        <!-- <span class="sep"></span> -->
+    </div>
+  </p>
+    
+  <h3>Meta</h3>
+  <div class="center">
+  <ul>
+      <li><a href="http://damien.ciabrini.name/" type="application/atom+xml" rel="alternate" title="ATOM Feed" />Blog Feed <i class="fa fa-rss"></i></a></li>
+  </ul>
+  </div>
+  
+  <h3>Categories</h3>
+  <div class="center">
+  <ul>
+        <li><a href="http://damien.ciabrini.name/category/code.html">Code</a> (9)</li>
+        <li><a href="http://damien.ciabrini.name/category/misc.html">Misc</a> (1)</li>
+  </ul>
+  </div>
+</aside>        </div>
+	<section id="comments">
+		<div id="respond">
+			<div id="disqus_thread"></div>
+	        <script type="text/javascript">
+	            var disqus_shortname = 'dciabrin';
+	
+	            /* * * DON'T EDIT BELOW THIS LINE * * */
+	            (function() {
+	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	            })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</div><!-- #respond -->					
+        </section><!-- #comments -->
+    </main>
+
+    </div>
+    <!-- Footer -->
+<footer id="footer" class="footer">
+  <div class="section-inner">
+    &copy; 2008&dash;2015 Damien Ciabrini - Content licensed under <a href="CC-BY 4.0">CC-BY 4.0</a> unless stated otherwise.<br/>
+    Theme based on <a href="https://wordpress.com/themes/lingonberry/">Lingonberry</a>,
+    icons by <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a><br/>
+    Powered by <a href="http://getpelican.com">Pelican</a>, <a href="https://disqus.com">Disqus</a><br/>
+
+<script type="text/javascript">
+    var disqus_shortname = 'dciabrin';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>  </div>
+</footer><!-- /#footer -->    </div>
+  <!-- </div> -->
+  <script src="http://damien.ciabrini.name/theme/slide.js"></script>
+</body>
+</html>
