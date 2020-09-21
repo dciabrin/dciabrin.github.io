@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>(blog-dump 'dciabrin) - apple</title><link href="https://dciabrin.net/" rel="alternate"></link><link href="https://dciabrin.net/feeds/apple.tag.atom.xml" rel="self"></link><id>https://dciabrin.net/</id><updated>2011-05-19T21:35:00+02:00</updated><subtitle>A coding and hacking diary</subtitle><entry><title>Support for Aluminium Keyboards packaged, code-named apple-kbd</title><link href="https://dciabrin.net/posts/2011/05/support-for-aluminium-keyboards-packaged-code-named-apple-kbd.html" rel="alternate"></link><published>2011-05-19T21:35:00+02:00</published><updated>2011-05-19T21:35:00+02:00</updated><author><name>Damien Ciabrini</name></author><id>tag:dciabrin.net,2011-05-19:/posts/2011/05/support-for-aluminium-keyboards-packaged-code-named-apple-kbd.html</id><summary type="html">&lt;p&gt;After many episodes, the support for Apple Aluminium Keyboards is
+finally becoming user-friendly. All major distribs now ship a recent
+version of
+&lt;a href="http://www.freedesktop.org/wiki/Software/XKeyboardConfig"&gt;xkeyboard-config&lt;/a&gt;,
+so there is no need to mess with XKB patches anymore...&lt;/p&gt;
+&lt;p&gt;To complete the user experience, I'm happy to introduce you
+&lt;a href="https://github.com/dciabrin/apple-kbd"&gt;&lt;code id="tt1099"&gt;apple-kbd&lt;/code&gt;&lt;/a&gt;, the
+collection of helpful goodies …&lt;/p&gt;</summary><content type="html">&lt;p&gt;After many episodes, the support for Apple Aluminium Keyboards is
+finally becoming user-friendly. All major distribs now ship a recent
+version of
+&lt;a href="http://www.freedesktop.org/wiki/Software/XKeyboardConfig"&gt;xkeyboard-config&lt;/a&gt;,
+so there is no need to mess with XKB patches anymore...&lt;/p&gt;
+&lt;p&gt;To complete the user experience, I'm happy to introduce you
+&lt;a href="https://github.com/dciabrin/apple-kbd"&gt;&lt;code id="tt1099"&gt;apple-kbd&lt;/code&gt;&lt;/a&gt;, the
+collection of helpful goodies you need for your Aluminium Keyboard under
+Linux. 
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+Here's what you'll get with this package:&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;Automatic keyboard detection under X&lt;/dt&gt;
+&lt;dd&gt;At boot time or when the keyboard is plugged in,
+&lt;code id="tt1101"&gt;apple-kbd&lt;/code&gt; auto-updates the system-wide XKB settings so
+that the X server sees the Aluminium Keyboard and enables all its
+keys and its geometry.&lt;/dd&gt;
+&lt;dt&gt;Key style preferences&lt;/dt&gt;
+&lt;dd&gt;&lt;code id="tt1103"&gt;apple-kbd&lt;/code&gt; lets you remap some of the keyboard's keys:
+you'll get back the Insert key, the antique Print, Scroll-Lock and
+Pause... You can also set the precedence of functions keys over
+multimedia keys.&lt;/dd&gt;
+&lt;dt&gt;User-friendly installation&lt;/dt&gt;
+&lt;dd&gt;Both auto-detect and configuration features are available in a
+single, easy to install package. If you're running Debian or Ubuntu,
+there's even a package for you which comes with interactive
+configuration thanks to debconf!&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;h2&gt;Installing the debian package of apple-kbd&lt;/h2&gt;
+&lt;p&gt;I made a &lt;a href="https://launchpad.net/~damien-ciabrini/+archive/apple-kbd"&gt;PPA on
+Launchpad&lt;/a&gt; to
+package &lt;code id="tt1107"&gt;apple-kbd&lt;/code&gt;, so it's super easy to install it on your
+Debian or Ubuntu release. The plus of the Debian version compared to the
+plain sources is that you'll get a graphical dialog to configure your
+key style preferences. The dialog is also localized, only in French for
+the time being, but translators are welcome!&lt;/p&gt;
+&lt;h3&gt;Automatic installation for Ubuntu Natty Narwhal&lt;/h3&gt;
+&lt;p&gt;To install &lt;code id="tt1109"&gt;apple-kbd&lt;/code&gt; on Natty, you basically have to follow
+the instructions found on Launchpad. Just add the PPA to your list of
+available locations:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo add-apt-repository ppa:damien-ciabrini/apple-kbd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And once the PPA repository and its GPG key are imported, you can
+install the package as usual:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo apt-get update&lt;/span&gt;
+&lt;span class="go"&gt;sudo apt-get install apple-kbd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The first time you'll install the package, you'll be asked some
+questions regarding the behaviour of the keyboard, &lt;em&gt;i.e.&lt;/em&gt;, Insert key,
+PC keys emulation... At any time, you can reconfigure your keyboard by
+typing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo dpkg-reconfigure apple-kbd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Manual installation for the others&lt;/h3&gt;
+&lt;p&gt;Oh damned, you don't run Natty (like me...)! No worries, you can still
+proceed the Old Way. Just edit &lt;code id="tt1117"&gt;/etc/apt/sources.list&lt;/code&gt; and add
+the following line at the end of the file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;deb http://ppa.launchpad.net/damien-ciabrini/apple-kbd/ubuntu natty main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And you're good to go! Resynchronize the index of available packages and
+install &lt;code id="tt1120"&gt;apple-kbd&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo apt-get update&lt;/span&gt;
+&lt;span class="go"&gt;sudo apt-get install apple-kbd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Don't want a Debian package? Get the sources!&lt;/h2&gt;
+&lt;p&gt;The simplest way of getting &lt;a href="https://github.com/dciabrin/apple-kbd"&gt;the sources form
+GitHub&lt;/a&gt; is to download the latest
+&lt;code id="tt1123"&gt;apple-kbd&lt;/code&gt; archive:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;wget --no-check-certificate https://github.com/dciabrin/apple-kbd/tarball/apple-kbd-0.1 -Oapple-kbd-0.1.tar.gz&lt;/span&gt;
+&lt;span class="go"&gt;tar zxvf apple-kbd-0.1.tar.gz&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But you can of course fork my git repository to play with it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;git clone git://github.com/dciabrin/apple-kbd.git&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Have a look at &lt;code id="tt1128"&gt;README.rst&lt;/code&gt; for the details. Basically, you
+want to edit the file &lt;code id="tt1129"&gt;apple-kbd&lt;/code&gt; to configure your keyboard
+preferences (Insert key, PC keyboard emulation...). Then, you need the
+usual:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;make&lt;/span&gt;
+&lt;span class="go"&gt;sudo make install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I'm unfortunately a bit lazy, so contrary to the Debian package, you
+will need to reboot, or at least to re-plug the keyboard and restart the
+X server for your configuration to take effect. In a future version I
+will provide a command-line tool to force configuration changes to take
+effect on-the-fly.&lt;/p&gt;
+&lt;h2&gt;Is the support finished?&lt;/h2&gt;
+&lt;p&gt;I believe &lt;code id="tt1133"&gt;apple-kbd&lt;/code&gt; is really a milestone in the support of
+the Aluminium Keyboards. But of course, everything's perfectible. I
+actually see two important things that remain to do. The first one is to
+check whether the &lt;a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/214786"&gt;longstanding ISO-swapped-keys
+bug&lt;/a&gt; is
+really fixed for all the layouts. The second is to add a XKB geometry
+for the Wireless Aluminium Keyboards (the short ones). Plenty of work in
+perspective...&lt;/p&gt;
+&lt;p&gt;So here it is, tell the world about &lt;code id="tt1135"&gt;apple-kbd&lt;/code&gt;, future will
+tell if this package is useful!&lt;/p&gt;</content><category term="Code"></category><category term="apple-kbd"></category><category term="apple"></category></entry><entry><title>Apple Aluminium Keyboards with udev, Xorg server 1.9</title><link href="https://dciabrin.net/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html" rel="alternate"></link><published>2011-01-11T22:48:00+01:00</published><updated>2011-01-11T22:48:00+01:00</updated><author><name>Damien Ciabrini</name></author><id>tag:dciabrin.net,2011-01-11:/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html</id><summary type="html">&lt;p&gt;It's been a year now since I published my support for Aluminium
+Keyboards. Since then, my XKB patches have been accepted in
+&lt;a href="http://freedesktop.org/wiki/Software/XKeyboardConfig"&gt;XKeyboardConfig&lt;/a&gt;
+1.9, with a few modifications:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The multimedia keys can always be accessed by combining Fxx with the
+    3rd level chooser (this was option &lt;code id="tt1099"&gt;alul3media&lt;/code&gt; in my …&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;It's been a year now since I published my support for Aluminium
+Keyboards. Since then, my XKB patches have been accepted in
+&lt;a href="http://freedesktop.org/wiki/Software/XKeyboardConfig"&gt;XKeyboardConfig&lt;/a&gt;
+1.9, with a few modifications:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The multimedia keys can always be accessed by combining Fxx with the
+    3rd level chooser (this was option &lt;code id="tt1099"&gt;alul3media&lt;/code&gt; in my
+    original XKB patches)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;There is now a single XKB option &lt;code id="tt1101"&gt;alupckeys&lt;/code&gt; to emulate the
+    behaviour of a PC keyboard, &lt;em&gt;i.e.&lt;/em&gt; to enable PrintScreen,
+    ScrollLock, SysReq and NumLock (options &lt;code id="tt1103"&gt;alupcfkeys&lt;/code&gt; and
+    &lt;code id="tt1104"&gt;alupcnumlock&lt;/code&gt; in the original patches)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;Meanwhile, Xorg server 1.9 went stable, becoming more and more
+pervasive. As far as input hotplugging is concerned, this is a major
+revision for it dropped
+&lt;a href="http://www.freedesktop.org/wiki/Software/hal"&gt;HAL&lt;/a&gt; in favor of
+&lt;a href="http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev.html"&gt;udev&lt;/a&gt;:
+input discovery is achieved via udev and XKB settings for devices are
+fetched from the udev database.&lt;/p&gt;
+&lt;p&gt;I have thus ported the support for the Aluminium Keyboards to udev. As
+before, a configuration file controls the XKB settings to apply, as well
+as the remapping of the "fn" key to "insert", if requested.&lt;/p&gt;
+&lt;h2&gt;Installing the udev-enabled support&lt;/h2&gt;
+&lt;p&gt;First, download the &lt;a href="http://damien.ciabrini.free.fr/pub/alu-kbd-udev/95-keymap-apple-kdb.rules"&gt;necessary udev
+rules&lt;/a&gt;
+and install them in whatever directory your distrib uses to store user
+rules. On Ubuntu, assuming that you downloaded the rules in your home
+directory, this gives:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo cp $HOME/95-keymap-apple-kdb.rules /etc/udev/rules.d&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, download the &lt;a href="http://damien.ciabrini.free.fr/pub/alu-kbd-udev/apple-kbd"&gt;configuration
+file&lt;/a&gt; and
+install it in your distrib's configuration directory. On Ubuntu, this
+gives:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo cp $HOME/apple-kbd /etc/default&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The configuration file contains various key-value pairs that drive the
+behaviour of the Aluminium Keyboard. By default, the configuration
+enables the XKB option for PC-like mapping (PrintScreen, ScrollLock,
+Pause, NumLock) and maps the "fn" key to "insert". Comment out the
+relevant lines to disable any of those settings if necessary.&lt;/p&gt;
+&lt;h2&gt;There's a catch: what's your distrib?&lt;/h2&gt;
+&lt;p&gt;The udev-enabled support assumes one thing: that you are running
+xkeyboard-config 1.9 or above. Not all distribs are equal in this
+regard.&lt;/p&gt;
+&lt;p&gt;A quick search shows that Arch, Gentoo, Fedora or openSUSE all ship a
+recent-enough xkeyboard-config. On the other hand, Debian is currently
+stuck with xkeyboard-config 1.8-2 (at least for unstable, I haven't
+checked experimental).&lt;/p&gt;
+&lt;p&gt;The Ubuntu case is the most puzzling one. At the time of writing,
+Maverick and Natty ship xkeyboard-config 1.8-1ubuntu8, which is based on
+1.8 stock plus additional important commits from the git repository.
+This includes my patches for the Aluminium Keyboard (!), but
+unfortunately only 6 patches out of 7 have been included (!?!).
+Consequently, the XKB support is currently broken for Ubuntu. I have
+filled &lt;a href="https://bugs.launchpad.net/bugs/696232"&gt;bug 696232&lt;/a&gt; in Launchpad
+to track this issue and check whether this was intended or not.
+Meanwhile, you can grab &lt;a href="http://damien.ciabrini.free.fr/pub/alu-kbd-udev/xkb-data-1.8-evdev.patch"&gt;this XKB
+patch&lt;/a&gt;
+and try to apply it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo bash&lt;/span&gt;
+&lt;span class="go"&gt;cd /usr/share/X11/xkb/rules&lt;/span&gt;
+&lt;span class="go"&gt;patch -p0 --dry-run &amp;lt; $HOME/xkb-data-1.8-evdev.patch&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If the patch applies successfully, you can proceed and apply it for
+real:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;patch -p0 &amp;lt; $HOME/xkb-data-1.8-evdev.patch&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Steps to come&lt;/h2&gt;
+&lt;p&gt;With this updated support, Aluminium Keyboards work again under recent
+versions of the Xorg server, but there are still various improvements to
+think about. The next step is to package the support to make it more
+user-friendly. A package is definitely a good place to deal with other
+keyboard options, such as kernel settings for activating multimedia keys
+&lt;em&gt;vs.&lt;/em&gt; function keys.&lt;/p&gt;
+&lt;p&gt;On the XKB side, it would be necessary to perform a second pass to
+ensure that there are no missing or misplaced symbols on the 16 existing
+keymaps: ANSI, JIS and the 14 ISO layouts.&lt;/p&gt;
+&lt;p&gt;Speaking of misplaced symbols: I am currently checking whether it's
+possible to come with a fully user-space, udev-based solution to the
+&lt;a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/214786"&gt;"keys swapped"
+issue&lt;/a&gt; that
+plague some owners of the ISO variants. I have some ideas, but this will
+be another post!&lt;/p&gt;</content><category term="Code"></category><category term="apple-kbd"></category><category term="apple"></category></entry><entry><title>Aluminium Keyboard support under X11: all models, all OSes</title><link href="https://dciabrin.net/posts/2009/12/aluminium-keyboard-support-under-x11-all-models-all-oses.html" rel="alternate"></link><published>2009-12-22T22:03:00+01:00</published><updated>2009-12-22T22:03:00+01:00</updated><author><name>Damien Ciabrini</name></author><id>tag:dciabrin.net,2009-12-22:/posts/2009/12/aluminium-keyboard-support-under-x11-all-models-all-oses.html</id><summary type="html">&lt;p&gt;I finally found the time to update my previous support for Aluminium
+Keyboard under Xorg, and take it to the Next Level (tm). The overall
+support is now much more polished. For you this means several things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;I've implemented the XKB geometries of &lt;strong&gt;all variants of the long
+    Aluminium Keyboard …&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;I finally found the time to update my previous support for Aluminium
+Keyboard under Xorg, and take it to the Next Level (tm). The overall
+support is now much more polished. For you this means several things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;I've implemented the XKB geometries of &lt;strong&gt;all variants of the long
+    Aluminium Keyboard&lt;/strong&gt;, be it
+    &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-ansi.svg"&gt;ANSI&lt;/a&gt;
+    (American),
+    &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-iso.svg"&gt;ISO&lt;/a&gt;
+    (Internationnal) or
+    &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-jis.svg"&gt;JIS&lt;/a&gt;
+    (Japanese)! And believe me, it's darned complicated to support JIS
+    keyboard's dual layout without having access to the real hardware :D&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I've added support for base XKB rules, which means that the keyboard
+    will now be properly configured &lt;strong&gt;on other OSes than Linux&lt;/strong&gt;. I
+    personally used &lt;a href="http://www.opensolaris.org/"&gt;OpenSolaris&lt;/a&gt; during my
+    tests, but it should work equally well on
+    &lt;a href="http://www.freebsd.org/"&gt;FreeBSD&lt;/a&gt;, &lt;a href="http://openbsd.org/"&gt;OpenBSD&lt;/a&gt;,
+    and all their cousins!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The keyboard support is now &lt;strong&gt;aware of the system-wide keyboard
+    settings&lt;/strong&gt; as found in Debian or Fedora for example. If you
+    configured your system to default to Dvorak layout, the support will
+    use it automatically!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;h2&gt;Installing the new support&lt;/h2&gt;
+&lt;p&gt;I'm short on details, but you can find a complete explanation for all
+these steps in a &lt;a href="http://damienciabrini.blogspot.com/2009/05/make-your-apple-aluminium-keyboard.html"&gt;previous
+post&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;XKB Patch&lt;/h3&gt;
+&lt;p&gt;First of all, download &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/applekbd-xkb-support.patch.gz"&gt;this XKB
+patch&lt;/a&gt;
+and try to apply it on your XKB install in dry-run. For the sake of the
+example, I assume you downloaded the patch in your &lt;code&gt;$HOME&lt;/code&gt; directory.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo bash&lt;/span&gt;
+&lt;span class="go"&gt;cd /usr/share/X11/xkb&lt;/span&gt;
+&lt;span class="go"&gt;gunzip -cd $HOME/applekbd-xkb-support.patch.gz | patch -p1 --dry-run&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If the patch applies successfuly, you can proceed and apply it for real:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;gunzip -cd $HOME/applekbd-xkb-support.patch.gz | patch -p1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;HAL support&lt;/h3&gt;
+&lt;p&gt;Well, even if HAL is meant to be replaced sooner or later by
+&lt;a href="http://fedoraproject.org/wiki/Features/DeviceKit"&gt;DeviceKit&lt;/a&gt;, that's
+the way to go for the time being. So I reworked the previous HAL support
+and split it in one fdi file to track your keyboard on your hardware,
+plus a script to configure XKB for Aluminium Keyboard and to remap the
+Fn key to Insert. To install it, first remove the fdi file from the
+previous support if necessary. Then, copy this &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/10-applekbd-xkb-settings.fdi"&gt;new fdi
+file&lt;/a&gt;
+(which you have previously downloaded in your &lt;code&gt;$HOME&lt;/code&gt; directory) in the
+relevant HAL directory. On my Ubuntu Karmic, this gives (&lt;strong&gt;update:&lt;/strong&gt;
+added missing chmod, thanks Patrick):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo bash&lt;/span&gt;
+&lt;span class="go"&gt;rm -f /usr/share/hal/fdi/policy/30user/10-apple-aluminium-kbd.fdi&lt;/span&gt;
+&lt;span class="go"&gt;mkdir -p /usr/share/hal/fdi/policy/30user&lt;/span&gt;
+&lt;span class="go"&gt;cp $HOME/10-applekbd-xkb-settings.fdi /usr/share/hal/fdi/policy/30user&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Download (I assume in your &lt;code&gt;$HOME&lt;/code&gt; directory) the &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/applekbd-xkb-settings.sh"&gt;new script for XKB
+setting&lt;/a&gt;,
+plus its associated &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/applekbd-xkb-settings"&gt;configuration
+file&lt;/a&gt;.
+Then copy them respectively in HAL's installation directory and in the
+system-wide configuration directory. On my Ubuntu, ths gives:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo bash&lt;/span&gt;
+&lt;span class="go"&gt;cp $HOME/applekbd-xkb-settings.sh /usr/lib/hal&lt;/span&gt;
+&lt;span class="go"&gt;chmod +x /usr/lib/hal/applekbd-xkb-settings.sh&lt;/span&gt;
+&lt;span class="go"&gt;cp $HOME/applekbd-xkb-settings /etc/default&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can tweak the configuration file
+&lt;code&gt;/etc/default/applekbd-xkb-settings&lt;/code&gt; to enable the settings you want for
+your keyboard. By default, the Fn key is remapped to Insert. The XKB
+options can be configured there for system-wide setting, as explained in
+the configuration file itself. But it's more user-friendly to configure
+XKB in your preferred Desktop Environment (GNOME, KDE, XFCE...
+whatever).&lt;/p&gt;
+&lt;h2&gt;Enjoy!&lt;/h2&gt;
+&lt;p&gt;I'm particularly happy with my revised XKB geometries. A tedious work,
+but this time keys dimension and layout perfectly match the original
+hardware, whatever the model. I'm even more happy now that I discovered
+how Apple decided to implement their EISU and KANA keys on the JIS
+keyboard! If you are curious, have a look at file
+&lt;code&gt;xkb/keycodes/machintosh&lt;/code&gt; in the patch, or read &lt;a href="http://forum.parallels.com/showthread.php?t=90313"&gt;this post on Parallels'
+forum&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The XKB patches are now ready for submission to the Xorg people
+(xkeyboard-config). The rest of the files are also clean enough to start
+providing .deb packages for this support! Maybe a good opportunity of
+learning &lt;a href="https://help.launchpad.net/Packaging/PPA"&gt;PPA&lt;/a&gt; in
+&lt;a href="https://launchpad.net/"&gt;LaunchPad&lt;/a&gt; :P&lt;/p&gt;</content><category term="Code"></category><category term="apple-kbd"></category><category term="apple"></category></entry><entry><title>Make your Apple Aluminium Keyboard really work under Linux, X.org</title><link href="https://dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html" rel="alternate"></link><published>2009-05-15T00:16:00+02:00</published><updated>2009-05-15T00:16:00+02:00</updated><author><name>Damien Ciabrini</name></author><id>tag:dciabrin.net,2009-05-15:/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html</id><summary type="html">&lt;p&gt;Like many others, I've bought an Aluminium Keyboard for ~~its cool
+style~~ the smooth typing experience it provides. Mine is a wired
+version, ISO variant (international, 110-keys). It's not working 100%
+out-of-the-box under Linux, so this post explains what I did to make it
+happen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Supporting the additional keys (F13 …&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Like many others, I've bought an Aluminium Keyboard for ~~its cool
+style~~ the smooth typing experience it provides. Mine is a wired
+version, ISO variant (international, 110-keys). It's not working 100%
+out-of-the-box under Linux, so this post explains what I did to make it
+happen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Supporting the additional keys (F13..F19) and geometry (physical
+    layout) under X.org&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making the keyboard auto-configured at X.org startup. No need to
+    mess with xorg.conf!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But wait, there's more. If you're accustomed to PC keyboards, you really
+need those ones too:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Making this fn key located on top of the delete key behave like a
+    regular PC keyboard: Insert!&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making multimedia keys output Fxx symbols by default&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making F13..F15 behave like those charmingly obsolete Scroll
+    Lock..Print Screen keys&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Keeping the multimedia keys accessible when the fn key is remapped
+    to Insert&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;h2&gt;Prerequisite&lt;/h2&gt;
+&lt;p&gt;First, make sure you have installed all the packages below and that
+their versions are recent enough:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.freedesktop.org/wiki/Software/Xserver"&gt;xserver-xorg&lt;/a&gt;
+    v1.5.2, X.org's hotplug-aware X server&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://cgit.freedesktop.org/xorg/driver/xf86-input-evdev"&gt;xserver-xorg-input-evdev&lt;/a&gt;
+    v2.0.xx, evdev driver for input devices&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.freedesktop.org/wiki/Software/hal"&gt;HAL&lt;/a&gt; v0.5.xx, the
+    hardware abstraction layer daemon which gives hotplug information to
+    the X server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;How the support works&lt;/h2&gt;
+&lt;h3&gt;Install&lt;/h3&gt;
+&lt;p&gt;Go grab &lt;a href="http://damien.ciabrini.free.fr/pub/apple-alu-kbd/xkb-apple-aluminium-kdb-iso.patch.gz"&gt;this
+patch&lt;/a&gt;
+and save it in your home directory; it contains the relevant XKB updates
+to support the keymap and the geometry of Apple Aluminium keyboard, ISO
+variant. It also defines two XKB options to make this keyboard behave
+more like a PC keyboard (more on that later). To install it, first
+&lt;em&gt;pretend&lt;/em&gt; to apply the patch in the directory that holds the XKB data.
+On my Ubuntu, this gives:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo bash&lt;/span&gt;
+&lt;span class="go"&gt;cd /usr/share/X11/xkb&lt;/span&gt;
+&lt;span class="go"&gt;gunzip -cd $HOME/xkb-apple-aluminium-kdb-iso.patch.gz | patch -p1 --dry-run&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If the patch applies successfuly, you can proceed and apply it for real:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;gunzip -cd $HOME/xkb-apple-aluminium-kdb-iso.patch.gz | patch -p1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once you have the relevant XKB definition for your keyboard, you need to
+tell X.org to apply these settings automatically when it detects your
+keyboard. &lt;a href="http://damien.ciabrini.free.fr/pub/apple-alu-kbd/10-apple-aluminium-kbd.fdi"&gt;The following HAL fdi
+file&lt;/a&gt;
+makes the necessary voodoo (read: XKB settings) for you. Note that these
+settings do not preclude your system-wide XKB options.&lt;/p&gt;
+&lt;p&gt;In order to install the fdi file I'm providing, just copy it in the HAL
+directory which holds user-defined policies for devices. On my Ubuntu,
+this directory is &lt;code&gt;/usr/share/hal/fdi/policy/30user&lt;/code&gt;. You might need to
+create &lt;code&gt;30user&lt;/code&gt; if it doesn't exist.&lt;/p&gt;
+&lt;h3&gt;Test&lt;/h3&gt;
+&lt;p&gt;Now that you installed everything, restart HAL. For example, on a
+Debian-like distro:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo /etc/init.d/hal restart&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then log out from your current X session and start a new one. If
+everything went well, you should now be able to see the Aluminium
+Keyboard in your keyboard preferences application. The screenshots below
+show the result under GNOME:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="preferences" src="https://dciabrin.net/posts/2009/05/alukbd-preferences.png"&gt;
+&lt;img alt="geometry" src="https://dciabrin.net/posts/2009/05/alukbd-geometry.png"&gt;&lt;/p&gt;
+&lt;h2&gt;Make it a PC keyboard!&lt;/h2&gt;
+&lt;h3&gt;The Insert key hack&lt;/h3&gt;
+&lt;p&gt;The fn key is not seen by X because its keycode (464) is greater than
+255, &lt;a href="http://bugs.freedesktop.org/show_bug.cgi?id=x11-keycode-limit"&gt;which is not
+allowed&lt;/a&gt;
+in X11 protocol. But there is a trick: under Linux, you can modify the
+kernel scancode→keycode mapping of your evdev device!&lt;/p&gt;
+&lt;p&gt;Just uncomment the two optional lines in the &lt;a href="http://damien.ciabrini.free.fr/pub/apple-alu-kbd/10-apple-aluminium-kbd.fdi"&gt;fdi
+file&lt;/a&gt;
+I'm providing to make the fn scancode (HID usage 0xff0003 on this
+keyboard) generate the Insert keycode (110) in userland and make Xorg
+happy :D&lt;/p&gt;
+&lt;p&gt;For curious people:
+&lt;a href="http://thread.gmane.org/gmane.comp.freedesktop.hal/8615/focus=8615"&gt;Initially&lt;/a&gt;
+(funny how these names look familiar if you read
+&lt;a href="http://planet.gnome.org/"&gt;p.g.o&lt;/a&gt;...), HAL's keycode remapping seems to
+have been designed with &lt;a href="http://www.win.tue.nl/%7Eaeb/linux/kbd/scancodes-1.html"&gt;AT
+scancodes&lt;/a&gt; in
+mind, not HID usages. In order to override those ones, you must &lt;a href="http://thread.gmane.org/gmane.comp.freedesktop.hal/8615/focus=8687"&gt;revert
+a special
+encoding&lt;/a&gt;
+performed for representing AT escape scancodes. In our case, you end up
+remapping usage 0xffdf83!&lt;/p&gt;
+&lt;h3&gt;Fxx keys enabled by default&lt;/h3&gt;
+&lt;p&gt;This one is not new. In order to boot with Fxx keys enabled, you must
+pass an option to the &lt;code&gt;hid&lt;/code&gt; Linux module. On my Ubuntu, this can be done
+by updating modprobe options and rebuilding an &lt;code&gt;initrd&lt;/code&gt; image.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sudo bash&lt;/span&gt;
+&lt;span class="go"&gt;echo &amp;quot;options hid pb_fnmode=2&amp;quot; &amp;gt;&amp;gt; /etc/modprobe.d/alukbd&lt;/span&gt;
+&lt;span class="go"&gt;echo &amp;quot;options hid_apple fnmode=2&amp;quot; &amp;gt;&amp;gt; /etc/modprobe.d/alukbd&lt;/span&gt;
+&lt;span class="go"&gt;update-initramfs -k `uname -r` -u&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Additional PC-like XKB options&lt;/h3&gt;
+&lt;p&gt;The XKB patch I'm providing defines two new XKB options:&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;&lt;code&gt;apple:alupcfkeys&lt;/code&gt;&lt;/dt&gt;
+&lt;dd&gt;If you need to map F13..F15 to Scroll Lock..Print Screen keys (I
+won't judge you, I swear :P)&lt;/dd&gt;
+&lt;dt&gt;&lt;code&gt;apple:alul3media&lt;/code&gt;&lt;/dt&gt;
+&lt;dd&gt;If you remap fn to Insert, this options allows you to access the
+multimedia keys is by typing 3rd-level chooser + Fxx key. I've
+mapped my 3rd-level chooser to the right Alt key (XKB option
+&lt;code&gt;lv3:ralt_switch&lt;/code&gt; )&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;Naturally, the simplest way of using these XKB options is to enable them
+via your keyboard preferences application. For instance, GNOME users can
+find them in the Keyboard Layout Options:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="options" src="https://dciabrin.net/posts/2009/05/alukbd-options.png"&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;My XKB and HAL settings provide complete support for your Aluminium
+Keyboard on Xorg Linux. However, the Insert key hack is probably not
+mainstream and ultimately should not land in a fdi file. It would be
+better to make a distro package such as “enable PC-support on Aluminium
+Keyboard”.&lt;/p&gt;
+&lt;p&gt;The XKB geometry implemented is for the ISO variant. if you have one of
+the other variant and like to throw it away, you know I'd be happy to
+add support for it, eheh :P&lt;/p&gt;</content><category term="Code"></category><category term="apple-kbd"></category><category term="apple"></category></entry><entry><title>Toolchain.sh is amazing!</title><link href="https://dciabrin.net/posts/2009/02/toolchainsh-is-amazing.html" rel="alternate"></link><published>2009-02-23T21:53:00+01:00</published><updated>2009-02-23T21:53:00+01:00</updated><author><name>Damien Ciabrini</name></author><id>tag:dciabrin.net,2009-02-23:/posts/2009/02/toolchainsh-is-amazing.html</id><summary type="html">&lt;p&gt;A few weeks ago, I finally upgraded my iPhone to firwmare 2.2.1. It was
+actually an utterly painless operation, thanks to the amazing
+&lt;a href="http://code.google.com/p/iphonedevonlinux/wiki/Installation"&gt;toolchain.sh&lt;/a&gt;
+by the guys from
+&lt;a href="http://code.google.com/p/iphonedevonlinux/"&gt;iphonedevlinux&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;I remember in the 1.1.4 days, I had a hard time extracting the MacOS
+10.5 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A few weeks ago, I finally upgraded my iPhone to firwmare 2.2.1. It was
+actually an utterly painless operation, thanks to the amazing
+&lt;a href="http://code.google.com/p/iphonedevonlinux/wiki/Installation"&gt;toolchain.sh&lt;/a&gt;
+by the guys from
+&lt;a href="http://code.google.com/p/iphonedevonlinux/"&gt;iphonedevlinux&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;I remember in the 1.1.4 days, I had a hard time extracting the MacOS
+10.5 SDK on Linux and compiling the openSDK on my Core2 Quad by
+following &lt;a href="http://www.saurik.com/id/4"&gt;saurik's great instructions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It turns out that building an open SDK for firmware 2.2.1 is actually
+very simple: getting a copy of the phone's sysroot, building GCC,
+importing headers from the official iphone SDK, classdumping private
+frameworks... all these operations are now almost automatic thanks to
+toolchain.sh.&lt;/p&gt;
+&lt;p&gt;The icing on the cake: those smart people from
+&lt;a href="http://code.google.com/p/iphonedevonlinux/"&gt;iphonedevlinux&lt;/a&gt; are
+friendly and reactive! Another good reason for
+&lt;a href="http://code.google.com/p/iphonedevonlinux/issues/detail?id=7"&gt;sending&lt;/a&gt;
+&lt;a href="http://code.google.com/p/iphonedevonlinux/issues/detail?id=6&amp;amp;can=1#c15"&gt;them&lt;/a&gt;
+&lt;a href="http://code.google.com/p/iphonedevonlinux/issues/detail?id=10"&gt;patches&lt;/a&gt;
+and using their script :)&lt;/p&gt;</content><category term="Code"></category><category term="iphone"></category><category term="apple"></category></entry><entry><title>Hello MikMod!</title><link href="https://dciabrin.net/posts/2008/07/hello-mikmod.html" rel="alternate"></link><published>2008-07-05T00:27:00+02:00</published><updated>2008-07-05T00:27:00+02:00</updated><author><name>Damien Ciabrini</name></author><id>tag:dciabrin.net,2008-07-05:/posts/2008/07/hello-mikmod.html</id><summary type="html">&lt;p&gt;As promised earlier, I've packaged an obligatory example of how to use
+the iPhone port of &lt;a href="http://mikmod.raphnet.net/"&gt;libmikmod&lt;/a&gt; which I've
+talked about recently. Go grab &lt;a href="http://damien.ciabrini.free.fr/pub/mikmod-iphone/HelloMikMod.tar.gz"&gt;this
+tarball&lt;/a&gt;
+which implements a very simple "Hello World!":&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;It shows how to play a module within a
+    &lt;a href="http://www.cocoadev.com/index.pl?UIKit"&gt;UIKit&lt;/a&gt; application. This is
+    an adaptation of the …&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;As promised earlier, I've packaged an obligatory example of how to use
+the iPhone port of &lt;a href="http://mikmod.raphnet.net/"&gt;libmikmod&lt;/a&gt; which I've
+talked about recently. Go grab &lt;a href="http://damien.ciabrini.free.fr/pub/mikmod-iphone/HelloMikMod.tar.gz"&gt;this
+tarball&lt;/a&gt;
+which implements a very simple "Hello World!":&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;It shows how to play a module within a
+    &lt;a href="http://www.cocoadev.com/index.pl?UIKit"&gt;UIKit&lt;/a&gt; application. This is
+    an adaptation of the skeleton program found in &lt;a href="http://http//mikmod.raphnet.net/#docs"&gt;MikMod
+    Documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It shows how to use the higher level sound API
+    &lt;a href="http://www.cocoadev.com/index.pl?CelestialFramework"&gt;Celestial&lt;/a&gt; to
+    control mikmod output. For instance, how to react to volume change
+    events when iPhone buttons are pressed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;What to do with this archive once you've extracted it?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;tar -zxf HelloMikMod.tar.gz&lt;/span&gt;
+&lt;span class="go"&gt;cd HelloMikMod&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Simple! Modify the Makefile to set the location of the &lt;span
+style="font-family:courier new;"&gt;AudioQueue.h&lt;/span&gt; header, as well as
+the location where you've installed libmikmod. Once you're done, the
+makefile should look like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;# directory where AudioQueue.h is located&lt;/span&gt;
+&lt;span class="nv"&gt;AQDIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;HOME&lt;span class="k"&gt;)&lt;/span&gt;/local/audioqueue
+&lt;span class="c"&gt;# directory where MikMod is located&lt;/span&gt;
+&lt;span class="nv"&gt;MMDIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;HOME&lt;span class="k"&gt;)&lt;/span&gt;/local/mikmod-iphone
+&lt;span class="c"&gt;# comment the following line when the previous settings are OK for you&lt;/span&gt;
+&lt;span class="c"&gt;#$(error configure AudioQueue and Mikmod location in the Makefile first)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, just build and install the app by typing:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;make&lt;/span&gt;
+&lt;span class="go"&gt;scp -r HelloMikMod.app root@iphone:/Applications&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Where &lt;span style="font-family:courier new;"&gt;iphone&lt;/span&gt; stands for
+the hostname or the IP of your iPhone. Note that you will need either
+curl or wget installed or your machine so that the build process is able
+to download the module played in this example app (fortunately, one of
+those should always be available on MacOS X or on your favorite Linux
+distro). For your convenience, the &lt;span
+style="font-family:courier new;"&gt;HelloMikMod.app&lt;/span&gt; directory is
+standalone: it contains the app itself linked statically to libmikmod, a
+launcher descriptor for Springboard and the module to play. For my own
+pleasure, the mod played is &lt;a href="http://modarchive.org/module.php?59344"&gt;Stardust
+Memories&lt;/a&gt; by Jester / Sanity, my
+all time favorite Amiga mod (see the compo &lt;a href="http://www.pouet.net/prod.php?which=2938"&gt;World of
+Commodore&lt;/a&gt;). This is only a
+simple example of how to use MikMod on iPhone. I've started implementing
+a more complex app that mimics the iPod interface for playing mods
+(Module DB, Screenshot of associated demos...). Now if only I could use
+&lt;a href="http://www.scenemusic.net/"&gt;Nectarine&lt;/a&gt; or
+&lt;a href="http://pouet.net/"&gt;Pouet.net&lt;/a&gt; DB to make some kind of systematic
+indexing available!! (sigh....)&lt;/p&gt;</content><category term="Code"></category><category term="apple-kbd"></category><category term="apple"></category></entry><entry><title>MikMod library ported to iPhone</title><link href="https://dciabrin.net/posts/2008/06/mikmod-library-ported-to-iphone.html" rel="alternate"></link><published>2008-06-27T23:18:00+02:00</published><updated>2008-06-27T23:18:00+02:00</updated><author><name>Damien Ciabrini</name></author><id>tag:dciabrin.net,2008-06-27:/posts/2008/06/mikmod-library-ported-to-iphone.html</id><summary type="html">&lt;p&gt;I've always been a big fan of old skool computer music, like chiptunes
+or demoscene music. Perhaps because they remind me the Good Old Days
+(tm) of my &lt;a href="http://en.wikipedia.org/wiki/Amiga"&gt;Amiga&lt;/a&gt;. Or perhaps for
+the same reason I like &lt;a href="http://pouet.net/"&gt;demoscene&lt;/a&gt;: real-time
+computer art! Because it's definitely cool, I've decided to port MikMod …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've always been a big fan of old skool computer music, like chiptunes
+or demoscene music. Perhaps because they remind me the Good Old Days
+(tm) of my &lt;a href="http://en.wikipedia.org/wiki/Amiga"&gt;Amiga&lt;/a&gt;. Or perhaps for
+the same reason I like &lt;a href="http://pouet.net/"&gt;demoscene&lt;/a&gt;: real-time
+computer art! Because it's definitely cool, I've decided to port MikMod
+to the iPhone! We'll see later if it might be useful to someone else :)&lt;/p&gt;
+&lt;h2&gt;Compiling libmikmod&lt;/h2&gt;
+&lt;p&gt;Here are the steps to follow to build libmikmod for your iPhone or iPod Touch. First of all, make sure that
+you have the necessary header file from Apple, namely &lt;code&gt;AudioQueue.h&lt;/code&gt;. This file is part of the AudioQueue
+framework, which is available in the &lt;a href="http://developer.apple.com/tools/download"&gt;MacOS X 10.5 SDK&lt;/a&gt;. This means
+that the official iPhone SDK is not required. Then, download the latest
+&lt;a href="http://mikmod.raphnet.net/files/libmikmod-3.2.0-beta2.tar.gz"&gt;libmikmod-3.2.0-beta2&lt;/a&gt; available on the &lt;a href="http://mikmod.raphnet.net/"&gt;MikMod
+homepage&lt;/a&gt;, as well as &lt;a href="http://damien.ciabrini.free.fr/pub/mikmod-iphone/iphone-drv-mikmod-3.2.0-beta2.patch.gz"&gt;this patch for iPhone
+support&lt;/a&gt;.  For
+simplicity, let's consider that both files will be downloaded in the same directory. Once you have them,
+extract the archive and apply the patch:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;tar -zxf libmikmod-3.2.0-beta2.tar.gz&lt;/span&gt;
+&lt;span class="go"&gt;cd libmikmod-3.2.0-beta2&lt;/span&gt;
+&lt;span class="go"&gt;gunzip -cd ../iphone-drv-mikmod-3.2.0-beta2.patch.gz | patch -p1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Among other things, the patch modifies various Makefiles and the
+configure script, so we have to cleanly regenerate all the
+autotool-related files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;aclocal&lt;/span&gt;
+&lt;span class="go"&gt;automake&lt;/span&gt;
+&lt;span class="go"&gt;autoconf&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now let's set up the necessary environment variables to configure and
+build libmikmod. First, where to find the AudioQueue header and where to
+install libmikmod:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;export AQDIR=$HOME/local/audioqueue&lt;/span&gt;
+&lt;span class="go"&gt;export MMDIR=$HOME/local/mikmod-iphone&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Make sure you are using absolute paths for the variables above. Then,
+let's set up some compilation flags and name the tools we'll use from
+the iPhone toolchain:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;export CFLAGS=&amp;quot;-I$AQDIR -DAVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER=&amp;quot;&lt;/span&gt;
+&lt;span class="go"&gt;export CPPFLAGS=&amp;quot;$CFLAGS&amp;quot;&lt;/span&gt;
+&lt;span class="go"&gt;export LDFLAGS=&amp;quot;-framework AudioToolbox&amp;quot;&lt;/span&gt;
+&lt;span class="go"&gt;export CC=arm-apple-darwin-gcc&lt;/span&gt;
+&lt;span class="go"&gt;export RANLIB=arm-apple-darwin-ranlib&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Okay, now it's time to let configure do its job:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;./configure --enable-iphone --host=arm-apple-darwin --disable-oss --disable-esd --prefix=$MMDIR&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We're almost done! But there's still a little quirk that must be
+addressed. The project is configured to build shared libraries, which
+for some reason refuse to link with the version of the open-source
+iPhone toolchain I use. To overcome this problem, you just need to patch
+the generated libtool configuration. Knowing no clever means to do so, I
+propose something like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;sed -r -i &amp;#39;s/^(allow_undefined_flag.*)&amp;quot;/\1 -Wl,-read_only_relocs,suppress&amp;quot;/&amp;#39; libtool&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Phew, now we're done! Just type:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="go"&gt;make CFLAGS=&amp;quot;$CFLAGS&amp;quot;&lt;/span&gt;
+&lt;span class="go"&gt;make install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And voila! a fresh libmikmod with support for your beloved iPhone or
+iPod Touch! Oh, by the way: the library comes in both static and dynamic
+flavor, so it should be pretty usable. Of course, the obligatory example
+will follow soon :P
+&lt;strong&gt;EDIT:&lt;/strong&gt; the link to the patch was pointing to a plain file instead of a gzip one,
+fixed!&lt;/p&gt;</content><category term="Code"></category><category term="apple-kbd"></category><category term="apple"></category></entry></feed>

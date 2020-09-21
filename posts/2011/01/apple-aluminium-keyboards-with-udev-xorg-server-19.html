@@ -1,90 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  
-  <title>(blog-dump 'dciabrin) &mdash; Apple Aluminium Keyboards with udev, Xorg server 1.9</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="initial-scale=1" />
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <title>Apple Aluminium Keyboards with udev, Xorg server 1.9</title>
 
-  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/lingonberry/css/style.css" />
-  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/tipuesearch/css/tipuesearch.css" />
-  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/blogdump.css" />
-  <link rel="stylesheet" type="text/css" href="http://damien.ciabrini.name/theme/css/slide.css" />
-  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2"/> 
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href="https://dciabrin.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="(blog-dump 'dciabrin) Full Atom Feed" />
+        <link href="https://dciabrin.net/feeds/apple-kbd.tag.atom.xml" type="application/atom+xml" rel="alternate" title="(blog-dump 'dciabrin) Tags Atom Feed" />
+        <link href="https://dciabrin.net/feeds/apple.tag.atom.xml" type="application/atom+xml" rel="alternate" title="(blog-dump 'dciabrin) Tags Atom Feed" />
 
-  <link rel="alternate" type="application/atom+xml"
-	title="(blog-dump 'dciabrin) — Atom Feed"
-	href="http://damien.ciabrini.name/" /> 
+
+        <!-- Blog theme + Bootstrap compiled to CSS -->
+        <link rel="stylesheet" href="https://dciabrin.net/theme/css/blogtheme.css?6f5403ff">
+
+        <!-- Code highlight color scheme -->
+            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" rel="stylesheet">
+
+        <!--  -->
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+
+        <meta name="description" content="It's been a year now since I published my support for Aluminium Keyboards. Since then, my XKB patches have been accepted in...">
+
+        <meta name="author" content="Damien Ciabrini">
+
+        <meta name="tags" content="apple-kbd">
+        <meta name="tags" content="apple">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="(blog-dump 'dciabrin)">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="https://dciabrin.net/author/damien-ciabrini.html">
+	<meta property="og:url" content="https://dciabrin.net/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html">
+	<meta property="og:title" content="Apple Aluminium Keyboards with udev, Xorg server 1.9">
+	<meta property="article:published_time" content="2011-01-11 22:48:00.004000+01:00">
+            <meta property="og:description" content="It's been a year now since I published my support for Aluminium Keyboards. Since then, my XKB patches have been accepted in...">
+
+            <meta property="og:image" content="https://dciabrin.net/img/covers/big-dodzy-59J9tB7KoOU-unsplash.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@dciabrin">
+        <meta name="twitter:title" content="Apple Aluminium Keyboards with udev, Xorg server 1.9">
+
+            <meta name="twitter:image" content="https://dciabrin.net/theme/images/post-bg.jpg">
+
+            <meta name="twitter:description" content="It's been a year now since I published my support for Aluminium Keyboards. Since then, my XKB patches have been accepted in...">
+    <link rel="icon" href="/favicon.ico">
 </head>
 
-<body id="body" class="homez blogz" >
-  <div id="page">
-    <header id="header" class="header section">
-        <div class="header-inner section-inner">
-            <a class="site-logo noimg" rel="home" title="(blog-dump 'dciabrin)" href="http://damien.ciabrini.name">
-                <span class="screen-reader-text"></span>
-            </a>
-	    <h1 id="site-title" class="site-title">
-              <a href="http://damien.ciabrini.name">(blog-dump 'dciabrin)</a>
-              <a href="#" id="toggle-menu">☰</a>
-            </h1>
-<h2 id="site-description" class="site-description">A coding and hacking diary</h2>        </div>
-    
-    <nav id="header-nav" class="site-navigation">
-        <form class="navbar-search" action="http://damien.ciabrini.name/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form>
-	<div class="menu-navigation-container"><div class="navigation-inner section-inner">
-	    <ul id="menu-navigation" class="blog-menu">
-		<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
-		    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/pages/about.html">About</a></li>
+<body class="article-apple-aluminium-keyboards-with-udev-xorg-server-19">
 
-			<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/code.html">Code</a></li>
-			<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://damien.ciabrini.name/category/misc.html">Misc</a></li>
+    <!-- Navigation -->
+    <nav class="navbar navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
+        <!-- <div class="container-fluid"> -->
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- <div class="navbar-header page-scroll"> -->
+                <a class="navbar-brand" href="https://dciabrin.net/">(blog-dump 'dciabrin)</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <!-- </div> -->
 
-			<li  class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives.html">Archives</a></li>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
 
+                            <li><a class="nav-link" href="https://dciabrin.net/pages/about.html">About</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                  <li><a class="nav-link" href="#"><i class="fa fa-search"></i></a></li>
+                  <li><a class="nav-link" href="/tags"><i class="fa fa-tags"></i></a></li>
+                  <li><a class="nav-link" href="#"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        <!-- </div> -->
+        <!-- /.container -->
+    </nav>
 
-	    </ul>
-	</div></div> <!--/#menu-navigation-container-->
-    </nav><!-- /#menu -->
-    </header><!-- /#banner -->
-		                    
-    <!-- <div id="full"> -->
-    <!-- Content -->
-    <div class="flexcontent">
-    <main class="article">
-        <section class="post type-post status-publish format-standard hentry category-general" id="post">
-	    <div class="main content-inner">
-	        <!-- <div class="post-header"> -->
-		<h1 class="post-title">
-		    <a href="http://damien.ciabrini.name/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html" title="Permalink to Apple Aluminium Keyboards with udev, Xorg server 1.9" rel="bookmark">Apple Aluminium Keyboards with udev, Xorg server 1.9</a>
-		</h1>
-		<div class="center post-meta"><span>Damien Ciabrini</span></div>
-                <div class="center post-meta">
-                    <i class="fa fa-calendar"></i> <a href="http://damien.ciabrini.name/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html">Tue 11 January 2011</a>
-                        <span class="sep"></span>
-    	                <span class="tag-links"><i class="fa fa-tags"></i>
- <a href="http://damien.ciabrini.name/tag/apple.html" rel="tag">apple</a>,  <a href="http://damien.ciabrini.name/tag/apple-kbd.html" rel="tag">apple-kbd</a>    	                </span>
+    <!-- Page Header -->
+    <header class="intro-header">
+        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/alex-knight-Ys-DBJeX0nE-unsplash.jpg'); --parallax-ratio: 1.500;">
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-12">
+                    <div class="post-heading">
+                        <!-- <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; -->
+                        <span class="text-light meta">Tue 11 January 2011</span>
+                        <h1 class="text-light">Apple Aluminium Keyboards with udev, Xorg server 1.9</h1>
+                        <span class="meta">
+                          &nbsp;
+                          <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/apple-kbd.html"><i class="fa fa-tag" aria-hidden="true"></i> APPLE-KBD</a>
+&nbsp;                          <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/apple.html"><i class="fa fa-tag" aria-hidden="true"></i> APPLE</a>
+                        </span>
+                        
+                    </div>
                 </div>
-                
-                <div class="entry-content">
-		    <p>It's been a year now since I published my support for Aluminium
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+    <!-- Post Content -->
+    <div class="row justify-content-center">
+    <div class="col-lg-10 col-md-12">
+        <article>
+            <p>It's been a year now since I published my support for Aluminium
 Keyboards. Since then, my XKB patches have been accepted in
 <a href="http://freedesktop.org/wiki/Software/XKeyboardConfig">XKeyboardConfig</a>
 1.9, with a few modifications:</p>
 <ul>
-<li>The multimedia keys can always be accessed by combining Fxx with the
+<li>
+<p>The multimedia keys can always be accessed by combining Fxx with the
     3rd level chooser (this was option <code id="tt1099">alul3media</code> in my
-    original XKB patches)</li>
-<li>There is now a single XKB option <code id="tt1101">alupckeys</code> to emulate the
+    original XKB patches)</p>
+</li>
+<li>
+<p>There is now a single XKB option <code id="tt1101">alupckeys</code> to emulate the
     behaviour of a PC keyboard, <em>i.e.</em> to enable PrintScreen,
     ScrollLock, SysReq and NumLock (options <code id="tt1103">alupcfkeys</code> and
-    <code id="tt1104">alupcnumlock</code> in the original patches)</li>
+    <code id="tt1104">alupcnumlock</code> in the original patches)</p>
+</li>
 </ul>
-
+<!-- PELICAN_END_SUMMARY -->
 
 <p>Meanwhile, Xorg server 1.9 went stable, becoming more and more
 pervasive. As far as input hotplugging is concerned, this is a major
@@ -102,16 +149,16 @@ rules</a>
 and install them in whatever directory your distrib uses to store user
 rules. On Ubuntu, assuming that you downloaded the rules in your home
 directory, this gives:</p>
-<div class="highlight"><pre><span class="x">sudo cp </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/95-keymap-apple-kdb.rules /etc/udev/rules.d</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="go">sudo cp $HOME/95-keymap-apple-kdb.rules /etc/udev/rules.d</span>
+</code></pre></div>
 
 
 <p>Then, download the <a href="http://damien.ciabrini.free.fr/pub/alu-kbd-udev/apple-kbd">configuration
 file</a> and
 install it in your distrib's configuration directory. On Ubuntu, this
 gives:</p>
-<div class="highlight"><pre><span class="x">sudo cp </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/apple-kbd /etc/default</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="go">sudo cp $HOME/apple-kbd /etc/default</span>
+</code></pre></div>
 
 
 <p>The configuration file contains various key-value pairs that drive the
@@ -138,16 +185,16 @@ to track this issue and check whether this was intended or not.
 Meanwhile, you can grab <a href="http://damien.ciabrini.free.fr/pub/alu-kbd-udev/xkb-data-1.8-evdev.patch">this XKB
 patch</a>
 and try to apply it:</p>
-<div class="highlight"><pre><span class="x">sudo bash</span>
-<span class="x">cd /usr/share/X11/xkb/rules</span>
-<span class="x">patch -p0 --dry-run &lt; </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/xkb-data-1.8-evdev.patch</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="go">sudo bash</span>
+<span class="go">cd /usr/share/X11/xkb/rules</span>
+<span class="go">patch -p0 --dry-run &lt; $HOME/xkb-data-1.8-evdev.patch</span>
+</code></pre></div>
 
 
 <p>If the patch applies successfully, you can proceed and apply it for
 real:</p>
-<div class="highlight"><pre><span class="x">patch -p0 &lt; </span><span class="p">$</span><span class="nv">HOME</span><span class="x">/xkb-data-1.8-evdev.patch</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="go">patch -p0 &lt; $HOME/xkb-data-1.8-evdev.patch</span>
+</code></pre></div>
 
 
 <h2>Steps to come</h2>
@@ -166,84 +213,93 @@ possible to come with a fully user-space, udev-based solution to the
 issue</a> that
 plague some owners of the ISO variants. I have some ideas, but this will
 be another post!</p>
-
-		</div> <!--/#entry-content-->
-	    </div> <!--/#main-->
-        </section>  <!--/#post-->
-        <div class="hidden">
-<aside id="menu" class="side_navigation">
-  <h3 class="nav_author">Damien Ciabrini</h3>
-
-  <p>Coder, hacker, dreamer. Worked on compilers,
-    debuggers, language runtimes. Passionate
-    about distributed computing. Obsessed by
-    retro hardware and optimizations.
-    <div class="center social-buttons">
-        <a class="social fa fa-twitter" href="http://twitter.com/dciabrin"></a>
-        <!-- <span class="sep"></span> -->
-        <a class="social fa fa-github" href="http://github.com/dciabrin"></a>
-        <!-- <span class="sep"></span> -->
-        <a class="social fa fa-google-plus" href="https://plus.google.com/+DamienCiabrini"></a>
-        <!-- <span class="sep"></span> -->
-        <a class="social fa fa-linkedin" href="https://www.linkedin.com/in/damien-ciabrini-70514187"></a>
-        <!-- <span class="sep"></span> -->
+        </article>
     </div>
-  </p>
-    
-  <h3>Meta</h3>
-  <div class="center">
-  <ul>
-      <li><a href="http://damien.ciabrini.name/" type="application/atom+xml" rel="alternate" title="ATOM Feed" />Blog Feed <i class="fa fa-rss"></i></a></li>
-  </ul>
-  </div>
-  
-  <h3>Categories</h3>
-  <div class="center">
-  <ul>
-        <li><a href="http://damien.ciabrini.name/category/code.html">Code</a> (9)</li>
-        <li><a href="http://damien.ciabrini.name/category/misc.html">Misc</a> (1)</li>
-  </ul>
-  </div>
-</aside>        </div>
-	<section id="comments">
-		<div id="respond">
-			<div id="disqus_thread"></div>
-	        <script type="text/javascript">
-	            var disqus_shortname = 'dciabrin';
-	
-	            /* * * DON'T EDIT BELOW THIS LINE * * */
-	            (function() {
-	                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-	                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	            })();
-	        </script>
-	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-	        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-		</div><!-- #respond -->					
-        </section><!-- #comments -->
-    </main>
-
     </div>
+
+    <div class="sharing row justify-content-center">
+      <div class="col text-center">
+        <span class="meta text-uppercase share">share</span>
+        <a href="https://twitter.com/intent/tweet?text=Apple%20Aluminium%20Keyboards%20with%20udev%2C%20Xorg%20server%201.9&url=https%3A//dciabrin.net/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html&hashtags=apple-kbd,apple" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+        <a href="https://www.reddit.com/submit?url=https%3A//dciabrin.net/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html&title=Apple%20Aluminium%20Keyboards%20with%20udev%2C%20Xorg%20server%201.9" target="_blank"><i class="fa fa-reddit-square" aria-hidden="true"></i></a>
+        <a href="https://news.ycombinator.com/submitlink?t=Apple%20Aluminium%20Keyboards%20with%20udev%2C%20Xorg%20server%201.9&u=https%3A//dciabrin.net/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html" target="_blank"><i class="fa fa-y-combinator-square" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//dciabrin.net/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html&title=Apple%20Aluminium%20Keyboards%20with%20udev%2C%20Xorg%20server%201.9&summary=It%27s%20been%20a%20year%20now%20since%20I%20published%20my%20support%20for%20Aluminium%0AKeyboards.%20Since%20then%2C%20my%20XKB%20patches%20have%20been%20accepted%20in%0AXKeyboardConfig%0A1.9%2C%20with%20a%20few%20modifications%3A%0A%0A%0AThe%20multimedia%20keys%20can%20always%20be%20accessed%20by%20combining%20Fxx%20with%20the%0A%20%20%20%203rd%20level%20chooser%20%28this%20was%20option%20alul3media%20in%20my%20%E2%80%A6&source=https%3A//dciabrin.net/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//dciabrin.net/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+        <a href="mailto:?subject=Apple%20Aluminium%20Keyboards%20with%20udev%2C%20Xorg%20server%201.9&amp;body=https%3A//dciabrin.net/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html" target="_blank"><i class="fa fa-envelope-square" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <hr />
+
+<!--  -->
+<nav class="nav-articles row justify-content-center">
+    <div class="col-lg-10 col-md-12">
+    <div class="row justify-content-center">
+        <div class="col newer-article text-left">
+            <div>Newer Post</div>
+            <a aria-label="Previous" href="https://dciabrin.net/posts/2011/05/support-for-aluminium-keyboards-packaged-code-named-apple-kbd.html">
+              Support for Aluminium Keyboards packaged, code-named apple-kbd
+            </a>
+        </div>
+        <div class="col text-center">
+        </div>
+        <div class="col older-article text-right">
+            <div>Older Post</div>
+            <a aria-label="Next" href="https://dciabrin.net/posts/2009/12/aluminium-keyboard-support-under-x11-all-models-all-oses.html">
+              Aluminium Keyboard support under X11: all models, all OSes
+            </a>
+        </div>
+    </div>
+    </div>
+</nav>
+<!--  -->
+    </div>
+
+    <!-- <hr> -->
+
     <!-- Footer -->
-<footer id="footer" class="footer">
-  <div class="section-inner">
-    &copy; 2008&dash;2015 Damien Ciabrini - Content licensed under <a href="CC-BY 4.0">CC-BY 4.0</a> unless stated otherwise.<br/>
-    Theme based on <a href="https://wordpress.com/themes/lingonberry/">Lingonberry</a>,
-    icons by <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a><br/>
-    Powered by <a href="http://getpelican.com">Pelican</a>, <a href="https://disqus.com">Disqus</a><br/>
+    <footer>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-12">
+<p class="text-center copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>. <br />        &copy;  Damien Ciabrini
+  <br />
+      <span class="fa-stack fa">
+      <a href="http://twitter.com/dciabrin">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </a>
+      </span>
+      <span class="fa-stack fa">
+      <a href="http://github.com/dciabrin">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </a>
+      </span>
+      <span class="fa-stack fa">
+      <a href="https://www.linkedin.com/in/damien-ciabrini-70514187">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+      </a>
+      </span>
+</p>                </div>
+            </div>
+        </div>
+    </footer>
 
-<script type="text/javascript">
-    var disqus_shortname = 'dciabrin';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>  </div>
-</footer><!-- /#footer -->    </div>
-  <!-- </div> -->
-  <script src="http://damien.ciabrini.name/theme/slide.js"></script>
+    <!-- jQuery -->
+    <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
+
+    <!-- Parallax -->
+    <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
+    <script>
+      parallax('header-background');
+    </script> 
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

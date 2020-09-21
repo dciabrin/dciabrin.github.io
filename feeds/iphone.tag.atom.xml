@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>(blog-dump 'dciabrin) - iphone</title><link href="https://dciabrin.net/" rel="alternate"></link><link href="https://dciabrin.net/feeds/iphone.tag.atom.xml" rel="self"></link><id>https://dciabrin.net/</id><updated>2009-02-23T21:53:00+01:00</updated><subtitle>A coding and hacking diary</subtitle><entry><title>Toolchain.sh is amazing!</title><link href="https://dciabrin.net/posts/2009/02/toolchainsh-is-amazing.html" rel="alternate"></link><published>2009-02-23T21:53:00+01:00</published><updated>2009-02-23T21:53:00+01:00</updated><author><name>Damien Ciabrini</name></author><id>tag:dciabrin.net,2009-02-23:/posts/2009/02/toolchainsh-is-amazing.html</id><summary type="html">&lt;p&gt;A few weeks ago, I finally upgraded my iPhone to firwmare 2.2.1. It was
+actually an utterly painless operation, thanks to the amazing
+&lt;a href="http://code.google.com/p/iphonedevonlinux/wiki/Installation"&gt;toolchain.sh&lt;/a&gt;
+by the guys from
+&lt;a href="http://code.google.com/p/iphonedevonlinux/"&gt;iphonedevlinux&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;I remember in the 1.1.4 days, I had a hard time extracting the MacOS
+10.5 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A few weeks ago, I finally upgraded my iPhone to firwmare 2.2.1. It was
+actually an utterly painless operation, thanks to the amazing
+&lt;a href="http://code.google.com/p/iphonedevonlinux/wiki/Installation"&gt;toolchain.sh&lt;/a&gt;
+by the guys from
+&lt;a href="http://code.google.com/p/iphonedevonlinux/"&gt;iphonedevlinux&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;p&gt;I remember in the 1.1.4 days, I had a hard time extracting the MacOS
+10.5 SDK on Linux and compiling the openSDK on my Core2 Quad by
+following &lt;a href="http://www.saurik.com/id/4"&gt;saurik's great instructions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It turns out that building an open SDK for firmware 2.2.1 is actually
+very simple: getting a copy of the phone's sysroot, building GCC,
+importing headers from the official iphone SDK, classdumping private
+frameworks... all these operations are now almost automatic thanks to
+toolchain.sh.&lt;/p&gt;
+&lt;p&gt;The icing on the cake: those smart people from
+&lt;a href="http://code.google.com/p/iphonedevonlinux/"&gt;iphonedevlinux&lt;/a&gt; are
+friendly and reactive! Another good reason for
+&lt;a href="http://code.google.com/p/iphonedevonlinux/issues/detail?id=7"&gt;sending&lt;/a&gt;
+&lt;a href="http://code.google.com/p/iphonedevonlinux/issues/detail?id=6&amp;amp;can=1#c15"&gt;them&lt;/a&gt;
+&lt;a href="http://code.google.com/p/iphonedevonlinux/issues/detail?id=10"&gt;patches&lt;/a&gt;
+and using their script :)&lt;/p&gt;</content><category term="Code"></category><category term="iphone"></category><category term="apple"></category></entry></feed>
