@@ -15,15 +15,29 @@
 
 
         <!-- Blog theme + Bootstrap compiled to CSS -->
-        <link rel="stylesheet" href="https://dciabrin.net/theme/css/blogtheme.css?6f5403ff">
+        <link rel="stylesheet" media="screen" href="https://dciabrin.net/theme/css/blogtheme.css?e57e5b1e">
+
+        <!-- Blog theme + Bootstrap compiled to CSS -->
+        <link rel="stylesheet" media="print" href="https://dciabrin.net/theme/css/blogprint.css?e9236b24">
 
         <!-- Code highlight color scheme -->
-            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" rel="stylesheet">
+            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" media="screen" rel="stylesheet">
+            <link href="https://dciabrin.net/theme/css/code_blocks/bw.css?fw" media="print" rel="stylesheet">
 
         <!--  -->
 
         <!-- Custom Fonts -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- jQuery -->
+        <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
+
+        <!-- Parallax -->
+        <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
+
 
 
 
@@ -58,7 +72,7 @@
 <body class="article-toolchainsh-is-amazing">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
+    <nav class="navbar d-print-none navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
         <!-- <div class="container-fluid"> -->
             <!-- Brand and toggle get grouped for better mobile display -->
             <!-- <div class="navbar-header page-scroll"> -->
@@ -75,8 +89,8 @@
                             <li><a class="nav-link" href="https://dciabrin.net/pages/about.html">About</a></li>
                 </ul>
                 <ul class="navbar-nav">
-                  <li><a class="nav-link" href="#"><i class="fa fa-search"></i></a></li>
-                  <li><a class="nav-link" href="/tags"><i class="fa fa-tags"></i></a></li>
+                  <li><a class="nav-link" href="https://dciabrin.net/search.html"><i class="fa fa-search"></i></a></li>
+                  <li><a class="nav-link" href="https://dciabrin.net/tags.html"><i class="fa fa-tags"></i></a></li>
                   <li><a class="nav-link" href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
             </div>
@@ -87,16 +101,16 @@
 
     <!-- Page Header -->
     <header class="intro-header">
-        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/alex-knight-Ys-DBJeX0nE-unsplash.jpg'); --parallax-ratio: 1.500;">
+        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/alex-knight-Ys-DBJeX0nE-unsplash.jpg'); --parallax-ratio: 1.500; background-color: #072A36;">
         </div>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
                     <div class="post-heading">
-                        <!-- <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; -->
                         <span class="text-light meta">Mon 23 February 2009</span>
                         <h1 class="text-light">Toolchain.sh is amazing!</h1>
-                        <span class="meta">
+                            <a class="d-none d-print-block author" rel="author">Damien Ciabrini</a>
+                        <span class="meta d-print-none">
                           &nbsp;
                           <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/iphone.html"><i class="fa fa-tag" aria-hidden="true"></i> IPHONE</a>
 &nbsp;                          <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/apple.html"><i class="fa fa-tag" aria-hidden="true"></i> APPLE</a>
@@ -114,7 +128,7 @@
     <div class="row justify-content-center">
     <div class="col-lg-10 col-md-12">
         <article>
-            <p>A few weeks ago, I finally upgraded my iPhone to firwmare 2.2.1. It was
+          <p>A few weeks ago, I finally upgraded my iPhone to firwmare 2.2.1. It was
 actually an utterly painless operation, thanks to the amazing
 <a href="http://code.google.com/p/iphonedevonlinux/wiki/Installation">toolchain.sh</a>
 by the guys from
@@ -136,11 +150,32 @@ friendly and reactive! Another good reason for
 <a href="http://code.google.com/p/iphonedevonlinux/issues/detail?id=6&amp;can=1#c15">them</a>
 <a href="http://code.google.com/p/iphonedevonlinux/issues/detail?id=10">patches</a>
 and using their script :)</p>
+          <h2 class="d-none d-print-block">References</h2>
+          <table class="print_refs d-none d-print-block">
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_1">1</a>]</td><td class="print_ref"><p>http://code.google.com/p/iphonedevonlinux/wiki/Installation</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_2">2</a>]</td><td class="print_ref"><p>http://code.google.com/p/iphonedevonlinux/</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_3">3</a>]</td><td class="print_ref"><p>http://www.saurik.com/id/4</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_4">4</a>]</td><td class="print_ref"><p>http://code.google.com/p/iphonedevonlinux/issues/detail?id=7</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_5">5</a>]</td><td class="print_ref"><p>http://code.google.com/p/iphonedevonlinux/issues/detail?id=6&amp;can=1#c15</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_6">6</a>]</td><td class="print_ref"><p>http://code.google.com/p/iphonedevonlinux/issues/detail?id=10</p></td>
+            </tr>
+          </table>
         </article>
     </div>
     </div>
 
-    <div class="sharing row justify-content-center">
+    <div class="sharing d-print-none row justify-content-center">
       <div class="col text-center">
         <span class="meta text-uppercase share">share</span>
         <a href="https://twitter.com/intent/tweet?text=Toolchain.sh%20is%20amazing%21&url=https%3A//dciabrin.net/posts/2009/02/toolchainsh-is-amazing.html&hashtags=iphone,apple" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
@@ -151,10 +186,10 @@ and using their script :)</p>
         <a href="mailto:?subject=Toolchain.sh%20is%20amazing%21&amp;body=https%3A//dciabrin.net/posts/2009/02/toolchainsh-is-amazing.html" target="_blank"><i class="fa fa-envelope-square" aria-hidden="true"></i></a>
       </div>
     </div>
-    <hr />
+    <hr class="d-print-none" />
 
 <!--  -->
-<nav class="nav-articles row justify-content-center">
+<nav class="nav-articles d-print-none row justify-content-center">
     <div class="col-lg-10 col-md-12">
     <div class="row justify-content-center">
         <div class="col newer-article text-left">
@@ -180,7 +215,7 @@ and using their script :)</p>
     <!-- <hr> -->
 
     <!-- Footer -->
-    <footer>
+    <footer class="d-print-none">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
@@ -211,17 +246,9 @@ and using their script :)</p>
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
-
-    <!-- Parallax -->
-    <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
     <script>
       parallax('header-background');
     </script> 
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
 
 </body>
 

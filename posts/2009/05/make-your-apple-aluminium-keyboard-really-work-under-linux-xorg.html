@@ -15,19 +15,33 @@
 
 
         <!-- Blog theme + Bootstrap compiled to CSS -->
-        <link rel="stylesheet" href="https://dciabrin.net/theme/css/blogtheme.css?6f5403ff">
+        <link rel="stylesheet" media="screen" href="https://dciabrin.net/theme/css/blogtheme.css?e57e5b1e">
+
+        <!-- Blog theme + Bootstrap compiled to CSS -->
+        <link rel="stylesheet" media="print" href="https://dciabrin.net/theme/css/blogprint.css?e9236b24">
 
         <!-- Code highlight color scheme -->
-            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" rel="stylesheet">
+            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" media="screen" rel="stylesheet">
+            <link href="https://dciabrin.net/theme/css/code_blocks/bw.css?fw" media="print" rel="stylesheet">
 
         <!--  -->
 
         <!-- Custom Fonts -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+        <!-- jQuery -->
+        <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
+
+        <!-- Parallax -->
+        <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
 
 
-        <meta name="description" content="Like many others, I've bought an Aluminium Keyboard for ~~its cool style~~ the smooth typing experience it provides. Mine is a wired...">
+
+
+        <meta name="description" content="Like many others, I've bought an Aluminium Keyboard for its cool style the smooth typing experience it provides. Mine is a wired...">
 
         <meta name="author" content="Damien Ciabrini">
 
@@ -42,7 +56,7 @@
 	<meta property="og:url" content="https://dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html">
 	<meta property="og:title" content="Make your Apple Aluminium Keyboard really work under Linux, X.org">
 	<meta property="article:published_time" content="2009-05-15 00:16:00.013000+02:00">
-            <meta property="og:description" content="Like many others, I've bought an Aluminium Keyboard for ~~its cool style~~ the smooth typing experience it provides. Mine is a wired...">
+            <meta property="og:description" content="Like many others, I've bought an Aluminium Keyboard for its cool style the smooth typing experience it provides. Mine is a wired...">
 
             <meta property="og:image" content="https://dciabrin.net/img/covers/big-dodzy-59J9tB7KoOU-unsplash.jpg">
         <meta name="twitter:card" content="summary_large_image">
@@ -51,14 +65,14 @@
 
             <meta name="twitter:image" content="https://dciabrin.net/theme/images/post-bg.jpg">
 
-            <meta name="twitter:description" content="Like many others, I've bought an Aluminium Keyboard for ~~its cool style~~ the smooth typing experience it provides. Mine is a wired...">
+            <meta name="twitter:description" content="Like many others, I've bought an Aluminium Keyboard for its cool style the smooth typing experience it provides. Mine is a wired...">
     <link rel="icon" href="/favicon.ico">
 </head>
 
 <body class="article-make-your-apple-aluminium-keyboard-really-work-under-linux-xorg">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
+    <nav class="navbar d-print-none navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
         <!-- <div class="container-fluid"> -->
             <!-- Brand and toggle get grouped for better mobile display -->
             <!-- <div class="navbar-header page-scroll"> -->
@@ -75,8 +89,8 @@
                             <li><a class="nav-link" href="https://dciabrin.net/pages/about.html">About</a></li>
                 </ul>
                 <ul class="navbar-nav">
-                  <li><a class="nav-link" href="#"><i class="fa fa-search"></i></a></li>
-                  <li><a class="nav-link" href="/tags"><i class="fa fa-tags"></i></a></li>
+                  <li><a class="nav-link" href="https://dciabrin.net/search.html"><i class="fa fa-search"></i></a></li>
+                  <li><a class="nav-link" href="https://dciabrin.net/tags.html"><i class="fa fa-tags"></i></a></li>
                   <li><a class="nav-link" href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
             </div>
@@ -87,16 +101,16 @@
 
     <!-- Page Header -->
     <header class="intro-header">
-        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/alex-knight-Ys-DBJeX0nE-unsplash.jpg'); --parallax-ratio: 1.500;">
+        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/alex-knight-Ys-DBJeX0nE-unsplash.jpg'); --parallax-ratio: 1.500; background-color: #072A36;">
         </div>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
                     <div class="post-heading">
-                        <!-- <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; -->
                         <span class="text-light meta">Fri 15 May 2009</span>
                         <h1 class="text-light">Make your Apple Aluminium Keyboard really work under Linux, X.org</h1>
-                        <span class="meta">
+                            <a class="d-none d-print-block author" rel="author">Damien Ciabrini</a>
+                        <span class="meta d-print-none">
                           &nbsp;
                           <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/apple-kbd.html"><i class="fa fa-tag" aria-hidden="true"></i> APPLE-KBD</a>
 &nbsp;                          <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/apple.html"><i class="fa fa-tag" aria-hidden="true"></i> APPLE</a>
@@ -114,8 +128,8 @@
     <div class="row justify-content-center">
     <div class="col-lg-10 col-md-12">
         <article>
-            <p>Like many others, I've bought an Aluminium Keyboard for ~~its cool
-style~~ the smooth typing experience it provides. Mine is a wired
+          <p>Like many others, I've bought an Aluminium Keyboard for <del>its cool
+style</del> the smooth typing experience it provides. Mine is a wired
 version, ISO variant (international, 110-keys). It's not working 100%
 out-of-the-box under Linux, so this post explains what I did to make it
 happen:</p>
@@ -204,8 +218,10 @@ Debian-like distro:</p>
 everything went well, you should now be able to see the Aluminium
 Keyboard in your keyboard preferences application. The screenshots below
 show the result under GNOME:</p>
-<p><img alt="preferences" src="https://dciabrin.net/posts/2009/05/alukbd-preferences.png">
-<img alt="geometry" src="https://dciabrin.net/posts/2009/05/alukbd-geometry.png"></p>
+<p><center>
+<a href="https://dciabrin.net/posts/2009/05/alukbd-preferences.png"><img alt="preferences" src="https://dciabrin.net/posts/2009/05/alukbd-preferences.png"></a>
+<a href="https://dciabrin.net/posts/2009/05/alukbd-geometry.png"><img alt="geometry" src="https://dciabrin.net/posts/2009/05/alukbd-geometry.png"></a>
+</center></p>
 <h2>Make it a PC keyboard!</h2>
 <h3>The Insert key hack</h3>
 <p>The fn key is not seen by X because its keycode (464) is greater than
@@ -255,7 +271,9 @@ mapped my 3rd-level chooser to the right Alt key (XKB option
 <p>Naturally, the simplest way of using these XKB options is to enable them
 via your keyboard preferences application. For instance, GNOME users can
 find them in the Keyboard Layout Options:</p>
-<p><img alt="options" src="https://dciabrin.net/posts/2009/05/alukbd-options.png"></p>
+<p><center>
+<a href="https://dciabrin.net/posts/2009/05/alukbd-options.png"><img alt="options" src="https://dciabrin.net/posts/2009/05/alukbd-options.png"></a>
+</center></p>
 <h2>Conclusion</h2>
 <p>My XKB and HAL settings provide complete support for your Aluminium
 Keyboard on Xorg Linux. However, the Insert key hack is probably not
@@ -265,25 +283,43 @@ Keyboard”.</p>
 <p>The XKB geometry implemented is for the ISO variant. if you have one of
 the other variant and like to throw it away, you know I'd be happy to
 add support for it, eheh :P</p>
+          <h2 class="d-none d-print-block">References</h2>
+          <table class="print_refs d-none d-print-block">
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_1">1</a>]</td><td class="print_ref"><p>http://www.freedesktop.org/wiki/Software/Xserver</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_2">2</a>]</td><td class="print_ref"><p>http://cgit.freedesktop.org/xorg/driver/xf86-input-evdev</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_3">3</a>]</td><td class="print_ref"><p>http://www.freedesktop.org/wiki/Software/hal</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_4">4</a>]</td><td class="print_ref"><p>http://thread.gmane.org/gmane.comp.freedesktop.hal/8615/focus=8615</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_5">5</a>]</td><td class="print_ref"><p>http://planet.gnome.org/</p></td>
+            </tr>
+          </table>
         </article>
     </div>
     </div>
 
-    <div class="sharing row justify-content-center">
+    <div class="sharing d-print-none row justify-content-center">
       <div class="col text-center">
         <span class="meta text-uppercase share">share</span>
         <a href="https://twitter.com/intent/tweet?text=Make%20your%20Apple%20Aluminium%20Keyboard%20really%20work%20under%20Linux%2C%20X.org&url=https%3A//dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html&hashtags=apple-kbd,apple" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
         <a href="https://www.reddit.com/submit?url=https%3A//dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html&title=Make%20your%20Apple%20Aluminium%20Keyboard%20really%20work%20under%20Linux%2C%20X.org" target="_blank"><i class="fa fa-reddit-square" aria-hidden="true"></i></a>
         <a href="https://news.ycombinator.com/submitlink?t=Make%20your%20Apple%20Aluminium%20Keyboard%20really%20work%20under%20Linux%2C%20X.org&u=https%3A//dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html" target="_blank"><i class="fa fa-y-combinator-square" aria-hidden="true"></i></a>
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html&title=Make%20your%20Apple%20Aluminium%20Keyboard%20really%20work%20under%20Linux%2C%20X.org&summary=Like%20many%20others%2C%20I%27ve%20bought%20an%20Aluminium%20Keyboard%20for%20~~its%20cool%0Astyle~~%20the%20smooth%20typing%20experience%20it%20provides.%20Mine%20is%20a%20wired%0Aversion%2C%20ISO%20variant%20%28international%2C%20110-keys%29.%20It%27s%20not%20working%20100%25%0Aout-of-the-box%20under%20Linux%2C%20so%20this%20post%20explains%20what%20I%20did%20to%20make%20it%0Ahappen%3A%0A%0A%0ASupporting%20the%20additional%20keys%20%28F13%20%E2%80%A6&source=https%3A//dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html&title=Make%20your%20Apple%20Aluminium%20Keyboard%20really%20work%20under%20Linux%2C%20X.org&summary=Like%20many%20others%2C%20I%27ve%20bought%20an%20Aluminium%20Keyboard%20for%20its%20cool%0Astyle%20the%20smooth%20typing%20experience%20it%20provides.%20Mine%20is%20a%20wired%0Aversion%2C%20ISO%20variant%20%28international%2C%20110-keys%29.%20It%27s%20not%20working%20100%25%0Aout-of-the-box%20under%20Linux%2C%20so%20this%20post%20explains%20what%20I%20did%20to%20make%20it%0Ahappen%3A%0A%0A%0ASupporting%20the%20additional%20keys%20%28F13%20%E2%80%A6&source=https%3A//dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
         <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
         <a href="mailto:?subject=Make%20your%20Apple%20Aluminium%20Keyboard%20really%20work%20under%20Linux%2C%20X.org&amp;body=https%3A//dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html" target="_blank"><i class="fa fa-envelope-square" aria-hidden="true"></i></a>
       </div>
     </div>
-    <hr />
+    <hr class="d-print-none" />
 
 <!--  -->
-<nav class="nav-articles row justify-content-center">
+<nav class="nav-articles d-print-none row justify-content-center">
     <div class="col-lg-10 col-md-12">
     <div class="row justify-content-center">
         <div class="col newer-article text-left">
@@ -309,7 +345,7 @@ add support for it, eheh :P</p>
     <!-- <hr> -->
 
     <!-- Footer -->
-    <footer>
+    <footer class="d-print-none">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
@@ -340,17 +376,9 @@ add support for it, eheh :P</p>
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
-
-    <!-- Parallax -->
-    <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
     <script>
       parallax('header-background');
     </script> 
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
 
 </body>
 

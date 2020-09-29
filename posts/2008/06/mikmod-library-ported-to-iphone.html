@@ -15,15 +15,29 @@
 
 
         <!-- Blog theme + Bootstrap compiled to CSS -->
-        <link rel="stylesheet" href="https://dciabrin.net/theme/css/blogtheme.css?6f5403ff">
+        <link rel="stylesheet" media="screen" href="https://dciabrin.net/theme/css/blogtheme.css?e57e5b1e">
+
+        <!-- Blog theme + Bootstrap compiled to CSS -->
+        <link rel="stylesheet" media="print" href="https://dciabrin.net/theme/css/blogprint.css?e9236b24">
 
         <!-- Code highlight color scheme -->
-            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" rel="stylesheet">
+            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" media="screen" rel="stylesheet">
+            <link href="https://dciabrin.net/theme/css/code_blocks/bw.css?fw" media="print" rel="stylesheet">
 
         <!--  -->
 
         <!-- Custom Fonts -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- jQuery -->
+        <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
+
+        <!-- Parallax -->
+        <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
+
 
 
 
@@ -58,7 +72,7 @@
 <body class="article-mikmod-library-ported-to-iphone">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
+    <nav class="navbar d-print-none navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
         <!-- <div class="container-fluid"> -->
             <!-- Brand and toggle get grouped for better mobile display -->
             <!-- <div class="navbar-header page-scroll"> -->
@@ -75,8 +89,8 @@
                             <li><a class="nav-link" href="https://dciabrin.net/pages/about.html">About</a></li>
                 </ul>
                 <ul class="navbar-nav">
-                  <li><a class="nav-link" href="#"><i class="fa fa-search"></i></a></li>
-                  <li><a class="nav-link" href="/tags"><i class="fa fa-tags"></i></a></li>
+                  <li><a class="nav-link" href="https://dciabrin.net/search.html"><i class="fa fa-search"></i></a></li>
+                  <li><a class="nav-link" href="https://dciabrin.net/tags.html"><i class="fa fa-tags"></i></a></li>
                   <li><a class="nav-link" href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
             </div>
@@ -87,16 +101,16 @@
 
     <!-- Page Header -->
     <header class="intro-header">
-        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/alex-knight-Ys-DBJeX0nE-unsplash.jpg'); --parallax-ratio: 1.500;">
+        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/alex-knight-Ys-DBJeX0nE-unsplash.jpg'); --parallax-ratio: 1.500; background-color: #072A36;">
         </div>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
                     <div class="post-heading">
-                        <!-- <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; -->
                         <span class="text-light meta">Fri 27 June 2008</span>
                         <h1 class="text-light">MikMod library ported to iPhone</h1>
-                        <span class="meta">
+                            <a class="d-none d-print-block author" rel="author">Damien Ciabrini</a>
+                        <span class="meta d-print-none">
                           &nbsp;
                           <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/apple-kbd.html"><i class="fa fa-tag" aria-hidden="true"></i> APPLE-KBD</a>
 &nbsp;                          <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/apple.html"><i class="fa fa-tag" aria-hidden="true"></i> APPLE</a>
@@ -114,7 +128,7 @@
     <div class="row justify-content-center">
     <div class="col-lg-10 col-md-12">
         <article>
-            <p>I've always been a big fan of old skool computer music, like chiptunes
+          <p>I've always been a big fan of old skool computer music, like chiptunes
 or demoscene music. Perhaps because they remind me the Good Old Days
 (tm) of my <a href="http://en.wikipedia.org/wiki/Amiga">Amiga</a>. Or perhaps for
 the same reason I like <a href="http://pouet.net/">demoscene</a>: real-time
@@ -191,11 +205,26 @@ flavor, so it should be pretty usable. Of course, the obligatory example
 will follow soon :P
 <strong>EDIT:</strong> the link to the patch was pointing to a plain file instead of a gzip one,
 fixed!</p>
+          <h2 class="d-none d-print-block">References</h2>
+          <table class="print_refs d-none d-print-block">
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_1">1</a>]</td><td class="print_ref"><p>http://en.wikipedia.org/wiki/Amiga</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_2">2</a>]</td><td class="print_ref"><p>http://pouet.net/</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_3">3</a>]</td><td class="print_ref"><p>http://developer.apple.com/tools/download</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_4">4</a>]</td><td class="print_ref"><p>http://mikmod.raphnet.net/files/libmikmod-3.2.0-beta2.tar.gz</p></td>
+            </tr>
+          </table>
         </article>
     </div>
     </div>
 
-    <div class="sharing row justify-content-center">
+    <div class="sharing d-print-none row justify-content-center">
       <div class="col text-center">
         <span class="meta text-uppercase share">share</span>
         <a href="https://twitter.com/intent/tweet?text=MikMod%20library%20ported%20to%20iPhone&url=https%3A//dciabrin.net/posts/2008/06/mikmod-library-ported-to-iphone.html&hashtags=apple-kbd,apple" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
@@ -206,10 +235,10 @@ fixed!</p>
         <a href="mailto:?subject=MikMod%20library%20ported%20to%20iPhone&amp;body=https%3A//dciabrin.net/posts/2008/06/mikmod-library-ported-to-iphone.html" target="_blank"><i class="fa fa-envelope-square" aria-hidden="true"></i></a>
       </div>
     </div>
-    <hr />
+    <hr class="d-print-none" />
 
 <!--  -->
-<nav class="nav-articles row justify-content-center">
+<nav class="nav-articles d-print-none row justify-content-center">
     <div class="col-lg-10 col-md-12">
     <div class="row justify-content-center">
         <div class="col newer-article text-left">
@@ -235,7 +264,7 @@ fixed!</p>
     <!-- <hr> -->
 
     <!-- Footer -->
-    <footer>
+    <footer class="d-print-none">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
@@ -266,17 +295,9 @@ fixed!</p>
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
-
-    <!-- Parallax -->
-    <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
     <script>
       parallax('header-background');
     </script> 
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
 
 </body>
 

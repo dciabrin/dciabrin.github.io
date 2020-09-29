@@ -16,15 +16,29 @@
 
 
         <!-- Blog theme + Bootstrap compiled to CSS -->
-        <link rel="stylesheet" href="https://dciabrin.net/theme/css/blogtheme.css?6f5403ff">
+        <link rel="stylesheet" media="screen" href="https://dciabrin.net/theme/css/blogtheme.css?e57e5b1e">
+
+        <!-- Blog theme + Bootstrap compiled to CSS -->
+        <link rel="stylesheet" media="print" href="https://dciabrin.net/theme/css/blogprint.css?e9236b24">
 
         <!-- Code highlight color scheme -->
-            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" rel="stylesheet">
+            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" media="screen" rel="stylesheet">
+            <link href="https://dciabrin.net/theme/css/code_blocks/bw.css?fw" media="print" rel="stylesheet">
 
         <!--  -->
 
         <!-- Custom Fonts -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- jQuery -->
+        <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
+
+        <!-- Parallax -->
+        <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
+
 
 
 
@@ -60,7 +74,7 @@
 <body class="article-connecting-to-mariadb-with-auth_ed25519-and-pymysql">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
+    <nav class="navbar d-print-none navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
         <!-- <div class="container-fluid"> -->
             <!-- Brand and toggle get grouped for better mobile display -->
             <!-- <div class="navbar-header page-scroll"> -->
@@ -77,8 +91,8 @@
                             <li><a class="nav-link" href="https://dciabrin.net/pages/about.html">About</a></li>
                 </ul>
                 <ul class="navbar-nav">
-                  <li><a class="nav-link" href="#"><i class="fa fa-search"></i></a></li>
-                  <li><a class="nav-link" href="/tags"><i class="fa fa-tags"></i></a></li>
+                  <li><a class="nav-link" href="https://dciabrin.net/search.html"><i class="fa fa-search"></i></a></li>
+                  <li><a class="nav-link" href="https://dciabrin.net/tags.html"><i class="fa fa-tags"></i></a></li>
                   <li><a class="nav-link" href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
             </div>
@@ -89,16 +103,16 @@
 
     <!-- Page Header -->
     <header class="intro-header">
-        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/james-sutton-FqaybX9ZiOU-unsplash.jpg'); --parallax-ratio: 1.500;">
+        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/james-sutton-FqaybX9ZiOU-unsplash.jpg'); --parallax-ratio: 1.500; background-color: #6A7170;">
         </div>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
                     <div class="post-heading">
-                        <!-- <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; -->
                         <span class="text-light meta">Mon 21 September 2020</span>
                         <h1 class="text-light">Connecting to MariaDB with auth_ed25519 and PyMySQL</h1>
-                        <span class="meta">
+                            <a class="d-none d-print-block author" rel="author">Damien Ciabrini</a>
+                        <span class="meta d-print-none">
                           &nbsp;
                           <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/mariadb.html"><i class="fa fa-tag" aria-hidden="true"></i> MARIADB</a>
 &nbsp;                          <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/crypto.html"><i class="fa fa-tag" aria-hidden="true"></i> CRYPTO</a>
@@ -117,7 +131,7 @@
     <div class="row justify-content-center">
     <div class="col-lg-10 col-md-12">
         <article>
-            <p>When a MySQL client wants to connect to a MySQL or MariaDB server, the <a href="https://mariadb.com/kb/en/connection/">MySQL wire protocol</a>
+          <p>When a MySQL client wants to connect to a MySQL or MariaDB server, the <a href="https://mariadb.com/kb/en/connection/">MySQL wire protocol</a>
 specifies how both parties should exchange data, advertise their capabilities, and which authentication method
 they should use for the client to get connected. By default, this authentication is a challenge-response
 scheme that relies on <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1</a>. But starting MariaDB 10.1.22, a new cryptographic-based authentication
@@ -292,7 +306,7 @@ right handler will be used by PyMySQL at runtime to authenticate with the server
 <p>As seen in this example, only the PyMySQL client knows the real password. MariaDB never store it in the
 database, it only stores a base64 representation of the public key derived from the password.</p>
 <h2>Conclusion</h2>
-<p>Starting PyMySQL 0.10.1, you can connect to MariaDB with users that have been configured to authenticate
+<p>Starting PyMySQL 0.10.0, you can connect to MariaDB with users that have been configured to authenticate
 via <code>auth_ed25519</code>. This new authentication plugin drops the use of SHA-1 for a more secure and more
 future-proof server authentication.</p>
 <p>Connecting to the database with <code>auth_ed25519</code> is transparent for clients: you don't need any code change in
@@ -301,7 +315,7 @@ improvement over the other secure alternative <code>sha256_password</code>. The 
 that Specific SQL commands must be used to enable <code>auth_ed25519</code> on a per-user basis. This can in general be
 delegated to a generic component such as <code>puppet-mysql</code>, as it is currently done in OpenStack. But that is a
 story for another day.</p>
-<p>PyMySQL 0.10.1 is now available in PyPI and at least in Fedora Rawhide and Arch Linux, so it's the right time
+<p>PyMySQL 0.10.0 is now available in PyPI and at least in Fedora Rawhide and Arch Linux, so it's the right time
 to try it out.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -370,11 +384,47 @@ to try it out.</p>
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
+          <h2 class="d-none d-print-block">References</h2>
+          <table class="print_refs d-none d-print-block">
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_1">1</a>]</td><td class="print_ref"><p>https://mariadb.com/kb/en/connection/</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_2">2</a>]</td><td class="print_ref"><p>https://en.wikipedia.org/wiki/SHA-1</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_3">3</a>]</td><td class="print_ref"><p>https://mariadb.com/kb/en/authentication-plugin-ed25519/</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_4">4</a>]</td><td class="print_ref"><p>https://mariadb.com/kb/en/authentication-plugin-mysql_native_password/</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_5">5</a>]</td><td class="print_ref"><p>https://mariadb.com/kb/en/authentication-plugin-sha-256/</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_6">6</a>]</td><td class="print_ref"><p>https://en.wikipedia.org/wiki/Curve25519</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_7">7</a>]</td><td class="print_ref"><p>https://en.wikipedia.org/wiki/EdDSA#Ed25519</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_8">8</a>]</td><td class="print_ref"><p>https://ed25519.cr.yp.to/software.html</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_9">9</a>]</td><td class="print_ref"><p>https://github.com/jedisct1/libsodium</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_10">10</a>]</td><td class="print_ref"><p>https://github.com/pyca/pynacl</p></td>
+            </tr>
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_11">11</a>]</td><td class="print_ref"><p>https://www.sqlalchemy.org/</p></td>
+            </tr>
+          </table>
         </article>
     </div>
     </div>
 
-    <div class="sharing row justify-content-center">
+    <div class="sharing d-print-none row justify-content-center">
       <div class="col text-center">
         <span class="meta text-uppercase share">share</span>
         <a href="https://twitter.com/intent/tweet?text=Connecting%20to%20MariaDB%20with%20auth_ed25519%20and%20PyMySQL%20ed25519-based%20authentication%20for%20the%20Python%20MySQL%20client&url=https%3A//dciabrin.net/posts/2020/09/connecting-to-mariadb-with-auth_ed25519-and-pymysql.html&hashtags=mariadb,crypto,python" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
@@ -385,10 +435,10 @@ to try it out.</p>
         <a href="mailto:?subject=Connecting%20to%20MariaDB%20with%20auth_ed25519%20and%20PyMySQL%20ed25519-based%20authentication%20for%20the%20Python%20MySQL%20client&amp;body=https%3A//dciabrin.net/posts/2020/09/connecting-to-mariadb-with-auth_ed25519-and-pymysql.html" target="_blank"><i class="fa fa-envelope-square" aria-hidden="true"></i></a>
       </div>
     </div>
-    <hr />
+    <hr class="d-print-none" />
 
 <!--  -->
-<nav class="nav-articles row justify-content-center">
+<nav class="nav-articles d-print-none row justify-content-center">
     <div class="col-lg-10 col-md-12">
     <div class="row justify-content-center">
         <div class="col newer-article text-left">
@@ -410,7 +460,7 @@ to try it out.</p>
     <!-- <hr> -->
 
     <!-- Footer -->
-    <footer>
+    <footer class="d-print-none">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
@@ -441,17 +491,9 @@ to try it out.</p>
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
-
-    <!-- Parallax -->
-    <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
     <script>
       parallax('header-background');
     </script> 
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
 
 </body>
 

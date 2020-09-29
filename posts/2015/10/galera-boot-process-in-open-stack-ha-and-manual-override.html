@@ -15,15 +15,29 @@
 
 
         <!-- Blog theme + Bootstrap compiled to CSS -->
-        <link rel="stylesheet" href="https://dciabrin.net/theme/css/blogtheme.css?6f5403ff">
+        <link rel="stylesheet" media="screen" href="https://dciabrin.net/theme/css/blogtheme.css?e57e5b1e">
+
+        <!-- Blog theme + Bootstrap compiled to CSS -->
+        <link rel="stylesheet" media="print" href="https://dciabrin.net/theme/css/blogprint.css?e9236b24">
 
         <!-- Code highlight color scheme -->
-            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" rel="stylesheet">
+            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" media="screen" rel="stylesheet">
+            <link href="https://dciabrin.net/theme/css/code_blocks/bw.css?fw" media="print" rel="stylesheet">
 
         <!--  -->
 
         <!-- Custom Fonts -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- jQuery -->
+        <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
+
+        <!-- Parallax -->
+        <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
+
 
 
 
@@ -58,7 +72,7 @@
 <body class="article-galera-boot-process-in-open-stack-ha-and-manual-override">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
+    <nav class="navbar d-print-none navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
         <!-- <div class="container-fluid"> -->
             <!-- Brand and toggle get grouped for better mobile display -->
             <!-- <div class="navbar-header page-scroll"> -->
@@ -75,8 +89,8 @@
                             <li><a class="nav-link" href="https://dciabrin.net/pages/about.html">About</a></li>
                 </ul>
                 <ul class="navbar-nav">
-                  <li><a class="nav-link" href="#"><i class="fa fa-search"></i></a></li>
-                  <li><a class="nav-link" href="/tags"><i class="fa fa-tags"></i></a></li>
+                  <li><a class="nav-link" href="https://dciabrin.net/search.html"><i class="fa fa-search"></i></a></li>
+                  <li><a class="nav-link" href="https://dciabrin.net/tags.html"><i class="fa fa-tags"></i></a></li>
                   <li><a class="nav-link" href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
             </div>
@@ -87,16 +101,16 @@
 
     <!-- Page Header -->
     <header class="intro-header">
-        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/alex-knight-Ys-DBJeX0nE-unsplash.jpg'); --parallax-ratio: 1.500;">
+        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/alex-knight-Ys-DBJeX0nE-unsplash.jpg'); --parallax-ratio: 1.500; background-color: #072A36;">
         </div>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
                     <div class="post-heading">
-                        <!-- <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; -->
                         <span class="text-light meta">Fri 02 October 2015</span>
                         <h1 class="text-light">Galera boot process in Open Stack HA and manual override</h1>
-                        <span class="meta">
+                            <a class="d-none d-print-block author" rel="author">Damien Ciabrini</a>
+                        <span class="meta d-print-none">
                           &nbsp;
                           <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/galera.html"><i class="fa fa-tag" aria-hidden="true"></i> GALERA</a>
 &nbsp;                          <a class="btn btn-outline-secondary btn-sm" href="https://dciabrin.net/tag/openstack.html"><i class="fa fa-tag" aria-hidden="true"></i> OPENSTACK</a>
@@ -114,7 +128,7 @@
     <div class="row justify-content-center">
     <div class="col-lg-10 col-md-12">
         <article>
-            <p>Deployments of OpenStack that rely on MariaDB+Galera benefit from a HA database thanks to Galera's synchronous replication. In such deployments, the Galera cluster is typically managed via Pacemaker, by means of a galera resource agent.</p>
+          <p>Deployments of OpenStack that rely on MariaDB+Galera benefit from a HA database thanks to Galera's synchronous replication. In such deployments, the Galera cluster is typically managed via Pacemaker, by means of a galera resource agent.</p>
 <p>While Galera itself has its own notion of cluster management (membership, health check, write-set replication...), a resource agent is still necessary for Pacemaker to perform the basic cluster management duties, for example:</p>
 <ul>
 <li>
@@ -278,11 +292,17 @@
 </li>
 </ol>
 </div>
+          <h2 class="d-none d-print-block">References</h2>
+          <table class="print_refs d-none d-print-block">
+            <tr>
+              <td class="print_ref_id">[<a id="prt_ref_1">1</a>]</td><td class="print_ref"><p>http://clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/s-cluster-options.html</p></td>
+            </tr>
+          </table>
         </article>
     </div>
     </div>
 
-    <div class="sharing row justify-content-center">
+    <div class="sharing d-print-none row justify-content-center">
       <div class="col text-center">
         <span class="meta text-uppercase share">share</span>
         <a href="https://twitter.com/intent/tweet?text=Galera%20boot%20process%20in%20Open%20Stack%20HA%20and%20manual%20override&url=https%3A//dciabrin.net/posts/2015/10/galera-boot-process-in-open-stack-ha-and-manual-override.html&hashtags=galera,openstack" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
@@ -293,10 +313,10 @@
         <a href="mailto:?subject=Galera%20boot%20process%20in%20Open%20Stack%20HA%20and%20manual%20override&amp;body=https%3A//dciabrin.net/posts/2015/10/galera-boot-process-in-open-stack-ha-and-manual-override.html" target="_blank"><i class="fa fa-envelope-square" aria-hidden="true"></i></a>
       </div>
     </div>
-    <hr />
+    <hr class="d-print-none" />
 
 <!--  -->
-<nav class="nav-articles row justify-content-center">
+<nav class="nav-articles d-print-none row justify-content-center">
     <div class="col-lg-10 col-md-12">
     <div class="row justify-content-center">
         <div class="col newer-article text-left">
@@ -322,7 +342,7 @@
     <!-- <hr> -->
 
     <!-- Footer -->
-    <footer>
+    <footer class="d-print-none">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-12">
@@ -353,17 +373,9 @@
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
-
-    <!-- Parallax -->
-    <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
     <script>
       parallax('header-background');
     </script> 
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
 
 </body>
 

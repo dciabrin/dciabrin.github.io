@@ -177,7 +177,7 @@ right handler will be used by PyMySQL at runtime to authenticate with the server
 &lt;p&gt;As seen in this example, only the PyMySQL client knows the real password. MariaDB never store it in the
 database, it only stores a base64 representation of the public key derived from the password.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Starting PyMySQL 0.10.1, you can connect to MariaDB with users that have been configured to authenticate
+&lt;p&gt;Starting PyMySQL 0.10.0, you can connect to MariaDB with users that have been configured to authenticate
 via &lt;code&gt;auth_ed25519&lt;/code&gt;. This new authentication plugin drops the use of SHA-1 for a more secure and more
 future-proof server authentication.&lt;/p&gt;
 &lt;p&gt;Connecting to the database with &lt;code&gt;auth_ed25519&lt;/code&gt; is transparent for clients: you don't need any code change in
@@ -186,7 +186,7 @@ improvement over the other secure alternative &lt;code&gt;sha256_password&lt;/co
 that Specific SQL commands must be used to enable &lt;code&gt;auth_ed25519&lt;/code&gt; on a per-user basis. This can in general be
 delegated to a generic component such as &lt;code&gt;puppet-mysql&lt;/code&gt;, as it is currently done in OpenStack. But that is a
 story for another day.&lt;/p&gt;
-&lt;p&gt;PyMySQL 0.10.1 is now available in PyPI and at least in Fedora Rawhide and Arch Linux, so it's the right time
+&lt;p&gt;PyMySQL 0.10.0 is now available in PyPI and at least in Fedora Rawhide and Arch Linux, so it's the right time
 to try it out.&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -867,15 +867,15 @@ forum&lt;/a&gt;.&lt;/p&gt;
 (xkeyboard-config). The rest of the files are also clean enough to start
 providing .deb packages for this support! Maybe a good opportunity of
 learning &lt;a href="https://help.launchpad.net/Packaging/PPA"&gt;PPA&lt;/a&gt; in
-&lt;a href="https://launchpad.net/"&gt;LaunchPad&lt;/a&gt; :P&lt;/p&gt;</content><category term="Code"></category><category term="apple-kbd"></category><category term="apple"></category></entry><entry><title>Make your Apple Aluminium Keyboard really work under Linux, X.org</title><link href="https://dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html" rel="alternate"></link><published>2009-05-15T00:16:00+02:00</published><updated>2009-05-15T00:16:00+02:00</updated><author><name>Damien Ciabrini</name></author><id>tag:dciabrin.net,2009-05-15:/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html</id><summary type="html">&lt;p&gt;Like many others, I've bought an Aluminium Keyboard for ~~its cool
-style~~ the smooth typing experience it provides. Mine is a wired
+&lt;a href="https://launchpad.net/"&gt;LaunchPad&lt;/a&gt; :P&lt;/p&gt;</content><category term="Code"></category><category term="apple-kbd"></category><category term="apple"></category></entry><entry><title>Make your Apple Aluminium Keyboard really work under Linux, X.org</title><link href="https://dciabrin.net/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html" rel="alternate"></link><published>2009-05-15T00:16:00+02:00</published><updated>2009-05-15T00:16:00+02:00</updated><author><name>Damien Ciabrini</name></author><id>tag:dciabrin.net,2009-05-15:/posts/2009/05/make-your-apple-aluminium-keyboard-really-work-under-linux-xorg.html</id><summary type="html">&lt;p&gt;Like many others, I've bought an Aluminium Keyboard for &lt;del&gt;its cool
+style&lt;/del&gt; the smooth typing experience it provides. Mine is a wired
 version, ISO variant (international, 110-keys). It's not working 100%
 out-of-the-box under Linux, so this post explains what I did to make it
 happen:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Supporting the additional keys (F13 …&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Like many others, I've bought an Aluminium Keyboard for ~~its cool
-style~~ the smooth typing experience it provides. Mine is a wired
+&lt;p&gt;Supporting the additional keys (F13 …&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt;Like many others, I've bought an Aluminium Keyboard for &lt;del&gt;its cool
+style&lt;/del&gt; the smooth typing experience it provides. Mine is a wired
 version, ISO variant (international, 110-keys). It's not working 100%
 out-of-the-box under Linux, so this post explains what I did to make it
 happen:&lt;/p&gt;
@@ -964,8 +964,10 @@ Debian-like distro:&lt;/p&gt;
 everything went well, you should now be able to see the Aluminium
 Keyboard in your keyboard preferences application. The screenshots below
 show the result under GNOME:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="preferences" src="https://dciabrin.net/posts/2009/05/alukbd-preferences.png"&gt;
-&lt;img alt="geometry" src="https://dciabrin.net/posts/2009/05/alukbd-geometry.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;a href="https://dciabrin.net/posts/2009/05/alukbd-preferences.png"&gt;&lt;img alt="preferences" src="https://dciabrin.net/posts/2009/05/alukbd-preferences.png"&gt;&lt;/a&gt;
+&lt;a href="https://dciabrin.net/posts/2009/05/alukbd-geometry.png"&gt;&lt;img alt="geometry" src="https://dciabrin.net/posts/2009/05/alukbd-geometry.png"&gt;&lt;/a&gt;
+&lt;/center&gt;&lt;/p&gt;
 &lt;h2&gt;Make it a PC keyboard!&lt;/h2&gt;
 &lt;h3&gt;The Insert key hack&lt;/h3&gt;
 &lt;p&gt;The fn key is not seen by X because its keycode (464) is greater than
@@ -1015,7 +1017,9 @@ mapped my 3rd-level chooser to the right Alt key (XKB option
 &lt;p&gt;Naturally, the simplest way of using these XKB options is to enable them
 via your keyboard preferences application. For instance, GNOME users can
 find them in the Keyboard Layout Options:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="options" src="https://dciabrin.net/posts/2009/05/alukbd-options.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;a href="https://dciabrin.net/posts/2009/05/alukbd-options.png"&gt;&lt;img alt="options" src="https://dciabrin.net/posts/2009/05/alukbd-options.png"&gt;&lt;/a&gt;
+&lt;/center&gt;&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;My XKB and HAL settings provide complete support for your Aluminium
 Keyboard on Xorg Linux. However, the Insert key hack is probably not
