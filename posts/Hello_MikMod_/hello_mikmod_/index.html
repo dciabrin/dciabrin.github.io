@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hello MikMod! | blog-dump</title>
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/style.css" rel="stylesheet" media="screen" type="text/css">
+<link href="../../../assets/css/style-print.css" rel="stylesheet" media="print" type="text/css">
+<link href="../../../assets/css/code_blocks/friendly.css" media="screen" rel="stylesheet">
+<link href="../../../assets/css/code_blocks/bw.css" media="print" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../rss.xml">
+<link rel="canonical" href="https://dciabrin.net/posts/Hello_MikMod_/hello_mikmod_/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Damien Ciabrini">
+<link rel="prev" href="../../MikMod_library_ported_to_iPhone/mikmod_library_ported_to_iphone/" title="MikMod library ported to iPhone" type="text/html">
+<link rel="next" href="../../Toolchain_sh_is_amazing_/toolchain_sh_is_amazing_/" title="Toolchain.sh is amazing!" type="text/html">
+<meta property="og:site_name" content="blog-dump">
+<meta property="og:title" content="Hello MikMod!">
+<meta property="og:url" content="https://dciabrin.net/posts/Hello_MikMod_/hello_mikmod_/">
+<meta property="og:description" content="As promised earlier, I've packaged an obligatory example of how to use
+the iPhone port of libmikmod which I've
+talked about recently. Go grab this
+tarball
+which implements a very simple &quot;Hello World!&quot;">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2008-07-05T00:27:00+02:00">
+<meta property="article:tag" content="apple">
+<meta property="article:tag" content="apple-kbd">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../">
+
+            <span id="blog-title">blog-dump</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container-fluid" id="content" role="main">
+  <!-- <div class="row justify-content-center"> -->
+  <!--   <div class="col-lg-10 col-md-12"> -->
+      <!-- <div class="body-content"> -->
+        <!--Body content-->
+        
+<div class="row justify-content-center">
+<div class="col-lg-10 col-md-12">
+<div class="body-content">
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Hello MikMod!</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Damien Ciabrini
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2008-07-05T00:27:00+02:00" itemprop="datePublished" title="2008-07-05 00:27">2008-07-05 00:27</time></a>
+            </p>
+            
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>As promised earlier, I've packaged an obligatory example of how to use
+the iPhone port of <a href="http://mikmod.raphnet.net/">libmikmod</a> which I've
+talked about recently. Go grab <a href="http://damien.ciabrini.free.fr/pub/mikmod-iphone/HelloMikMod.tar.gz">this
+tarball</a>
+which implements a very simple "Hello World!":</p>
+<ul>
+<li>
+<p>It shows how to play a module within a
+    <a href="http://www.cocoadev.com/index.pl?UIKit">UIKit</a> application. This is
+    an adaptation of the skeleton program found in <a href="http://http//mikmod.raphnet.net/#docs">MikMod
+    Documentation</a>.</p>
+</li>
+<li>
+<p>It shows how to use the higher level sound API
+    <a href="http://www.cocoadev.com/index.pl?CelestialFramework">Celestial</a> to
+    control mikmod output. For instance, how to react to volume change
+    events when iPhone buttons are pressed.</p>
+</li>
+</ul>
+<!-- TEASER_END --><p>What to do with this archive once you've extracted it?</p>
+<div class="code"><pre class="code literal-block"><span class="go">tar -zxf HelloMikMod.tar.gz</span>
+<span class="go">cd HelloMikMod</span>
+</pre></div>
+
+<p>Simple! Modify the Makefile to set the location of the <span style="font-family:courier new;">AudioQueue.h</span> header, as well as
+the location where you've installed libmikmod. Once you're done, the
+makefile should look like:</p>
+<div class="code"><pre class="code literal-block"><span class="c"># directory where AudioQueue.h is located</span>
+<span class="nv">AQDIR</span><span class="o">=</span><span class="k">$(</span>HOME<span class="k">)</span>/local/audioqueue
+<span class="c"># directory where MikMod is located</span>
+<span class="nv">MMDIR</span><span class="o">=</span><span class="k">$(</span>HOME<span class="k">)</span>/local/mikmod-iphone
+<span class="c"># comment the following line when the previous settings are OK for you</span>
+<span class="c">#$(error configure AudioQueue and Mikmod location in the Makefile first)</span>
+</pre></div>
+
+<p>Then, just build and install the app by typing:</p>
+<div class="code"><pre class="code literal-block"><span class="go">make</span>
+<span class="go">scp -r HelloMikMod.app root@iphone:/Applications</span>
+</pre></div>
+
+<p>Where <span style="font-family:courier new;">iphone</span> stands for
+the hostname or the IP of your iPhone. Note that you will need either
+curl or wget installed or your machine so that the build process is able
+to download the module played in this example app (fortunately, one of
+those should always be available on MacOS X or on your favorite Linux
+distro). For your convenience, the <span style="font-family:courier new;">HelloMikMod.app</span> directory is
+standalone: it contains the app itself linked statically to libmikmod, a
+launcher descriptor for Springboard and the module to play. For my own
+pleasure, the mod played is <a href="http://modarchive.org/module.php?59344">Stardust
+Memories</a> by Jester / Sanity, my
+all time favorite Amiga mod (see the compo <a href="http://www.pouet.net/prod.php?which=2938">World of
+Commodore</a>). This is only a
+simple example of how to use MikMod on iPhone. I've started implementing
+a more complex app that mimics the iPod interface for playing mods
+(Module DB, Screenshot of associated demos...). Now if only I could use
+<a href="http://www.scenemusic.net/">Nectarine</a> or
+<a href="http://pouet.net/">Pouet.net</a> DB to make some kind of systematic
+indexing available!! (sigh....)</p>
+    </div>
+
+<!-- <nav> -->
+<!--           <ul itemprop="keywords" class="tags">
+            <li><a class="tag p-category" href="/categories/apple/" rel="tag">apple</a></li>
+            <li><a class="tag p-category" href="/categories/apple-kbd/" rel="tag">apple-kbd</a></li>
+        </ul>
+ -->
+<!-- </nav> -->
+    
+    
+    
+</article>
+</div>
+</div>
+</div>
+        <!--End of body content-->
+      <!-- </div> -->
+  <!--   </div> -->
+  <!-- </div> -->
+  <hr class="d-print-none">
+<nav class="nav-articles d-print-none row justify-content-center"><div class="col-lg-10 col-md-12">
+    <div class="row justify-content-center">
+        <div class="col newer-article text-left">
+            <div>Newer Post</div>
+            <a href="../../Toolchain_sh_is_amazing_/toolchain_sh_is_amazing_/" rel="next" title="Toolchain.sh is amazing!">Toolchain.sh is amazing!</a>
+        </div>
+        
+        <div class="col text-center">
+        </div>
+        <div class="col older-article text-right">
+            <div>Older Post</div>
+            <a href="../../MikMod_library_ported_to_iPhone/mikmod_library_ported_to_iphone/" rel="prev" title="MikMod library ported to iPhone">MikMod library ported to iPhone</a>
+        </div>
+    </div>
+    </div>
+</nav>
+</div>
+        <footer id="footer" class="d-print-none"><div class="container-fluid">
+            <div class="row justify-content-center">
+               <div class="col-lg-10 col-md-12">
+                 <p class="text-center copyright text-muted">Contents © 2025         <a href="mailto:damien.ciabrini@gmail.com">Damien Ciabrini</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+                 
+              </div>
+            </div>
+          </div>
+        </footer><script src="../../../assets/js/jquery.min.js"></script><script src="../../../assets/js/popper.min.js"></script><script src="../../../assets/js/bootstrap.min.js"></script><script src="../../../assets/js/baguetteBox.min.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

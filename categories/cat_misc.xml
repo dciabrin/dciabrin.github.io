@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog-dump (Posts about Misc)</title><link>https://dciabrin.net/</link><description></description><atom:link href="https://dciabrin.net/categories/cat_misc.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2025 &lt;a href="mailto:damien.ciabrini@gmail.com"&gt;Damien Ciabrini&lt;/a&gt; </copyright><lastBuildDate>Sat, 27 Sep 2025 18:11:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Hello World!</title><link>https://dciabrin.net/posts/Hello_World_/hello_world_/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;p&gt;I'm opening this blog to share my bits of code, hacks or thoughts I have
+during the time I spend in front of my computer. That will be a great
+occasion for me to retrieve all the goodies laying in my attic and that
+I should take the time to package cleanly! Moreover, that will be a good
+way of talking about the cool things I work on nowadays... Okay, I
+know... it sounds so vague... but hey, it's only a Hello World after all
+:)&lt;/p&gt;</description><guid>https://dciabrin.net/posts/Hello_World_/hello_world_/</guid><pubDate>Thu, 19 Jun 2008 19:44:00 GMT</pubDate></item></channel></rss>

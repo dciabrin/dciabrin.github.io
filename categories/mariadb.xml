@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog-dump (Posts about mariadb)</title><link>https://dciabrin.net/</link><description></description><atom:link href="https://dciabrin.net/categories/mariadb.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2025 &lt;a href="mailto:damien.ciabrini@gmail.com"&gt;Damien Ciabrini&lt;/a&gt; </copyright><lastBuildDate>Sat, 27 Sep 2025 18:11:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Connecting to MariaDB with auth_ed25519 and PyMySQL</title><link>https://dciabrin.net/posts/mariadb-auth_ed25519/mariadb-auth_ed25519/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;When a MySQL client wants to connect to a MySQL or MariaDB server, the &lt;a href="https://mariadb.com/kb/en/connection/"&gt;MySQL wire protocol&lt;/a&gt;
+specifies how both parties should exchange data, advertise their capabilities, and which authentication method
+they should use for the client to get connected. By default, this authentication is a challenge-response
+scheme that relies on &lt;a href="https://en.wikipedia.org/wiki/SHA-1"&gt;SHA-1&lt;/a&gt;. But starting MariaDB 10.1.22, a new cryptographic-based authentication
+mechanism called &lt;a href="https://mariadb.com/kb/en/authentication-plugin-ed25519/"&gt;&lt;code&gt;auth_ed25519&lt;/code&gt;&lt;/a&gt; can be used for improved security at connection time,
+and PyMySQL recently added support for it.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/mariadb-auth_ed25519/mariadb-auth_ed25519/"&gt;Read more…&lt;/a&gt; (8 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>crypto</category><category>mariadb</category><category>python</category><guid>https://dciabrin.net/posts/mariadb-auth_ed25519/mariadb-auth_ed25519/</guid><pubDate>Mon, 21 Sep 2020 07:00:00 GMT</pubDate></item><item><title>Troubleshooting open_files_limit in MariaDB</title><link>https://dciabrin.net/posts/mariadb-open-files-limit/mariadb-open-files-limit/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;It may happen in the MariaDB logs that you see failures to set &lt;code&gt;open_files_limit&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;160318 21:48:04 [Warning] option 'open_files_limit': unsigned value 18446744073709551615 adjusted to 4294967295
+160318 21:48:04 [Warning] option 'open_files_limit': unsigned value 18446744073709551615 adjusted to 4294967295
+160318 21:48:04 [Warning] Could not increase number of max_open_files to more than 1024 (request: 4907)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Meaning MariaDB was unable to raise the limit of maximum file descriptors at startup, with all the subsequent problems it can cause. Sometimes it is simply due to a bad setting in configuration files, such as:&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;open_files_limit=-1
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/mariadb-open-files-limit/mariadb-open-files-limit/"&gt;Read more…&lt;/a&gt; (4 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>galera</category><category>mariadb</category><guid>https://dciabrin.net/posts/mariadb-open-files-limit/mariadb-open-files-limit/</guid><pubDate>Tue, 22 Mar 2016 14:01:05 GMT</pubDate></item></channel></rss>

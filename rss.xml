@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog-dump</title><link>https://dciabrin.net/</link><description>Coding and hacking stuff</description><atom:link href="https://dciabrin.net/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2025 &lt;a href="mailto:damien.ciabrini@gmail.com"&gt;Damien Ciabrini&lt;/a&gt; </copyright><lastBuildDate>Sat, 27 Sep 2025 18:51:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Make the most of compiled C loops on the 68000</title><link>https://dciabrin.net/posts/make-the-most-of-compiled-c-loops-on-the-68000/make-the-most-of-compiled-c-loops-on-the-68000/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;The other day I was working on my pet project &lt;a href="https://github.com/dciabrin/ngdevkit"&gt;ngdevkit&lt;/a&gt;, an open source C development kit for the &lt;a href="https://en.wikipedia.org/wiki/Neo_Geo"&gt;Neo Geo&lt;/a&gt; hardware. I needed to write a simple &lt;code&gt;clear_screen&lt;/code&gt; function, and I chose to do it in C for simplicity, in the hope that this would get efficiently compiled into 68000 assembly. That apparently innocuous task led me to some interesting findings regarding gcc, binutils, and how you can hint the compiler to generate efficient 68000 code for small loops to reclaim some of your precious clock cycles.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/make-the-most-of-compiled-c-loops-on-the-68000/make-the-most-of-compiled-c-loops-on-the-68000/"&gt;Read more…&lt;/a&gt; (13 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>68000</category><category>neogeo</category><category>ngdevkit</category><guid>https://dciabrin.net/posts/make-the-most-of-compiled-c-loops-on-the-68000/make-the-most-of-compiled-c-loops-on-the-68000/</guid><pubDate>Mon, 15 Sep 2025 17:07:49 GMT</pubDate></item><item><title>Connecting to MariaDB with auth_ed25519 and PyMySQL</title><link>https://dciabrin.net/posts/mariadb-auth_ed25519/mariadb-auth_ed25519/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;When a MySQL client wants to connect to a MySQL or MariaDB server, the &lt;a href="https://mariadb.com/kb/en/connection/"&gt;MySQL wire protocol&lt;/a&gt;
+specifies how both parties should exchange data, advertise their capabilities, and which authentication method
+they should use for the client to get connected. By default, this authentication is a challenge-response
+scheme that relies on &lt;a href="https://en.wikipedia.org/wiki/SHA-1"&gt;SHA-1&lt;/a&gt;. But starting MariaDB 10.1.22, a new cryptographic-based authentication
+mechanism called &lt;a href="https://mariadb.com/kb/en/authentication-plugin-ed25519/"&gt;&lt;code&gt;auth_ed25519&lt;/code&gt;&lt;/a&gt; can be used for improved security at connection time,
+and PyMySQL recently added support for it.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/mariadb-auth_ed25519/mariadb-auth_ed25519/"&gt;Read more…&lt;/a&gt; (8 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>crypto</category><category>mariadb</category><category>python</category><guid>https://dciabrin.net/posts/mariadb-auth_ed25519/mariadb-auth_ed25519/</guid><pubDate>Mon, 21 Sep 2020 07:00:00 GMT</pubDate></item><item><title>Troubleshooting open_files_limit in MariaDB</title><link>https://dciabrin.net/posts/mariadb-open-files-limit/mariadb-open-files-limit/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;It may happen in the MariaDB logs that you see failures to set &lt;code&gt;open_files_limit&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;160318 21:48:04 [Warning] option 'open_files_limit': unsigned value 18446744073709551615 adjusted to 4294967295
+160318 21:48:04 [Warning] option 'open_files_limit': unsigned value 18446744073709551615 adjusted to 4294967295
+160318 21:48:04 [Warning] Could not increase number of max_open_files to more than 1024 (request: 4907)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Meaning MariaDB was unable to raise the limit of maximum file descriptors at startup, with all the subsequent problems it can cause. Sometimes it is simply due to a bad setting in configuration files, such as:&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;open_files_limit=-1
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/mariadb-open-files-limit/mariadb-open-files-limit/"&gt;Read more…&lt;/a&gt; (4 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>galera</category><category>mariadb</category><guid>https://dciabrin.net/posts/mariadb-open-files-limit/mariadb-open-files-limit/</guid><pubDate>Tue, 22 Mar 2016 14:01:05 GMT</pubDate></item><item><title>Galera boot process in Open Stack HA and manual override</title><link>https://dciabrin.net/posts/galera-boot-process-and-manual-override/galera-boot-process-and-manual-override/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;Deployments of OpenStack that rely on MariaDB+Galera benefit from a HA database thanks to Galera's synchronous replication. In such deployments, the Galera cluster is typically managed via Pacemaker, by means of a galera resource agent.&lt;/p&gt;
+&lt;p&gt;While Galera itself has its own notion of cluster management (membership, health check, write-set replication...), a resource agent is still necessary for Pacemaker to perform the basic cluster management duties, for example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Starting up the Galera servers on the available nodes in the cluster&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Health monitoring and recovery actions on failure (e.g. fencing)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This document describes the concepts involved in booting a Galera cluster, how the galera resource agent implements the boot process of a galera cluster, and how it can be overriden for recovery scenarios.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/galera-boot-process-and-manual-override/galera-boot-process-and-manual-override/"&gt;Read more…&lt;/a&gt; (7 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>galera</category><category>openstack</category><guid>https://dciabrin.net/posts/galera-boot-process-and-manual-override/galera-boot-process-and-manual-override/</guid><pubDate>Fri, 02 Oct 2015 16:45:05 GMT</pubDate></item><item><title>Support for Aluminium Keyboards packaged, code-named apple-kbd</title><link>https://dciabrin.net/posts/Support_for_Aluminium_Keyboards_packaged__code_named_apple_kbd/support_for_aluminium_keyboards_packaged__code_named_apple_kbd/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;After many episodes, the support for Apple Aluminium Keyboards is
+finally becoming user-friendly. All major distribs now ship a recent
+version of
+&lt;a href="http://www.freedesktop.org/wiki/Software/XKeyboardConfig"&gt;xkeyboard-config&lt;/a&gt;,
+so there is no need to mess with XKB patches anymore...&lt;/p&gt;
+&lt;p&gt;To complete the user experience, I'm happy to introduce you
+&lt;a href="https://github.com/dciabrin/apple-kbd"&gt;&lt;code id="tt1099"&gt;apple-kbd&lt;/code&gt;&lt;/a&gt;, the
+collection of helpful goodies you need for your Aluminium Keyboard under
+Linux. &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Support_for_Aluminium_Keyboards_packaged__code_named_apple_kbd/support_for_aluminium_keyboards_packaged__code_named_apple_kbd/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/Support_for_Aluminium_Keyboards_packaged__code_named_apple_kbd/support_for_aluminium_keyboards_packaged__code_named_apple_kbd/</guid><pubDate>Thu, 19 May 2011 19:35:00 GMT</pubDate></item><item><title>Apple Aluminium Keyboards with udev, Xorg server 1.9</title><link>https://dciabrin.net/posts/Apple_Aluminium_Keyboards_with_udev__Xorg_server_1_9/apple_aluminium_keyboards_with_udev__xorg_server_1_9/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;It's been a year now since I published my support for Aluminium
+Keyboards. Since then, my XKB patches have been accepted in
+&lt;a href="http://freedesktop.org/wiki/Software/XKeyboardConfig"&gt;XKeyboardConfig&lt;/a&gt;
+1.9, with a few modifications:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The multimedia keys can always be accessed by combining Fxx with the
+    3rd level chooser (this was option &lt;code id="tt1099"&gt;alul3media&lt;/code&gt; in my
+    original XKB patches)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;There is now a single XKB option &lt;code id="tt1101"&gt;alupckeys&lt;/code&gt; to emulate the
+    behaviour of a PC keyboard, &lt;em&gt;i.e.&lt;/em&gt; to enable PrintScreen,
+    ScrollLock, SysReq and NumLock (options &lt;code id="tt1103"&gt;alupcfkeys&lt;/code&gt; and
+    &lt;code id="tt1104"&gt;alupcnumlock&lt;/code&gt; in the original patches)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Apple_Aluminium_Keyboards_with_udev__Xorg_server_1_9/apple_aluminium_keyboards_with_udev__xorg_server_1_9/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/Apple_Aluminium_Keyboards_with_udev__Xorg_server_1_9/apple_aluminium_keyboards_with_udev__xorg_server_1_9/</guid><pubDate>Tue, 11 Jan 2011 21:48:00 GMT</pubDate></item><item><title>Aluminium Keyboard support under X11: all models, all OSes</title><link>https://dciabrin.net/posts/Aluminium_Keyboard_support_under_X11__all_models__all_OSes/aluminium_keyboard_support_under_x11__all_models__all_oses/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;I finally found the time to update my previous support for Aluminium
+Keyboard under Xorg, and take it to the Next Level (tm). The overall
+support is now much more polished. For you this means several things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;I've implemented the XKB geometries of &lt;strong&gt;all variants of the long
+    Aluminium Keyboard&lt;/strong&gt;, be it
+    &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-ansi.svg"&gt;ANSI&lt;/a&gt;
+    (American),
+    &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-iso.svg"&gt;ISO&lt;/a&gt;
+    (Internationnal) or
+    &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-jis.svg"&gt;JIS&lt;/a&gt;
+    (Japanese)! And believe me, it's darned complicated to support JIS
+    keyboard's dual layout without having access to the real hardware :D&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I've added support for base XKB rules, which means that the keyboard
+    will now be properly configured &lt;strong&gt;on other OSes than Linux&lt;/strong&gt;. I
+    personally used &lt;a href="http://www.opensolaris.org/"&gt;OpenSolaris&lt;/a&gt; during my
+    tests, but it should work equally well on
+    &lt;a href="http://www.freebsd.org/"&gt;FreeBSD&lt;/a&gt;, &lt;a href="http://openbsd.org/"&gt;OpenBSD&lt;/a&gt;,
+    and all their cousins!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The keyboard support is now &lt;strong&gt;aware of the system-wide keyboard
+    settings&lt;/strong&gt; as found in Debian or Fedora for example. If you
+    configured your system to default to Dvorak layout, the support will
+    use it automatically!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Aluminium_Keyboard_support_under_X11__all_models__all_OSes/aluminium_keyboard_support_under_x11__all_models__all_oses/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/Aluminium_Keyboard_support_under_X11__all_models__all_OSes/aluminium_keyboard_support_under_x11__all_models__all_oses/</guid><pubDate>Tue, 22 Dec 2009 21:03:00 GMT</pubDate></item><item><title>Make your Apple Aluminium Keyboard really work under Linux, X.org</title><link>https://dciabrin.net/posts/Make_your_Apple_Aluminium_Keyboard_really_work_under_Linux__X_org/make_your_apple_aluminium_keyboard_really_work_under_linux__x_org/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;Like many others, I've bought an Aluminium Keyboard for &lt;del&gt;its cool
+style&lt;/del&gt; the smooth typing experience it provides. Mine is a wired
+version, ISO variant (international, 110-keys). It's not working 100%
+out-of-the-box under Linux, so this post explains what I did to make it
+happen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Supporting the additional keys (F13..F19) and geometry (physical
+    layout) under X.org&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making the keyboard auto-configured at X.org startup. No need to
+    mess with xorg.conf!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But wait, there's more. If you're accustomed to PC keyboards, you really
+need those ones too:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Making this fn key located on top of the delete key behave like a
+    regular PC keyboard: Insert!&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making multimedia keys output Fxx symbols by default&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making F13..F15 behave like those charmingly obsolete Scroll
+    Lock..Print Screen keys&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Keeping the multimedia keys accessible when the fn key is remapped
+    to Insert&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Make_your_Apple_Aluminium_Keyboard_really_work_under_Linux__X_org/make_your_apple_aluminium_keyboard_really_work_under_linux__x_org/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/Make_your_Apple_Aluminium_Keyboard_really_work_under_Linux__X_org/make_your_apple_aluminium_keyboard_really_work_under_linux__x_org/</guid><pubDate>Thu, 14 May 2009 22:16:00 GMT</pubDate></item><item><title>Toolchain.sh is amazing!</title><link>https://dciabrin.net/posts/Toolchain_sh_is_amazing_/toolchain_sh_is_amazing_/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;A few weeks ago, I finally upgraded my iPhone to firwmare 2.2.1. It was
+actually an utterly painless operation, thanks to the amazing
+&lt;a href="http://code.google.com/p/iphonedevonlinux/wiki/Installation"&gt;toolchain.sh&lt;/a&gt;
+by the guys from
+&lt;a href="http://code.google.com/p/iphonedevonlinux/"&gt;iphonedevlinux&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Toolchain_sh_is_amazing_/toolchain_sh_is_amazing_/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>iphone</category><guid>https://dciabrin.net/posts/Toolchain_sh_is_amazing_/toolchain_sh_is_amazing_/</guid><pubDate>Mon, 23 Feb 2009 20:53:00 GMT</pubDate></item><item><title>Hello MikMod!</title><link>https://dciabrin.net/posts/Hello_MikMod_/hello_mikmod_/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;As promised earlier, I've packaged an obligatory example of how to use
+the iPhone port of &lt;a href="http://mikmod.raphnet.net/"&gt;libmikmod&lt;/a&gt; which I've
+talked about recently. Go grab &lt;a href="http://damien.ciabrini.free.fr/pub/mikmod-iphone/HelloMikMod.tar.gz"&gt;this
+tarball&lt;/a&gt;
+which implements a very simple "Hello World!":&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;It shows how to play a module within a
+    &lt;a href="http://www.cocoadev.com/index.pl?UIKit"&gt;UIKit&lt;/a&gt; application. This is
+    an adaptation of the skeleton program found in &lt;a href="http://http//mikmod.raphnet.net/#docs"&gt;MikMod
+    Documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It shows how to use the higher level sound API
+    &lt;a href="http://www.cocoadev.com/index.pl?CelestialFramework"&gt;Celestial&lt;/a&gt; to
+    control mikmod output. For instance, how to react to volume change
+    events when iPhone buttons are pressed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Hello_MikMod_/hello_mikmod_/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/Hello_MikMod_/hello_mikmod_/</guid><pubDate>Fri, 04 Jul 2008 22:27:00 GMT</pubDate></item></channel></rss>

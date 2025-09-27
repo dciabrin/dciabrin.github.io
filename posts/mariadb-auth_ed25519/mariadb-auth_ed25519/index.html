@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Connecting to MariaDB with auth_ed25519 and PyMySQL | blog-dump</title>
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/style.css" rel="stylesheet" media="screen" type="text/css">
+<link href="../../../assets/css/style-print.css" rel="stylesheet" media="print" type="text/css">
+<link href="../../../assets/css/code_blocks/friendly.css" media="screen" rel="stylesheet">
+<link href="../../../assets/css/code_blocks/bw.css" media="print" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../rss.xml">
+<link rel="canonical" href="https://dciabrin.net/posts/mariadb-auth_ed25519/mariadb-auth_ed25519/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Damien Ciabrini">
+<link rel="prev" href="../../mariadb-open-files-limit/mariadb-open-files-limit/" title="Troubleshooting open_files_limit in MariaDB" type="text/html">
+<link rel="next" href="../../make-the-most-of-compiled-c-loops-on-the-68000/make-the-most-of-compiled-c-loops-on-the-68000/" title="Make the most of compiled C loops on the 68000" type="text/html">
+<meta property="og:site_name" content="blog-dump">
+<meta property="og:title" content="Connecting to MariaDB with auth_ed25519 and PyMySQL">
+<meta property="og:url" content="https://dciabrin.net/posts/mariadb-auth_ed25519/mariadb-auth_ed25519/">
+<meta property="og:description" content="When a MySQL client wants to connect to a MySQL or MariaDB server, the MySQL wire protocol
+specifies how both parties should exchange data, advertise their capabilities, and which authentication metho">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-09-21T09:00:00+02:00">
+<meta property="article:tag" content="crypto">
+<meta property="article:tag" content="mariadb">
+<meta property="article:tag" content="python">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../">
+
+            <span id="blog-title">blog-dump</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container-fluid" id="content" role="main">
+  <!-- <div class="row justify-content-center"> -->
+  <!--   <div class="col-lg-10 col-md-12"> -->
+      <!-- <div class="body-content"> -->
+        <!--Body content-->
+        
+<div class="row justify-content-center">
+<div class="col-lg-10 col-md-12">
+<div class="body-content">
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Connecting to MariaDB with auth_ed25519 and PyMySQL</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Damien Ciabrini
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2020-09-21T09:00:00+02:00" itemprop="datePublished" title="2020-09-21 09:00">2020-09-21 09:00</time></a>
+            </p>
+            
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>When a MySQL client wants to connect to a MySQL or MariaDB server, the <a href="https://mariadb.com/kb/en/connection/">MySQL wire protocol</a>
+specifies how both parties should exchange data, advertise their capabilities, and which authentication method
+they should use for the client to get connected. By default, this authentication is a challenge-response
+scheme that relies on <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1</a>. But starting MariaDB 10.1.22, a new cryptographic-based authentication
+mechanism called <a href="https://mariadb.com/kb/en/authentication-plugin-ed25519/"><code>auth_ed25519</code></a> can be used for improved security at connection time,
+and PyMySQL recently added support for it.</p>
+<!-- TEASER_END -->
+
+<h2>MySQL server authentication</h2>
+<p>MySQL and MariaDB allow a variety of authentication methods: PAM-based, SHA-1 hashed challenges, SHA-256
+challenges over RSA encryption... The default authentication since MySQL 4.1 and probably still the most used
+nowadays is called <a href="https://mariadb.com/kb/en/authentication-plugin-mysql_native_password/"><code>mysql_native_password</code></a>. It's a simple yet clever authentication scheme,
+because the server never stores the user's password directly in the database, nor does it exchange it over the
+wire. Instead, the server only stores an indirect hash of the original password:</p>
+<p>$$ \text{SHA-1}(\text{SHA-1}(\text{password}))) $$</p>
+<p>To authenticate a client, the server concatenate a random scramble to that information, hashes the result with
+SHA-1, and sends it as a challenge to the client. As a response, the client must XOR this challenge with a
+SHA-1 hash of its password:</p>
+<p>$$ \text{SHA-1}(\text{scramble} \parallel \text{SHA-1}(\text{SHA-1}(\text{password}))) \oplus \text{SHA-1}(\text{password}) $$</p>
+<p>The XOR function being its own inverse, the server can now XOR the client's response with the original
+challenge to retrieve $\text{SHA-1}(\text{password})$. It then hashes that result with SHA-1 a last time and
+compares it with the digest stored in the DB to validate the authentication.</p>
+<p>The fact that the server only stores a double-SHA-1 digest helps mitigate the risk of recovering a password
+from the DB if it is compromised, but this is not perfect either. SHA-1 itself is <a href="https://shattered.io/static/shattered.pdf">considered insecure
+nowadays</a>, so new authentication plugins have been developed.</p>
+<h2>More secure authentication</h2>
+<p>MySQL has developed an improved authentication plugin called <a href="https://mariadb.com/kb/en/authentication-plugin-sha-256/"><code>sha256_password</code></a> (and its
+variant <code>caching_sha2_password</code>).  That plugin stores a $\text{SHA-256}(\text{password})$ digest in the DB,
+and relies on an RSA key pair to encrypt data exchanged during the authentication. When a client wants to
+authenticate, it receives a random scramble from the server, XORs the password with it, and encrypts the
+result with the server's public key. When the server receives the response, it uses its private key to decrypt
+it, XORs the decrypted response, hashes the result with SHA-256, and compares it with the hashed credentials
+in the DB to validate the authentication.</p>
+<p>The new <code>sha256_password</code> improves over <code>mysql_native_password</code> since it no longer uses SHA-1, but it comes
+with the major inconvenience that one must manage the public key's life cycle (deployment, renewal...), so
+this authentication can sometimes become tedious or impractical to use.</p>
+<p>MariaDB took a different approach with <code>auth_ed25519</code>. its challenge-response consists in signing a random
+scramble with a cryptographic function. It is based on Ed25519, a type of Edwards-curve Digital Signature
+Algorithm (EdDSA) that uses SHA-512 and the <a href="https://en.wikipedia.org/wiki/Curve25519">Curve25519</a> twisted Edwards curve. This is a fast and
+secure cryptographic signature. But most importantly, <code>auth_ed25519</code> doesn't need to distribute keys to
+clients, so it's much more convenient and practical than <code>sha256_password</code>.</p>
+<h2>Ed25519 and Elliptic Curve Cryptography</h2>
+<p>Elliptic curve cryptography (ECC) is a type of public-key cryptography that relies on the algebraic structure
+of elliptic curves over finite fields.</p>
+<p>Specifically, <a href="https://en.wikipedia.org/wiki/EdDSA#Ed25519">Ed25519</a> operates on the points of a twisted Edwards curve, a 2D curve whose point
+coordinates belong the ring of integers modulo $2^{255-19}$. There is an special addition law for points:
+adding two points on the curve is a computation that always yields a new point on the curve. There exists a
+cyclic subgroup of $l$ points, $l$ being a large prime number ($2^{252}$ + something). In this subgroup,
+Ed25519 defines a base point $B$, of order $l$; that means, adding $B$ to itself $l$ times will give back
+$B$. Lastly, adding a curve point to itself numerous times is called a scalar multiplication:</p>
+<p>$$ s.B = \underbrace{B + B + B + \ldots + B}_{s~\text{times}} = C $$</p>
+<p>Now that the maths are laid out, here is what the Ed25519 signature scheme looks like:</p>
+<ul>
+<li>
+<p>A private key $s$ is a 32 bytes buffer of uniformly random data.</p>
+</li>
+<li>
+<p>A public key $A$ is a point on the Edwards curve.</p>
+</li>
+<li>
+<p>A point on the Edwards curve is encoded as a 32 bytes buffer.</p>
+</li>
+</ul>
+<p>Signing a message $M$ with a public key $A$, returns a curve point $R$ and a 32 bytes number $S$. A signature is
+legitimate if it verifies the following equality:</p>
+<p>$$ S.B = R + \text{SHA-512}( R \parallel A \parallel M).A $$</p>
+<p>where the dot is the scalar multiplication, the plus is the point addition, and the double pipe is the buffer
+concatenation.</p>
+<p>$A$, $R$ and $S$ are the public information derived from the corresponding private key $k$. Given
+$\text{SHA-512}(k)$, the first half $s$ is clamped and produces $A = s.B$. The last half $t$ is hashed with
+the message, and the resulting value $r = \text{SHA-512}( t \parallel M )$ produces $R = r.B$. Number $S$ is
+computed using modular arithmetic and equals $r + (\text{SHA-512}( R \parallel A \parallel M) \times s)$
+modulo $l$. With a bit of math reshuffling, you can see that the neat thing about these definitions is that
+they satisfy the equality from above, and yet all that is needed to verify a signature comes from public
+information only:</p>
+<p>\begin{alignat}{1} S.B &amp;= (r &amp;+~ (&amp;\text{SHA-512}( R \parallel A \parallel M) \times s)).B \\
+ &amp;= r.B &amp;+~ (&amp;\text{SHA-512}( R \parallel A \parallel M) \times s).B \\
+ &amp;= r.B &amp;+~ &amp;\text{SHA-512}( R \parallel A \parallel M).s.B \\
+ &amp;= R &amp;+~ &amp;\text{SHA-512}( R \parallel A \parallel M).A
+\end{alignat}</p>
+<p>There are two public <a href="https://ed25519.cr.yp.to/software.html">reference implementations</a> of Ed25519. One is a simple and excruciatingly slow
+Python version, to get familiar with the mathematics. The production-ready implementations use C and
+assembler. They are very fast and designed to be secure (e.g. immune to timing attacks).</p>
+<p>All the Ed25519 libraries currently available are based on the reference implementation, and they more or less
+provide the same API: creating a signing key pair, signing a message with a public key, and verifying that a
+message signature is legitimate. One well known C library that supports Ed25519 is <a href="https://github.com/jedisct1/libsodium">libsodium</a>. In
+our case, the Python-equivalent is <a href="https://github.com/pyca/pynacl">PyNaCl</a>, a Python-binding of libsodium.</p>
+<h2>How MariaDB takes advantage of Ed25519</h2>
+<p>Ed25519 ticks all the previous boxes for a secure authentication plugin: it only stores a digest in the DB,
+and it replaces SHA-1 with modern cryptographic functions. It's based on the reference ed25519 implementation,
+and it uses the signature scheme like this:</p>
+<ul>
+<li>
+<p>The user's password is the private key $k$, and it's only known by the client.</p>
+</li>
+<li>
+<p>The MariaDB server only stores the public key $A$, which as we saw earlier is a curve point derived from the
+    first half of $\text{SHA-512}(k)$.</p>
+</li>
+<li>
+<p>When a client wants to authenticate, it gets a random message $M$ as a challenge, signs it with its
+    private key $k$, and returns the signature pair $R$ and $S$ to the server.</p>
+</li>
+<li>
+<p>The server then computes $R + \text{SHA-512}( R \parallel A \parallel M ).A$ and authenticates the user if
+    the result matches the digest stored in the DB.</p>
+</li>
+</ul>
+<p>This is clever, and also simple from a client's perspective! Well, it would be if it wasn't for a small but
+important detail... Can you see how it differs from the Ed25519 specification previously described? That's
+right, the private key is no longer <q>a 32 bytes buffer of uniformly random data</q>, it's now an arbitrary
+size, non-random password. At the very least, this makes all existing Ed25519 python implementations useless,
+because their API forbids any private key which is not 32 bytes long... Likewise, we can't rely on MariaDB
+itself, because the authentication API is not exported in a standalone library that could be reused by a MySQL
+client such as PyMySQL.</p>
+<h2>Implementing auth_ed25519 in PyMySQL</h2>
+<p>So how to add support for <code>auth_ed25519</code> in PyMySQL? Since it has a peculiar definition of private keys, we
+can't reuse existing Ed25519 API. But we could re-implement the Ed25519 signature scheme with different private
+keys if we could do big integer modulo arithmetic and Edwards-curve arithmetic... Luckily for python clients,
+libsodium 1.0.18 started to expose a new low-level API for finite field arithmetic and point-scalar
+multiplication, which is exactly what it uses internally to implement the Ed25519 signature scheme. PyNaCl
+1.4.0 provides the necessary bindings to these new API.</p>
+<p>Now let's say you configured a DB user to require <code>auth_ed25519</code> authentication, and you run a PyMySQL client
+to connect to MariaDB. When PyMySQL initiates the connection, it will receive a challenge from the server as
+well as an indication that it must be processed with the <code>auth_ed25519</code> plugin. And since we have the
+low-level arithmetic API at our disposal, we can just implement the expected signature scheme with a couple of
+calls:</p>
+<div class="code"><pre class="code literal-block"><span class="k">def</span><span class="w"> </span><span class="nf">ed25519_password</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">scramble</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha512</span><span class="p">(</span><span class="n">password</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+
+    <span class="c1"># R = r.B</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha512</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="mi">32</span><span class="p">:]</span> <span class="o">+</span> <span class="n">scramble</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">nacl</span><span class="o">.</span><span class="n">crypto_core_ed25519_scalar_reduce</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">nacl</span><span class="o">.</span><span class="n">crypto_scalarmult_ed25519_base_noclamp</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+    <span class="c1"># A = s.B</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">scalar_clamp</span><span class="p">(</span><span class="n">h</span><span class="p">[:</span><span class="mi">32</span><span class="p">])</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">nacl</span><span class="o">.</span><span class="n">crypto_scalarmult_ed25519_base_noclamp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+    <span class="c1"># S = r + (SHA-512( R | A | M) * s)</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha512</span><span class="p">(</span><span class="n">R</span> <span class="o">+</span> <span class="n">A</span> <span class="o">+</span> <span class="n">scramble</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">nacl</span><span class="o">.</span><span class="n">crypto_core_ed25519_scalar_reduce</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">ks</span> <span class="o">=</span> <span class="n">nacl</span><span class="o">.</span><span class="n">crypto_core_ed25519_scalar_mul</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">nacl</span><span class="o">.</span><span class="n">crypto_core_ed25519_scalar_add</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">R</span> <span class="o">+</span> <span class="n">S</span>
+</pre></div>
+
+<h2>How to use auth_ed25519 in PyMySQL clients</h2>
+<p>Before using <code>auth_ed25519</code> in PyMySQL, a user in the DB must be configured to require authentication via the
+<code>auth_ed25519</code> plugin:</p>
+<div class="code"><pre class="code literal-block"><span class="gp"># </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="k">$(</span>hostname<span class="k">)</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">'CREATE USER foo IDENTIFIED VIA ed25519 USING PASSWORD("bar");'</span>
+<span class="gp"># </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="k">$(</span>hostname<span class="k">)</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">'select user,host,password,authentication_string,plugin from mysql.user where user = "foo";'</span><span class="w"> </span>
+<span class="go">+------+------+----------+-----------------------+---------+</span>
+<span class="go">| User | Host | Password | authentication_string | plugin  |</span>
+<span class="go">+------+------+----------+-----------------------+---------+</span>
+<span class="go">| foo  | %    |          | &lt;HASH_REDACTED&gt;       | ed25519 |</span>
+<span class="go">+------+------+----------+-----------------------+---------+</span>
+</pre></div>
+
+<p>The best part of using <code>auth_ed25519</code> is that it is totally transparent for PyMySQL,
+or any higher-level module that depends on it (for example the well known ORM <a href="https://www.sqlalchemy.org/">SQLAlchemy</a>).
+The connection arguments are the same whether the user is configured to use <code>auth_ed25519</code>, the
+default <code>mysql_native_password</code>, or anything else. As long as it is supported by PyMySQL, the
+right handler will be used by PyMySQL at runtime to authenticate with the server:</p>
+<div class="code"><pre class="code literal-block"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pymysql</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">connection</span><span class="o">=</span><span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'localhost'</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">'foo'</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"select 1"</span><span class="p">)</span>
+<span class="mi">1</span>
+</pre></div>
+
+<p>As seen in this example, only the PyMySQL client knows the real password. MariaDB never store it in the
+database, it only stores a base64 representation of the public key derived from the password.</p>
+<h2>Conclusion</h2>
+<p>Starting PyMySQL 0.10.0, you can connect to MariaDB with users that have been configured to authenticate
+via <code>auth_ed25519</code>. This new authentication plugin drops the use of SHA-1 for a more secure and more
+future-proof server authentication.</p>
+<p>Connecting to the database with <code>auth_ed25519</code> is transparent for clients: you don't need any code change in
+the client, and you don't need to distribute any cryptographic keys to the client. As such, it's a nice
+improvement over the other secure alternative <code>sha256_password</code>. The only impact of using <code>auth_ed25519</code> is
+that Specific SQL commands must be used to enable <code>auth_ed25519</code> on a per-user basis. This can in general be
+delegated to a generic component such as <code>puppet-mysql</code>, as it is currently done in OpenStack. But that is a
+story for another day.</p>
+<p>PyMySQL 0.10.0 is now available in PyPI and at least in Fedora Rawhide and Arch Linux, so it's the right time
+to try it out.</p>
+    </div>
+
+<!-- <nav> -->
+<!--           <ul itemprop="keywords" class="tags">
+            <li><a class="tag p-category" href="/categories/crypto/" rel="tag">crypto</a></li>
+            <li><a class="tag p-category" href="/categories/mariadb/" rel="tag">mariadb</a></li>
+            <li><a class="tag p-category" href="/categories/python/" rel="tag">python</a></li>
+        </ul>
+ -->
+<!-- </nav> -->
+    
+    
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script></article>
+</div>
+</div>
+</div>
+        <!--End of body content-->
+      <!-- </div> -->
+  <!--   </div> -->
+  <!-- </div> -->
+  <hr class="d-print-none">
+<nav class="nav-articles d-print-none row justify-content-center"><div class="col-lg-10 col-md-12">
+    <div class="row justify-content-center">
+        <div class="col newer-article text-left">
+            <div>Newer Post</div>
+            <a href="../../make-the-most-of-compiled-c-loops-on-the-68000/make-the-most-of-compiled-c-loops-on-the-68000/" rel="next" title="Make the most of compiled C loops on the 68000">Make the most of compiled C loops on the 68000</a>
+        </div>
+        
+        <div class="col text-center">
+        </div>
+        <div class="col older-article text-right">
+            <div>Older Post</div>
+            <a href="../../mariadb-open-files-limit/mariadb-open-files-limit/" rel="prev" title="Troubleshooting open_files_limit in MariaDB">Troubleshooting open_files_limit in MariaDB</a>
+        </div>
+    </div>
+    </div>
+</nav>
+</div>
+        <footer id="footer" class="d-print-none"><div class="container-fluid">
+            <div class="row justify-content-center">
+               <div class="col-lg-10 col-md-12">
+                 <p class="text-center copyright text-muted">Contents © 2025         <a href="mailto:damien.ciabrini@gmail.com">Damien Ciabrini</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+                 
+              </div>
+            </div>
+          </div>
+        </footer><script src="../../../assets/js/jquery.min.js"></script><script src="../../../assets/js/popper.min.js"></script><script src="../../../assets/js/bootstrap.min.js"></script><script src="../../../assets/js/baguetteBox.min.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

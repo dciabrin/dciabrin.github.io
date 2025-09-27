@@ -1,238 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<meta name="description" content="Coding and hacking stuff">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>blog-dump</title>
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet" media="screen" type="text/css">
+<link href="assets/css/style-print.css" rel="stylesheet" media="print" type="text/css">
+<link href="assets/css/code_blocks/friendly.css" media="screen" rel="stylesheet">
+<link href="assets/css/code_blocks/bw.css" media="print" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
+<link rel="canonical" href="https://dciabrin.net/">
+<link rel="next" href="index-2.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/make-the-most-of-compiled-c-loops-on-the-68000/make-the-most-of-compiled-c-loops-on-the-68000/" type="text/html">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href=".">
+
+            <span id="blog-title">blog-dump</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container-fluid" id="content" role="main">
+  <!-- <div class="row justify-content-center"> -->
+  <!--   <div class="col-lg-10 col-md-12"> -->
+      <!-- <div class="body-content"> -->
+        <!--Body content-->
+        
+        
+        
+    <div class="postindex">
+  <div class="row-preview row justify-content-center">
+    <div class="col-lg-10 col-md-12">
+      <div class="body-content">
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title"><a href="posts/make-the-most-of-compiled-c-loops-on-the-68000/make-the-most-of-compiled-c-loops-on-the-68000/" class="u-url">Make the most of compiled C loops on the 68000</a></h2>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Damien Ciabrini
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/make-the-most-of-compiled-c-loops-on-the-68000/make-the-most-of-compiled-c-loops-on-the-68000/" rel="bookmark">
+            <time class="published dt-published" datetime="2025-09-15T19:07:49+02:00" itemprop="datePublished" title="2025-09-15 19:07">2025-09-15 19:07</time></a>
+            </p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>The other day I was working on my pet project <a href="https://github.com/dciabrin/ngdevkit">ngdevkit</a>, an open source C development kit for the <a href="https://en.wikipedia.org/wiki/Neo_Geo">Neo Geo</a> hardware. I needed to write a simple <code>clear_screen</code> function, and I chose to do it in C for simplicity, in the hope that this would get efficiently compiled into 68000 assembly. That apparently innocuous task led me to some interesting findings regarding gcc, binutils, and how you can hint the compiler to generate efficient 68000 code for small loops to reclaim some of your precious clock cycles.</p>
+<p class="more"><a href="posts/make-the-most-of-compiled-c-loops-on-the-68000/make-the-most-of-compiled-c-loops-on-the-68000/">Read more…</a></p>
+</div>
+                </div>
+            </article>
+</div>
+    </div>
+  </div>
+            
+  <div class="row-preview row justify-content-center">
+    <div class="col-lg-10 col-md-12">
+      <div class="body-content">
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title"><a href="posts/mariadb-auth_ed25519/mariadb-auth_ed25519/" class="u-url">Connecting to MariaDB with auth_ed25519 and PyMySQL</a></h2>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Damien Ciabrini
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/mariadb-auth_ed25519/mariadb-auth_ed25519/" rel="bookmark">
+            <time class="published dt-published" datetime="2020-09-21T09:00:00+02:00" itemprop="datePublished" title="2020-09-21 09:00">2020-09-21 09:00</time></a>
+            </p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>When a MySQL client wants to connect to a MySQL or MariaDB server, the <a href="https://mariadb.com/kb/en/connection/">MySQL wire protocol</a>
+specifies how both parties should exchange data, advertise their capabilities, and which authentication method
+they should use for the client to get connected. By default, this authentication is a challenge-response
+scheme that relies on <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1</a>. But starting MariaDB 10.1.22, a new cryptographic-based authentication
+mechanism called <a href="https://mariadb.com/kb/en/authentication-plugin-ed25519/"><code>auth_ed25519</code></a> can be used for improved security at connection time,
+and PyMySQL recently added support for it.</p>
+<p class="more"><a href="posts/mariadb-auth_ed25519/mariadb-auth_ed25519/">Read more…</a></p>
+</div>
+                </div>
+            </article>
+</div>
+    </div>
+  </div>
+            
+  <div class="row-preview row justify-content-center">
+    <div class="col-lg-10 col-md-12">
+      <div class="body-content">
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title"><a href="posts/mariadb-open-files-limit/mariadb-open-files-limit/" class="u-url">Troubleshooting open_files_limit in MariaDB</a></h2>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Damien Ciabrini
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/mariadb-open-files-limit/mariadb-open-files-limit/" rel="bookmark">
+            <time class="published dt-published" datetime="2016-03-22T15:01:05+01:00" itemprop="datePublished" title="2016-03-22 15:01">2016-03-22 15:01</time></a>
+            </p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>It may happen in the MariaDB logs that you see failures to set <code>open_files_limit</code>:</p>
+<div class="code"><pre class="code literal-block">160318 21:48:04 [Warning] option 'open_files_limit': unsigned value 18446744073709551615 adjusted to 4294967295
+160318 21:48:04 [Warning] option 'open_files_limit': unsigned value 18446744073709551615 adjusted to 4294967295
+160318 21:48:04 [Warning] Could not increase number of max_open_files to more than 1024 (request: 4907)
+</pre></div>
+
+<p>Meaning MariaDB was unable to raise the limit of maximum file descriptors at startup, with all the subsequent problems it can cause. Sometimes it is simply due to a bad setting in configuration files, such as:</p>
+<div class="code"><pre class="code literal-block">open_files_limit=-1
+</pre></div>
+
+<p class="more"><a href="posts/mariadb-open-files-limit/mariadb-open-files-limit/">Read more…</a></p>
+</div>
+                </div>
+            </article>
+</div>
+    </div>
+  </div>
+            
+  <div class="row-preview row justify-content-center">
+    <div class="col-lg-10 col-md-12">
+      <div class="body-content">
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title"><a href="posts/galera-boot-process-and-manual-override/galera-boot-process-and-manual-override/" class="u-url">Galera boot process in Open Stack HA and manual override</a></h2>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Damien Ciabrini
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/galera-boot-process-and-manual-override/galera-boot-process-and-manual-override/" rel="bookmark">
+            <time class="published dt-published" datetime="2015-10-02T18:45:05+02:00" itemprop="datePublished" title="2015-10-02 18:45">2015-10-02 18:45</time></a>
+            </p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>Deployments of OpenStack that rely on MariaDB+Galera benefit from a HA database thanks to Galera's synchronous replication. In such deployments, the Galera cluster is typically managed via Pacemaker, by means of a galera resource agent.</p>
+<p>While Galera itself has its own notion of cluster management (membership, health check, write-set replication...), a resource agent is still necessary for Pacemaker to perform the basic cluster management duties, for example:</p>
+<ul>
+<li>
+<p>Starting up the Galera servers on the available nodes in the cluster</p>
+</li>
+<li>
+<p>Health monitoring and recovery actions on failure (e.g. fencing)</p>
+</li>
+</ul>
+<p>This document describes the concepts involved in booting a Galera cluster, how the galera resource agent implements the boot process of a galera cluster, and how it can be overriden for recovery scenarios.</p>
+<p class="more"><a href="posts/galera-boot-process-and-manual-override/galera-boot-process-and-manual-override/">Read more…</a></p>
+</div>
+                </div>
+            </article>
+</div>
+    </div>
+  </div>
+            
+  <div class="row-preview row justify-content-center">
+    <div class="col-lg-10 col-md-12">
+      <div class="body-content">
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title"><a href="posts/Support_for_Aluminium_Keyboards_packaged__code_named_apple_kbd/support_for_aluminium_keyboards_packaged__code_named_apple_kbd/" class="u-url">Support for Aluminium Keyboards packaged, code-named apple-kbd</a></h2>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Damien Ciabrini
+                    </span></p>
+            <p class="dateline">
+            <a href="posts/Support_for_Aluminium_Keyboards_packaged__code_named_apple_kbd/support_for_aluminium_keyboards_packaged__code_named_apple_kbd/" rel="bookmark">
+            <time class="published dt-published" datetime="2011-05-19T21:35:00+02:00" itemprop="datePublished" title="2011-05-19 21:35">2011-05-19 21:35</time></a>
+            </p>
+                </div>
+            </header><div class="p-summary entry-summary">
+                    <div>
+<p>After many episodes, the support for Apple Aluminium Keyboards is
+finally becoming user-friendly. All major distribs now ship a recent
+version of
+<a href="http://www.freedesktop.org/wiki/Software/XKeyboardConfig">xkeyboard-config</a>,
+so there is no need to mess with XKB patches anymore...</p>
+<p>To complete the user experience, I'm happy to introduce you
+<a href="https://github.com/dciabrin/apple-kbd"><code id="tt1099">apple-kbd</code></a>, the
+collection of helpful goodies you need for your Aluminium Keyboard under
+Linux. </p>
+<p class="more"><a href="posts/Support_for_Aluminium_Keyboards_packaged__code_named_apple_kbd/support_for_aluminium_keyboards_packaged__code_named_apple_kbd/">Read more…</a></p>
+</div>
+                </div>
+            </article>
+</div>
+    </div>
+  </div>
+            
+    </div>
+    <!-- { helper.html_pager() } -->
         
 
-        <title>(blog-dump 'dciabrin)</title>
-
-        <link href="https://dciabrin.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="(blog-dump 'dciabrin) Full Atom Feed" />
-
-
-        <!-- Blog theme + Bootstrap compiled to CSS -->
-        <link rel="stylesheet" media="screen" href="https://dciabrin.net/theme/css/blogtheme.css?e57e5b1e">
-
-        <!-- Blog theme + Bootstrap compiled to CSS -->
-        <link rel="stylesheet" media="print" href="https://dciabrin.net/theme/css/blogprint.css?e9236b24">
-
-        <!-- Code highlight color scheme -->
-            <link href="https://dciabrin.net/theme/css/code_blocks/friendly.css" media="screen" rel="stylesheet">
-            <link href="https://dciabrin.net/theme/css/code_blocks/bw.css?fw" media="print" rel="stylesheet">
-
-        <!--  -->
-
-        <!-- Custom Fonts -->
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-        <!-- jQuery -->
-        <script src="https://dciabrin.net/theme/js/jquery.min.js"></script>
-
-        <!-- Parallax -->
-        <script src="https://dciabrin.net/theme/js/parallax.js?nocache"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://dciabrin.net/theme/js/bootstrap.min.js"></script>
-
-
-                <meta property="og:locale" content="">
-		<meta property="og:site_name" content="(blog-dump 'dciabrin)">
-            <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:site" content="@dciabrin">
-            <meta name="twitter:title" content="(blog-dump 'dciabrin)">
-            <meta name="twitter:description" content="A coding and hacking diary">
-                <meta name="twitter:image" content="https://dciabrin.net/img/covers/big-dodzy-59J9tB7KoOU-unsplash.jpg">
-    <link rel="icon" href="/favicon.ico">
-</head>
-
-
-    <!-- Navigation -->
-    <nav class="navbar d-print-none navbar-light navbar-expand-lg navbar-customz navbar-fixed-topz">
-        <!-- <div class="container-fluid"> -->
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <!-- <div class="navbar-header page-scroll"> -->
-                <a class="navbar-brand" href="https://dciabrin.net/">(blog-dump 'dciabrin)</a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            <!-- </div> -->
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
-
-                            <li><a class="nav-link" href="https://dciabrin.net/pages/about.html">About</a></li>
-                </ul>
-                <ul class="navbar-nav">
-                  <li><a class="nav-link" href="https://dciabrin.net/search.html"><i class="fa fa-search"></i></a></li>
-                  <li><a class="nav-link" href="https://dciabrin.net/tags.html"><i class="fa fa-tags"></i></a></li>
-                  <li><a class="nav-link" href="#"><i class="fa fa-rss"></i></a></li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        <!-- </div> -->
-        <!-- /.container -->
-    </nav>
-
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header">
-        <div id="header-background" style="background-image: url('https://dciabrin.net/img/covers/big-dodzy-59J9tB7KoOU-unsplash.jpg'); --parallax-ratio: 1.500; background-color: #4781A1;">
-        </div>
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-md-12">
-                    <div class="page-heading">
-                        <h1 class="text-light">(blog-dump 'dciabrin)</h1>
-                            <span class="text-secondary subheading">A coding and hacking diary</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <div class="container-fluid">
-        <div class="row justify-content-center row-preview">
-        <div class="post-preview col-lg-10 col-md-12">
-            <a href="https://dciabrin.net/posts/2020/09/connecting-to-mariadb-with-auth_ed25519-and-pymysql.html" rel="bookmark" title="Permalink to Connecting to MariaDB with auth_ed25519 and PyMySQL">
-                <h2 class="post-title">
-                    Connecting to MariaDB with auth_ed25519 and PyMySQL
-                </h2>
-            </a>
-            <p class="post-meta">
-              Mon 21 September 2020
-            </p>
-                <p class="article-summary">
-                    When a MySQL client wants to connect to a MySQL or MariaDB server, the MySQL wire protocol specifies how both parties should exchange data, advertise their capabilities, and which authentication method they should use for the client to get connected. By default, this authentication is a challenge-response scheme that relies …
-                </p>
-        </div>
-        </div>
-        <div class="row justify-content-center row-preview">
-        <div class="post-preview col-lg-10 col-md-12">
-            <a href="https://dciabrin.net/posts/2016/03/troubleshooting-open_files_limit-in-mariadb.html" rel="bookmark" title="Permalink to Troubleshooting open_files_limit in MariaDB">
-                <h2 class="post-title">
-                    Troubleshooting open_files_limit in MariaDB
-                </h2>
-            </a>
-            <p class="post-meta">
-              Tue 22 March 2016
-            </p>
-                <p class="article-summary">
-                    It may happen in the MariaDB logs that you see failures to set open_files_limit: 160318 21:48:04 [Warning] option 'open_files_limit': unsigned value 18446744073709551615 adjusted to 4294967295 160318 21:48:04 [Warning] option 'open_files_limit': unsigned value 18446744073709551615 adjusted to 4294967295 160318 21:48:04 [Warning] Could not increase number of …
-                </p>
-        </div>
-        </div>
-        <div class="row justify-content-center row-preview">
-        <div class="post-preview col-lg-10 col-md-12">
-            <a href="https://dciabrin.net/posts/2015/10/galera-boot-process-in-open-stack-ha-and-manual-override.html" rel="bookmark" title="Permalink to Galera boot process in Open Stack HA and manual override">
-                <h2 class="post-title">
-                    Galera boot process in Open Stack HA and manual override
-                </h2>
-            </a>
-            <p class="post-meta">
-              Fri 02 October 2015
-            </p>
-                <p class="article-summary">
-                    Deployments of OpenStack that rely on MariaDB+Galera benefit from a HA database thanks to Galera's synchronous replication. In such deployments, the Galera cluster is typically managed via Pacemaker, by means of a galera resource agent. While Galera itself has its own notion of cluster management (membership, health check, write-set …
-                </p>
-        </div>
-        </div>
-        <div class="row justify-content-center row-preview">
-        <div class="post-preview col-lg-10 col-md-12">
-            <a href="https://dciabrin.net/posts/2011/05/support-for-aluminium-keyboards-packaged-code-named-apple-kbd.html" rel="bookmark" title="Permalink to Support for Aluminium Keyboards packaged, code-named apple-kbd">
-                <h2 class="post-title">
-                    Support for Aluminium Keyboards packaged, code-named apple-kbd
-                </h2>
-            </a>
-            <p class="post-meta">
-              Thu 19 May 2011
-            </p>
-                <p class="article-summary">
-                    After many episodes, the support for Apple Aluminium Keyboards is finally becoming user-friendly. All major distribs now ship a recent version of xkeyboard-config, so there is no need to mess with XKB patches anymore... To complete the user experience, I'm happy to introduce you apple-kbd, the collection of helpful goodies …
-                </p>
-        </div>
-        </div>
-        <div class="row justify-content-center row-preview">
-        <div class="post-preview col-lg-10 col-md-12">
-            <a href="https://dciabrin.net/posts/2011/01/apple-aluminium-keyboards-with-udev-xorg-server-19.html" rel="bookmark" title="Permalink to Apple Aluminium Keyboards with udev, Xorg server 1.9">
-                <h2 class="post-title">
-                    Apple Aluminium Keyboards with udev, Xorg server 1.9
-                </h2>
-            </a>
-            <p class="post-meta">
-              Tue 11 January 2011
-            </p>
-                <p class="article-summary">
-                    It's been a year now since I published my support for Aluminium Keyboards. Since then, my XKB patches have been accepted in XKeyboardConfig 1.9, with a few modifications: The multimedia keys can always be accessed by combining Fxx with the 3rd level chooser (this was option alul3media in my …
-                </p>
-        </div>
-        </div>
-
-<!-- Pager -->
-<nav class="nav-pagination row justify-content-center">
-    <div class="col-lg-10 col-md-12">
-    <div class="row justify-content-center align-items-center">
-        <div class="col text-left">
-          <a class="btn btn-outline-secondary d-none" aria-label="Previous" >
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
-            Newer
-          </a>
-        </div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" integrity="sha384-3lJUsx1TJHt7BA4udB5KPnDrlkO8T6J6v/op7ui0BbCjvZ9WqV4Xm6DTP6kQ/iBH" crossorigin="anonymous"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+    },
+    displayAlign: 'center', // Change this to 'left' if you want left-aligned equations.
+    "HTML-CSS": {
+        styles: {'.MathJax_Display': {"margin": 0}}
+    }
+});
+</script><!--End of body content--><!-- </div> --><!--   </div> --><!-- </div> --><hr class="d-print-none">
+<nav class="nav-articles d-print-none row justify-content-center"><div class="col-lg-10 col-md-12">
+    <div class="row justify-content-center">
+        
         <div class="col text-center">
-          1 / 3
         </div>
-        <div class="col text-right">
-          <a class="btn btn-outline-secondary " aria-label="Next" href="https://dciabrin.net/index2.html">
-            Older
-            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          </a>
+        <div class="col older-article text-right">
+            <div><a class="btn btn-outline-secondary" aria-label="Next" href="index-2.html">Older posts</a></div>
         </div>
     </div>
     </div>
-<nav>
-    </div>
-
-    <!-- <hr> -->
-
-    <!-- Footer -->
-    <footer class="d-print-none">
-        <div class="container-fluid">
+</nav>
+</div>
+        <footer id="footer"><div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-lg-10 col-md-12">
-<p class="text-center copyright text-muted">
-    Blog powered by <a href="http://getpelican.com">Pelican</a>,
-    which takes great advantage of <a href="http://python.org">Python</a>. <br />        &copy;  Damien Ciabrini
-  <br />
-      <span class="fa-stack fa">
-      <a href="http://twitter.com/dciabrin">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-      </a>
-      </span>
-      <span class="fa-stack fa">
-      <a href="http://github.com/dciabrin">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-      </a>
-      </span>
-      <span class="fa-stack fa">
-      <a href="https://www.linkedin.com/in/damien-ciabrini-70514187">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-      </a>
-      </span>
-</p>                </div>
+               <div class="col-lg-10 col-md-12">
+                 <p class="text-center copyright text-muted">Contents © 2025         <a href="mailto:damien.ciabrini@gmail.com">Damien Ciabrini</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+                 
+              </div>
             </div>
-        </div>
-    </footer>
-
-    <script>
-      parallax('header-background');
-    </script> 
-
+          </div>
+        </footer><script src="assets/js/jquery.min.js"></script><script src="assets/js/popper.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/baguetteBox.min.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
 </body>
-
 </html>

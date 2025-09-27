@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>blog-dump (Posts about apple-kbd)</title><link>https://dciabrin.net/</link><description></description><atom:link href="https://dciabrin.net/categories/apple-kbd.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2025 &lt;a href="mailto:damien.ciabrini@gmail.com"&gt;Damien Ciabrini&lt;/a&gt; </copyright><lastBuildDate>Sat, 27 Sep 2025 18:11:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Support for Aluminium Keyboards packaged, code-named apple-kbd</title><link>https://dciabrin.net/posts/Support_for_Aluminium_Keyboards_packaged__code_named_apple_kbd/support_for_aluminium_keyboards_packaged__code_named_apple_kbd/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;After many episodes, the support for Apple Aluminium Keyboards is
+finally becoming user-friendly. All major distribs now ship a recent
+version of
+&lt;a href="http://www.freedesktop.org/wiki/Software/XKeyboardConfig"&gt;xkeyboard-config&lt;/a&gt;,
+so there is no need to mess with XKB patches anymore...&lt;/p&gt;
+&lt;p&gt;To complete the user experience, I'm happy to introduce you
+&lt;a href="https://github.com/dciabrin/apple-kbd"&gt;&lt;code id="tt1099"&gt;apple-kbd&lt;/code&gt;&lt;/a&gt;, the
+collection of helpful goodies you need for your Aluminium Keyboard under
+Linux. &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Support_for_Aluminium_Keyboards_packaged__code_named_apple_kbd/support_for_aluminium_keyboards_packaged__code_named_apple_kbd/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/Support_for_Aluminium_Keyboards_packaged__code_named_apple_kbd/support_for_aluminium_keyboards_packaged__code_named_apple_kbd/</guid><pubDate>Thu, 19 May 2011 19:35:00 GMT</pubDate></item><item><title>Apple Aluminium Keyboards with udev, Xorg server 1.9</title><link>https://dciabrin.net/posts/Apple_Aluminium_Keyboards_with_udev__Xorg_server_1_9/apple_aluminium_keyboards_with_udev__xorg_server_1_9/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;It's been a year now since I published my support for Aluminium
+Keyboards. Since then, my XKB patches have been accepted in
+&lt;a href="http://freedesktop.org/wiki/Software/XKeyboardConfig"&gt;XKeyboardConfig&lt;/a&gt;
+1.9, with a few modifications:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The multimedia keys can always be accessed by combining Fxx with the
+    3rd level chooser (this was option &lt;code id="tt1099"&gt;alul3media&lt;/code&gt; in my
+    original XKB patches)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;There is now a single XKB option &lt;code id="tt1101"&gt;alupckeys&lt;/code&gt; to emulate the
+    behaviour of a PC keyboard, &lt;em&gt;i.e.&lt;/em&gt; to enable PrintScreen,
+    ScrollLock, SysReq and NumLock (options &lt;code id="tt1103"&gt;alupcfkeys&lt;/code&gt; and
+    &lt;code id="tt1104"&gt;alupcnumlock&lt;/code&gt; in the original patches)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Apple_Aluminium_Keyboards_with_udev__Xorg_server_1_9/apple_aluminium_keyboards_with_udev__xorg_server_1_9/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/Apple_Aluminium_Keyboards_with_udev__Xorg_server_1_9/apple_aluminium_keyboards_with_udev__xorg_server_1_9/</guid><pubDate>Tue, 11 Jan 2011 21:48:00 GMT</pubDate></item><item><title>Aluminium Keyboard support under X11: all models, all OSes</title><link>https://dciabrin.net/posts/Aluminium_Keyboard_support_under_X11__all_models__all_OSes/aluminium_keyboard_support_under_x11__all_models__all_oses/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;I finally found the time to update my previous support for Aluminium
+Keyboard under Xorg, and take it to the Next Level (tm). The overall
+support is now much more polished. For you this means several things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;I've implemented the XKB geometries of &lt;strong&gt;all variants of the long
+    Aluminium Keyboard&lt;/strong&gt;, be it
+    &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-ansi.svg"&gt;ANSI&lt;/a&gt;
+    (American),
+    &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-iso.svg"&gt;ISO&lt;/a&gt;
+    (Internationnal) or
+    &lt;a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-jis.svg"&gt;JIS&lt;/a&gt;
+    (Japanese)! And believe me, it's darned complicated to support JIS
+    keyboard's dual layout without having access to the real hardware :D&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I've added support for base XKB rules, which means that the keyboard
+    will now be properly configured &lt;strong&gt;on other OSes than Linux&lt;/strong&gt;. I
+    personally used &lt;a href="http://www.opensolaris.org/"&gt;OpenSolaris&lt;/a&gt; during my
+    tests, but it should work equally well on
+    &lt;a href="http://www.freebsd.org/"&gt;FreeBSD&lt;/a&gt;, &lt;a href="http://openbsd.org/"&gt;OpenBSD&lt;/a&gt;,
+    and all their cousins!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The keyboard support is now &lt;strong&gt;aware of the system-wide keyboard
+    settings&lt;/strong&gt; as found in Debian or Fedora for example. If you
+    configured your system to default to Dvorak layout, the support will
+    use it automatically!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Aluminium_Keyboard_support_under_X11__all_models__all_OSes/aluminium_keyboard_support_under_x11__all_models__all_oses/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/Aluminium_Keyboard_support_under_X11__all_models__all_OSes/aluminium_keyboard_support_under_x11__all_models__all_oses/</guid><pubDate>Tue, 22 Dec 2009 21:03:00 GMT</pubDate></item><item><title>Make your Apple Aluminium Keyboard really work under Linux, X.org</title><link>https://dciabrin.net/posts/Make_your_Apple_Aluminium_Keyboard_really_work_under_Linux__X_org/make_your_apple_aluminium_keyboard_really_work_under_linux__x_org/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;Like many others, I've bought an Aluminium Keyboard for &lt;del&gt;its cool
+style&lt;/del&gt; the smooth typing experience it provides. Mine is a wired
+version, ISO variant (international, 110-keys). It's not working 100%
+out-of-the-box under Linux, so this post explains what I did to make it
+happen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Supporting the additional keys (F13..F19) and geometry (physical
+    layout) under X.org&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making the keyboard auto-configured at X.org startup. No need to
+    mess with xorg.conf!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But wait, there's more. If you're accustomed to PC keyboards, you really
+need those ones too:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Making this fn key located on top of the delete key behave like a
+    regular PC keyboard: Insert!&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making multimedia keys output Fxx symbols by default&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making F13..F15 behave like those charmingly obsolete Scroll
+    Lock..Print Screen keys&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Keeping the multimedia keys accessible when the fn key is remapped
+    to Insert&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Make_your_Apple_Aluminium_Keyboard_really_work_under_Linux__X_org/make_your_apple_aluminium_keyboard_really_work_under_linux__x_org/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/Make_your_Apple_Aluminium_Keyboard_really_work_under_Linux__X_org/make_your_apple_aluminium_keyboard_really_work_under_linux__x_org/</guid><pubDate>Thu, 14 May 2009 22:16:00 GMT</pubDate></item><item><title>Hello MikMod!</title><link>https://dciabrin.net/posts/Hello_MikMod_/hello_mikmod_/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;As promised earlier, I've packaged an obligatory example of how to use
+the iPhone port of &lt;a href="http://mikmod.raphnet.net/"&gt;libmikmod&lt;/a&gt; which I've
+talked about recently. Go grab &lt;a href="http://damien.ciabrini.free.fr/pub/mikmod-iphone/HelloMikMod.tar.gz"&gt;this
+tarball&lt;/a&gt;
+which implements a very simple "Hello World!":&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;It shows how to play a module within a
+    &lt;a href="http://www.cocoadev.com/index.pl?UIKit"&gt;UIKit&lt;/a&gt; application. This is
+    an adaptation of the skeleton program found in &lt;a href="http://http//mikmod.raphnet.net/#docs"&gt;MikMod
+    Documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It shows how to use the higher level sound API
+    &lt;a href="http://www.cocoadev.com/index.pl?CelestialFramework"&gt;Celestial&lt;/a&gt; to
+    control mikmod output. For instance, how to react to volume change
+    events when iPhone buttons are pressed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/Hello_MikMod_/hello_mikmod_/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/Hello_MikMod_/hello_mikmod_/</guid><pubDate>Fri, 04 Jul 2008 22:27:00 GMT</pubDate></item><item><title>MikMod library ported to iPhone</title><link>https://dciabrin.net/posts/MikMod_library_ported_to_iPhone/mikmod_library_ported_to_iphone/</link><dc:creator>Damien Ciabrini</dc:creator><description>&lt;div&gt;&lt;p&gt;I've always been a big fan of old skool computer music, like chiptunes
+or demoscene music. Perhaps because they remind me the Good Old Days
+(tm) of my &lt;a href="http://en.wikipedia.org/wiki/Amiga"&gt;Amiga&lt;/a&gt;. Or perhaps for
+the same reason I like &lt;a href="http://pouet.net/"&gt;demoscene&lt;/a&gt;: real-time
+computer art! Because it's definitely cool, I've decided to port MikMod
+to the iPhone! We'll see later if it might be useful to someone else :)&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://dciabrin.net/posts/MikMod_library_ported_to_iPhone/mikmod_library_ported_to_iphone/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>apple</category><category>apple-kbd</category><guid>https://dciabrin.net/posts/MikMod_library_ported_to_iPhone/mikmod_library_ported_to_iphone/</guid><pubDate>Fri, 27 Jun 2008 21:18:00 GMT</pubDate></item></channel></rss>

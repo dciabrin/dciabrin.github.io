@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aluminium Keyboard support under X11: all models, all OSes | blog-dump</title>
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/theme.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/style.css" rel="stylesheet" media="screen" type="text/css">
+<link href="../../../assets/css/style-print.css" rel="stylesheet" media="print" type="text/css">
+<link href="../../../assets/css/code_blocks/friendly.css" media="screen" rel="stylesheet">
+<link href="../../../assets/css/code_blocks/bw.css" media="print" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../rss.xml">
+<link rel="canonical" href="https://dciabrin.net/posts/Aluminium_Keyboard_support_under_X11__all_models__all_OSes/aluminium_keyboard_support_under_x11__all_models__all_oses/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Damien Ciabrini">
+<link rel="prev" href="../../Make_your_Apple_Aluminium_Keyboard_really_work_under_Linux__X_org/make_your_apple_aluminium_keyboard_really_work_under_linux__x_org/" title="Make your Apple Aluminium Keyboard really work under Linux, X.org" type="text/html">
+<link rel="next" href="../../Apple_Aluminium_Keyboards_with_udev__Xorg_server_1_9/apple_aluminium_keyboards_with_udev__xorg_server_1_9/" title="Apple Aluminium Keyboards with udev, Xorg server 1.9" type="text/html">
+<meta property="og:site_name" content="blog-dump">
+<meta property="og:title" content="Aluminium Keyboard support under X11: all models, all OSes">
+<meta property="og:url" content="https://dciabrin.net/posts/Aluminium_Keyboard_support_under_X11__all_models__all_OSes/aluminium_keyboard_support_under_x11__all_models__all_oses/">
+<meta property="og:description" content="I finally found the time to update my previous support for Aluminium
+Keyboard under Xorg, and take it to the Next Level (tm). The overall
+support is now much more polished. For you this means several ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2009-12-22T22:03:00+01:00">
+<meta property="article:tag" content="apple">
+<meta property="article:tag" content="apple-kbd">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../">
+
+            <span id="blog-title">blog-dump</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container-fluid" id="content" role="main">
+  <!-- <div class="row justify-content-center"> -->
+  <!--   <div class="col-lg-10 col-md-12"> -->
+      <!-- <div class="body-content"> -->
+        <!--Body content-->
+        
+<div class="row justify-content-center">
+<div class="col-lg-10 col-md-12">
+<div class="body-content">
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Aluminium Keyboard support under X11: all models, all OSes</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Damien Ciabrini
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2009-12-22T22:03:00+01:00" itemprop="datePublished" title="2009-12-22 22:03">2009-12-22 22:03</time></a>
+            </p>
+            
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>I finally found the time to update my previous support for Aluminium
+Keyboard under Xorg, and take it to the Next Level (tm). The overall
+support is now much more polished. For you this means several things:</p>
+<ul>
+<li>
+<p>I've implemented the XKB geometries of <strong>all variants of the long
+    Aluminium Keyboard</strong>, be it
+    <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-ansi.svg">ANSI</a>
+    (American),
+    <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-iso.svg">ISO</a>
+    (Internationnal) or
+    <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/apple-alukbd-jis.svg">JIS</a>
+    (Japanese)! And believe me, it's darned complicated to support JIS
+    keyboard's dual layout without having access to the real hardware :D</p>
+</li>
+<li>
+<p>I've added support for base XKB rules, which means that the keyboard
+    will now be properly configured <strong>on other OSes than Linux</strong>. I
+    personally used <a href="http://www.opensolaris.org/">OpenSolaris</a> during my
+    tests, but it should work equally well on
+    <a href="http://www.freebsd.org/">FreeBSD</a>, <a href="http://openbsd.org/">OpenBSD</a>,
+    and all their cousins!</p>
+</li>
+<li>
+<p>The keyboard support is now <strong>aware of the system-wide keyboard
+    settings</strong> as found in Debian or Fedora for example. If you
+    configured your system to default to Dvorak layout, the support will
+    use it automatically!</p>
+</li>
+</ul>
+<!-- TEASER_END --><h2>Installing the new support</h2>
+<p>I'm short on details, but you can find a complete explanation for all
+these steps in a <a href="http://damienciabrini.blogspot.com/2009/05/make-your-apple-aluminium-keyboard.html">previous
+post</a>.</p>
+<h3>XKB Patch</h3>
+<p>First of all, download <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/applekbd-xkb-support.patch.gz">this XKB
+patch</a>
+and try to apply it on your XKB install in dry-run. For the sake of the
+example, I assume you downloaded the patch in your <code>$HOME</code> directory.</p>
+<div class="code"><pre class="code literal-block"><span class="go">sudo bash</span>
+<span class="go">cd /usr/share/X11/xkb</span>
+<span class="go">gunzip -cd $HOME/applekbd-xkb-support.patch.gz | patch -p1 --dry-run</span>
+</pre></div>
+
+<p>If the patch applies successfuly, you can proceed and apply it for real:</p>
+<div class="code"><pre class="code literal-block"><span class="go">gunzip -cd $HOME/applekbd-xkb-support.patch.gz | patch -p1</span>
+</pre></div>
+
+<h3>HAL support</h3>
+<p>Well, even if HAL is meant to be replaced sooner or later by
+<a href="http://fedoraproject.org/wiki/Features/DeviceKit">DeviceKit</a>, that's
+the way to go for the time being. So I reworked the previous HAL support
+and split it in one fdi file to track your keyboard on your hardware,
+plus a script to configure XKB for Aluminium Keyboard and to remap the
+Fn key to Insert. To install it, first remove the fdi file from the
+previous support if necessary. Then, copy this <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/10-applekbd-xkb-settings.fdi">new fdi
+file</a>
+(which you have previously downloaded in your <code>$HOME</code> directory) in the
+relevant HAL directory. On my Ubuntu Karmic, this gives (<strong>update:</strong>
+added missing chmod, thanks Patrick):</p>
+<div class="code"><pre class="code literal-block"><span class="go">sudo bash</span>
+<span class="go">rm -f /usr/share/hal/fdi/policy/30user/10-apple-aluminium-kbd.fdi</span>
+<span class="go">mkdir -p /usr/share/hal/fdi/policy/30user</span>
+<span class="go">cp $HOME/10-applekbd-xkb-settings.fdi /usr/share/hal/fdi/policy/30user</span>
+</pre></div>
+
+<p>Download (I assume in your <code>$HOME</code> directory) the <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/applekbd-xkb-settings.sh">new script for XKB
+setting</a>,
+plus its associated <a href="http://damien.ciabrini.free.fr/pub/applekbd-xkb/applekbd-xkb-settings">configuration
+file</a>.
+Then copy them respectively in HAL's installation directory and in the
+system-wide configuration directory. On my Ubuntu, ths gives:</p>
+<div class="code"><pre class="code literal-block"><span class="go">sudo bash</span>
+<span class="go">cp $HOME/applekbd-xkb-settings.sh /usr/lib/hal</span>
+<span class="go">chmod +x /usr/lib/hal/applekbd-xkb-settings.sh</span>
+<span class="go">cp $HOME/applekbd-xkb-settings /etc/default</span>
+</pre></div>
+
+<p>You can tweak the configuration file
+<code>/etc/default/applekbd-xkb-settings</code> to enable the settings you want for
+your keyboard. By default, the Fn key is remapped to Insert. The XKB
+options can be configured there for system-wide setting, as explained in
+the configuration file itself. But it's more user-friendly to configure
+XKB in your preferred Desktop Environment (GNOME, KDE, XFCE...
+whatever).</p>
+<h2>Enjoy!</h2>
+<p>I'm particularly happy with my revised XKB geometries. A tedious work,
+but this time keys dimension and layout perfectly match the original
+hardware, whatever the model. I'm even more happy now that I discovered
+how Apple decided to implement their EISU and KANA keys on the JIS
+keyboard! If you are curious, have a look at file
+<code>xkb/keycodes/machintosh</code> in the patch, or read <a href="http://forum.parallels.com/showthread.php?t=90313">this post on Parallels'
+forum</a>.</p>
+<p>The XKB patches are now ready for submission to the Xorg people
+(xkeyboard-config). The rest of the files are also clean enough to start
+providing .deb packages for this support! Maybe a good opportunity of
+learning <a href="https://help.launchpad.net/Packaging/PPA">PPA</a> in
+<a href="https://launchpad.net/">LaunchPad</a> :P</p>
+    </div>
+
+<!-- <nav> -->
+<!--           <ul itemprop="keywords" class="tags">
+            <li><a class="tag p-category" href="/categories/apple/" rel="tag">apple</a></li>
+            <li><a class="tag p-category" href="/categories/apple-kbd/" rel="tag">apple-kbd</a></li>
+        </ul>
+ -->
+<!-- </nav> -->
+    
+    
+    
+</article>
+</div>
+</div>
+</div>
+        <!--End of body content-->
+      <!-- </div> -->
+  <!--   </div> -->
+  <!-- </div> -->
+  <hr class="d-print-none">
+<nav class="nav-articles d-print-none row justify-content-center"><div class="col-lg-10 col-md-12">
+    <div class="row justify-content-center">
+        <div class="col newer-article text-left">
+            <div>Newer Post</div>
+            <a href="../../Apple_Aluminium_Keyboards_with_udev__Xorg_server_1_9/apple_aluminium_keyboards_with_udev__xorg_server_1_9/" rel="next" title="Apple Aluminium Keyboards with udev, Xorg server 1.9">Apple Aluminium Keyboards with udev, Xorg server 1.9</a>
+        </div>
+        
+        <div class="col text-center">
+        </div>
+        <div class="col older-article text-right">
+            <div>Older Post</div>
+            <a href="../../Make_your_Apple_Aluminium_Keyboard_really_work_under_Linux__X_org/make_your_apple_aluminium_keyboard_really_work_under_linux__x_org/" rel="prev" title="Make your Apple Aluminium Keyboard really work under Linux, X.org">Make your Apple Aluminium Keyboard really work under Linux, X.org</a>
+        </div>
+    </div>
+    </div>
+</nav>
+</div>
+        <footer id="footer" class="d-print-none"><div class="container-fluid">
+            <div class="row justify-content-center">
+               <div class="col-lg-10 col-md-12">
+                 <p class="text-center copyright text-muted">Contents © 2025         <a href="mailto:damien.ciabrini@gmail.com">Damien Ciabrini</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+                 
+              </div>
+            </div>
+          </div>
+        </footer><script src="../../../assets/js/jquery.min.js"></script><script src="../../../assets/js/popper.min.js"></script><script src="../../../assets/js/bootstrap.min.js"></script><script src="../../../assets/js/baguetteBox.min.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
